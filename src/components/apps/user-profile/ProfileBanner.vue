@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, shallowRef } from 'vue';
+import { ref, computed } from 'vue';
 import { HeartIcon, PhotoIcon, UserCircleIcon, UsersIcon } from 'vue-tabler-icons';
 import profileBg from '@/assets/images/backgrounds/profilebg.jpg';
 import UserImage from '@/assets/images/profile/user-1.jpg';
@@ -8,14 +8,15 @@ import UserImage from '@/assets/images/profile/user-1.jpg';
 import { useAuthStore } from '@/stores/auth';
 
 const authStore: any = useAuthStore();
-const userAvatar: string = authStore.userAvatar;
+const userAvatar = computed(() => {
+    return authStore.getUserAvatar;
+});
 
 const getUserAvatarPath = (avatarName: string): string => {
     console.log('getUserAvatarPath', avatarName);
     return `/src/assets/images/profile/user-${avatarName}.jpg`;
 };
-
-let showModalDialog = ref(null);
+let showModalDialog = ref();
 
 const showModal = () => {
     console.log('showModal', showModalDialog.value);
@@ -49,19 +50,24 @@ const avatars = [
 
 ]
 
-let selectedAvatar = ref(null);
+let selectedAvatar = ref<{ id: number; src: string; } | null>(null);
+
 
 const selectAvatar = (index: number) => {
-
     console.log('selectAvatar', index, avatars[index]);
     selectedAvatar.value = avatars[index];
     console.log(selectedAvatar.value.id);
-    getUserAvatarPath(selectedAvatar.value.id);
-    authStore.saveAvatar(selectedAvatar.value.id);
+
+    // Convert id to string before passing it to getUserAvatarPath
+    getUserAvatarPath(selectedAvatar.value.id.toString());
+    authStore.saveAvatar(selectedAvatar.value.id.toString());
+
+
 
     showModalDialog.value = false;
-
 };
+
+
 // const tab = ref(null);
 // const items = shallowRef([
 //     { tab: 'Profile', icon: UserCircleIcon, href: '/apps/user/profile' },

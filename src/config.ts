@@ -5,7 +5,7 @@ export type ConfigProps = {
     setHorizontalLayout: boolean;
     setRTLLayout: boolean;
     actTheme: string;
-    inputBg:string;
+    inputBg: string;
     boxed: boolean;
     setBorderCard: boolean;
 };
@@ -18,7 +18,7 @@ const config: ConfigProps = {
     setRTLLayout: false, // RTL layout
     actTheme: 'ORANGE_THEME',
     inputBg: 'ORANGE_THEME',
-    boxed: true,
+    boxed: false,
     setBorderCard: false
 };
 

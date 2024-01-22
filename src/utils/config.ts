@@ -22,10 +22,15 @@ const config: Record<string, EnvironmentConfig> = {
     development: {
         mode: 'test',
         applicationId: '1',
-        mediaUrl: 'http://logintest.prospot.online/assets',
-        loginPageLink: 'http://loginpreview.prospot.online/',
+        mediaUrl: 'http://logintest.meanderservices.com/assets',
+        loginPageLink: 'http://loginpreview.meanderservices.com/',
         getMedia: 'http://10.10.22.13/assets/company/',
-        whatsappMediaUrl: 'https://whatsappapi.prospot.online/img/',
+        whatsappMediaUrl: 'https://whatsappapi.meanderservices.com/img/',
+        // basePath: function (path: string) {
+        //     return path.includes('whatsappapi')
+        //         ? 'https://' + this.mode + path + '.meanderservices.com'
+        //         : 'http://' + this.mode + path + '.meanderservices.com';
+        // }
         basePath: function (path: string) {
             return path.includes('whatsappapi')
                 ? 'https://' + this.mode + path + '.prospot.online'
@@ -36,12 +41,15 @@ const config: Record<string, EnvironmentConfig> = {
     production: {
         mode: 'prod',
         applicationId: '1',
-        mediaUrl: 'http://login.prospot.online/assets',
-        loginPageLink: 'http://loginpreview.prospot.online/',
-        getMedia: 'http://login.prospot.online/assets/company',
-        whatsappMediaUrl: 'https://whatsappapi.prospot.online/img/',
+        mediaUrl: 'http://login.meanderservices.com/assets',
+        loginPageLink: 'http://loginpreview.meanderservices.com/',
+        getMedia: 'http://login.meanderservices.com/assets/company',
+        whatsappMediaUrl: 'https://whatsappapi.meanderservices.com/img/',
+        // basePath: function (path: string) {
+        //     return path.includes('whatsappapi') ? 'https://' + this.mode + path + '.meanderservices.com' : 'http://' + path + '.meanderservices.com';
+        // }
         basePath: function (path: string) {
-            return path.includes('whatsappapi') ? 'https://' + this.mode + path + '.prospot.online' : 'http://' + path + '.prospot.online';
+            return path.includes('whatsappapi') ? 'https://' + this.mode + path + '.prospot.online' : 'http://' + path + '.meanderservices.com';
         }
         // Diğer prod konfigürasyonları...
     }

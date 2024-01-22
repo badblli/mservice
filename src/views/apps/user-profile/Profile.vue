@@ -4,7 +4,7 @@ import BaseBreadcrumb from '@/components/shared/BaseBreadcrumb.vue';
 
 // components
 import ProfileBanner from '@/components/apps/user-profile/ProfileBanner.vue';
-import IntroCard from '@/components/apps/user-profile/IntroCard.vue';
+import ProfileInfo from '@/components/apps/user-profile/ProfileInfo.vue';
 import PhotosCard from '@/components/apps/user-profile/PhotosCard.vue';
 import PostListing from '@/components/apps/user-profile/PostListing.vue';
 import AddPost from '@/components/apps/user-profile/posts/AddPost.vue';
@@ -30,19 +30,15 @@ const breadcrumbs = ref([
 <template>
     <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
     <ProfileBanner />
+
     <v-row class="mt-4">
-        <v-col cols="12" lg="12" md="12">
-            dıjdsv
-        </v-col>
-    </v-row>
-    <!-- <v-row class="mt-4">
         <v-col cols="12" lg="4" md="4">
-            <IntroCard />
+            <ProfileInfo />
             <PhotosCard />
         </v-col>
         <v-col cols="12" lg="8" md="8">
             <AddPost />
             <PostListing />
         </v-col>
-    </v-row> -->
+    </v-row>
 </template>

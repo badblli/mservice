@@ -4,6 +4,8 @@ import envConfig from '../config'; // config dosyasını import et
 import api from '../axios'; // axios dosyasını import et
 import { useLanguages } from '@/stores/language';
 import { useAuthStore } from '@/stores/auth';
+import { useTablesStore } from '@/stores/table';
+import { router } from '@/router';
 
 const uid = () => {
     return Math.random().toString(36).substr(2, 9);
@@ -127,7 +129,7 @@ const callPostApi = async (
         }
     } catch (error: any) {
         if (error.response && error.response.status === 401) {
-            localStorage.setItem('loginModal', 'true');
+            router.push('/auth/login');
             // storeSettings.state.loginModal = true;
         }
 
@@ -260,6 +262,101 @@ const createMenu = (list: any[]): any[] => {
 
     return roots;
 };
+const getTable = function (
+    applicationName: string,
+    controllerName: string,
+    name: string,
+    params: any = null,
+    deleteRow: boolean = false,
+    formatDate: any[] = [],
+    baseURLLink: boolean = false,
+    baseURLLinkWithGet: boolean = false
+) {
+    localStorage.setItem('requestURL', '');
+    localStorage.setItem('requestParam', '');
+    localStorage.setItem('requestPageName', '');
+    useTablesStore().resetRows();
+    api.defaults.headers.common.Authorization = useAuthStore().getToken;
+    api.defaults.headers.common.GlobalCompanyID = 'ProtalyaOfisTest';
+    api.defaults.headers.common.ApplicationID = envConfig.applicationId || 1;
+    // Yeni eklendi.
+    if (formatDate.length > 0) {
+        params = beforeSubmitData(params, formatDate);
+    }
+    if (deleteRow) {
+        if (localStorage.has(controllerName + 'Params') === true) {
+            params = localStorage.getItem(controllerName + 'Params');
+        }
+    }
+
+    useTablesStore().loadingTrue();
+
+    if (baseURLLink) {
+        api.get(controllerName + '/' + name, {
+            params,
+            baseURL: 'http://' + applicationName
+        })
+            .then((response) => {
+                localStorage.setItem('requestURL', response.config.url);
+                localStorage.setItem('requestParam', response.config.params);
+                localStorage.setItem('requestPageName', name);
+                if (response.data.status === 1) {
+                    useTablesStore().addRows(JSON.parse(response.data.result));
+                }
+            })
+            .catch(function (error) {
+                useTablesStore().resetRows();
+                if (error.response && error.response.status === 401) {
+                    localStorage.setItem('loginModal', true);
+                }
+            });
+    } else {
+        let mainUrl = '';
+        if (baseURLLinkWithGet) {
+            mainUrl = 'http://' + applicationName;
+        } else {
+            mainUrl = envConfig.basePath(applicationName);
+        }
+
+        api.get(controllerName + '/Get' + name, {
+            params,
+            baseURL: mainUrl
+        })
+            .then((response) => {
+                localStorage.setItem('requestURL', response.config.url);
+                localStorage.setItem('requestParam', response.config.params);
+                localStorage.setItem('requestPageName', name);
+                if (response.data.status === 1) {
+                    useTablesStore().addRows(JSON.parse(response.data.result));
+                } else {
+                    useTablesStore().resetRows();
+                }
+            })
+            .catch(function (error) {
+                useTablesStore().resetRows();
+                if (error.response && error.response.status === 401) {
+                    localStorage.setItem('loginModal', true);
+                }
+            });
+    }
+};
+const tabCreate = function (
+    Tabs: { ID: number }[],
+    List: { LanguageID?: number }[],
+    Empty: { [key: string]: any }[]
+): { [key: string]: any }[] {
+    if (Tabs.length > List.length) {
+        for (let ii = List.length - 1; ii < Tabs.length; ii++) {
+            List.push({ ...Empty });
+            if (Tabs[ii]) {
+                List[ii].LanguageID = Tabs[ii].ID;
+            }
+        }
+        List.splice(-1, 1);
+    }
+    return List;
+};
+
 interface MenuItem {
     ParentID: number;
     ID: number;
@@ -322,4 +419,17 @@ function organizedMenu(originalMenu: OriginalMenuItem[]): MenuItem[] {
     return result;
 }
 
-export { getApi, callPostApi, parse, checkEmptyValue, checkDate, checkDateAndTime, convertDate, getLabel, createMenu, organizedMenu };
+export {
+    getApi,
+    callPostApi,
+    getTable,
+    tabCreate,
+    parse,
+    checkEmptyValue,
+    checkDate,
+    checkDateAndTime,
+    convertDate,
+    getLabel,
+    createMenu,
+    organizedMenu
+};
