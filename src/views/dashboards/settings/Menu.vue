@@ -42,6 +42,7 @@ const splitterModel = ref(0);
 const tab = ref('general');
 const title = ref('');
 const languageTabs = ref([]);
+const selectedRow = ref([]);
 const menuParent = ref(null);
 const forms = ref({
     ParentID: null,
@@ -391,6 +392,7 @@ onMounted(() => {
 
             <DataTable :applicationName="applicationName" :controllerName="controllerName" :name="name" :headers="headers"
                 @modal="(modal) => (modalVisible = modal)" />
+
         </v-card-text>
     </v-card>
     <v-dialog v-model="modalVisible" max-width="500">

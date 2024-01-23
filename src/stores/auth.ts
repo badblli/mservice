@@ -21,7 +21,8 @@ export const useAuthStore = defineStore({
         controllerName2: 'Admin',
         applicationName: p.Auth,
         applicationName2: p.AuthAdmin,
-        userAvatar: JSON.parse(localStorage.getItem('user'))?.UserProfile?.UserAvatar
+        userAvatar: JSON.parse(localStorage.getItem('user'))?.UserProfile?.UserAvatar,
+        loading: false
     }),
     getters: {
         getDarkMode: (state) => {
@@ -60,14 +61,16 @@ export const useAuthStore = defineStore({
                 this.getUserAvatar();
             }
         },
-        getTranslationList() {
+        async getTranslationList() {
             let params = {
                 ShortCode: "TR",
               }
-            const response = getApi(this.applicationName, "Auth", "GetTranslationList", params, true)
+            const response = await getApi(this.applicationName, "Auth", "GetTranslationList", params, true)
 
             if (response && response.data && response.data.status === 1) {
-                localStorage.setItem('translationList', JSON.parse(response.data.result));
+
+                let data = JSON.parse(response.data.result);
+                useLanguages().setTranslationList(data);
                 useLanguages().addPageLanguage('Login');
             }
         },
@@ -80,15 +83,16 @@ export const useAuthStore = defineStore({
                 ApplicationID: envConfig.applicationId
             };
             const response = await callPostApi(this.applicationName, this.controllerName, this.name, data, [], true);
-
+this.loading = true;
             if (response && response.data && response.data.status === 1) {
                 // Handle successful login
                 const user = parse(response.data.result);
                 this.user = user;
                 localStorage.setItem('user', JSON.stringify(user));
-                useSettingsStore().setMenuList();
-                useCustomizerStore().SET_THEME(this.user.UserProfile.DarkTheme);
-                this.getTranslationList();
+                await useSettingsStore().setMenuList();
+                await useCustomizerStore().SET_THEME(this.user.UserProfile.DarkTheme);
+                await this.getTranslationList();
+                this.loading = false;
                 // redirect to previous url or default to home page
                 router.push('/');
             }

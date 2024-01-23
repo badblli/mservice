@@ -20,6 +20,11 @@ const MainRoutes = {
             path: '/dashboards/settings/menu',
             component: () => import('@/views/dashboards/settings/Menu.vue')
         },
+        {
+            name: 'Currency',
+            path: '/dashboards/keydefinitions/general/currency',
+            component: () => import('@/views/dashboards/keydefinations/general/Currency.vue')
+        },
 
         /////////////////////////////////////////////////////////////////////////////
         {

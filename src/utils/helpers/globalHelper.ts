@@ -5,6 +5,8 @@ import api from '../axios'; // axios dosyasını import et
 import { useLanguages } from '@/stores/language';
 import { useAuthStore } from '@/stores/auth';
 import { useTablesStore } from '@/stores/table';
+import { useSettingsStore } from '@/stores/settings';
+import { useNotify } from '@/stores/snackbar';
 import { router } from '@/router';
 
 const uid = () => {
@@ -72,7 +74,7 @@ const getApi = async <T>(
         console.log(error);
         if (error.response && error.response.status === 401) {
             localStorage.setItem('loginModal', 'true'); // Convert boolean value to string
-            // storeSettings.state.loginModal = true;
+            useSettingsStore().loginModal = true;
         }
 
         throw error; // Hata tekrar fırlatılır
@@ -130,7 +132,7 @@ const callPostApi = async (
     } catch (error: any) {
         if (error.response && error.response.status === 401) {
             router.push('/auth/login');
-            // storeSettings.state.loginModal = true;
+            // useSettingsStore().state.loginModal = true;
         }
 
         throw error;
@@ -138,6 +140,182 @@ const callPostApi = async (
 
     return false; // In case no condition is met, for example, if the response status is not handled.
 };
+const saveRow = function (
+    applicationName: string,
+    controllerName: string,
+    name: string,
+    data: any,
+    formatDate: any[] = [],
+    backResponse: number = 1,
+    secondFormatDate: any[] = [],
+    baseURLLink: boolean = false
+  ): Promise<boolean | any> {
+    if (formatDate.length > 0) {
+      data = beforeSubmitData(data, formatDate);
+    }
+  
+    if (secondFormatDate.length > 0) {
+      data[secondFormatDate[0]].filter(function (e: any) {
+        return beforeSubmitData(e, formatDate);
+      });
+    }
+  
+    let mainUrl = "";
+    if (baseURLLink) {
+      mainUrl = "http://" + applicationName;
+    } else {
+      mainUrl = envConfig.basePath(applicationName);
+    }
+  
+    console.log("response.data.status1");
+    api.defaults.headers.common.Authorization = useAuthStore().getToken;
+    api.defaults.headers.common.GlobalCompanyID = 'ProtalyaOfisTest';
+    api.defaults.headers.common.ApplicationID = envConfig.applicationId || 1;
+  
+    return api
+      .post(`${controllerName}/Save${name}`, data, {
+        baseURL: mainUrl,
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.data.status === 1) {
+          localStorage.setItem("success", "true");
+         useNotify().showSnackbar({
+            color: "positive",
+            position: "bottom-right",
+            message: getLabel("Success", "Common"),
+            icon: "mdi-check-circle",
+          });
+          console.log("response.data.status");
+          console.log(response.data.status);
+          if (backResponse === 1) {
+            localStorage;
+            getTable(
+              applicationName,
+              controllerName,
+              name,
+              null,
+              false,
+              [],
+              false,
+              baseURLLink
+            );
+          } else {
+            return response.data.result;
+          }
+          return true;
+        } else if (response.data.status === 3) {
+          localStorage.setItem("success", false);
+          response.data.validationErrorList.forEach(function (a: any) {
+           useNotify().showSnackbar({
+              color: "negative",
+              position: "bottom-right",
+              message: `${a.propertyName} ${a.errorDescription}`,
+             icon: "mdi-alert-circle",
+            });
+          });
+          return false;
+        } else if (response.data.status === 2) {
+          localStorage.setItem("success", false);
+         useNotify().showSnackbar({
+            color: "negative",
+            position: "bottom-right",
+            message: response.data.errorMessage,
+           icon: "mdi-alert-circle",
+          });
+          return false;
+        } else {
+          localStorage.setItem("success", false);
+         useNotify().showSnackbar({
+            color: "negative",
+            position: "top",
+            message: response.data.title,
+           icon: "mdi-alert-circle",
+          });
+        }
+      })
+      .catch(function (error) {
+       useTablesStore().resetRows();
+        if (error.response && error.response.status === 401) {
+         useNotify().showSnackbar({
+            color: "negative",
+            position: "top",
+            message: "Lütfen Oturum Açın",
+           icon: "mdi-alert-circle",
+          });
+  
+          localStorage.setItem("loginModal", "true");
+          useSettingsStore().loginModal = true;
+        } else if (error.response && error.response.status === 400) {
+         useNotify().showSnackbar({
+            color: "negative",
+            position: "bottom-right",
+            message: `${error.response.statusText}:${error.response.data.title}`,
+           icon: "mdi-alert-circle",
+          });
+        }
+      });
+  };
+const deleteRow = function (
+    applicationName: string,
+    controllerName: string,
+    name: string,
+    ID: number,
+    title: string = "",
+    getTableName: string | null = null,
+    askDelete: boolean = true,
+    getAfter: boolean = true,
+    baseURLLink: boolean = false
+  ): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let mainUrl = "";
+      if (baseURLLink) {
+        mainUrl = "http://" + applicationName;
+      } else {
+        mainUrl = envConfig.basePath(applicationName);
+      }
+  
+    
+        // direk siler
+        api.defaults.headers.common.Authorization = useAuthStore().getToken;
+        api.defaults.headers.common.GlobalCompanyID = 'ProtalyaOfisTest';
+        api.defaults.headers.common.ApplicationID = envConfig.applicationId || 1;
+        return api
+          .post(`${controllerName}/Delete${name}/${ID}`, "", {
+            baseURL: mainUrl,
+          })
+          .then((response) => {
+            if (response.data.result === 3) {
+            } else {
+              if (getTableName !== null) {
+                getTable(
+                  applicationName,
+                  controllerName,
+                  getTableName,
+                  null,
+                  false,
+                  [],
+                  false,
+                  baseURLLink
+                );
+              } else {
+                getTable(
+                  applicationName,
+                  controllerName,
+                  name,
+                  null,
+                  false,
+                  [],
+                  false,
+                  baseURLLink
+                );
+              }
+            }
+            resolve(response);
+          });
+      
+    });
+  };
 const checkEmptyValue = function (fields: any, status: boolean): boolean {
     if (fields === null && status === true) {
         return true;
@@ -302,6 +480,7 @@ const getTable = function (
                 localStorage.setItem('requestPageName', name);
                 if (response.data.status === 1) {
                     useTablesStore().addRows(JSON.parse(response.data.result));
+
                 }
             })
             .catch(function (error) {
@@ -424,6 +603,8 @@ export {
     callPostApi,
     getTable,
     tabCreate,
+    deleteRow,
+    saveRow,
     parse,
     checkEmptyValue,
     checkDate,

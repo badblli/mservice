@@ -4,13 +4,15 @@ interface Language {
     Name: string;
     Text: string;
     ParentName: string;
+    LanguageID: number;
 }
-
-export const useLanguages = defineStore('languages', {
+export const useLanguages = defineStore({
+    id: 'languages',
     state: () => ({
         webLanguages: [] as string[],
         pageLanguage: [] as Language[],
-        labelText: '' as string
+        labelText: '' as string,
+        translationList: [] as Language[]
     }),
 
     getters: {
@@ -28,6 +30,10 @@ export const useLanguages = defineStore('languages', {
     actions: {
         setPageLanguage(data: Language): void {
             this.pageLanguage.push(data);
+        },
+        setTranslationList(data: Language[]): void {
+            this.translationList = data;
+            localStorage.setItem('translationList', JSON.stringify(data));
         },
 
         getLabel(inputName: string): void {
