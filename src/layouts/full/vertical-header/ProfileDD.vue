@@ -1,11 +1,14 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import { UserIcon } from 'vue-tabler-icons';
 import { profileDD } from '@/_mockApis/headerData';
 
 import { useAuthStore } from '@/stores/auth';
 
 const authStore: any = useAuthStore();
-const userAvatar: string = authStore.userAvatar;
+const userAvatar = computed(() => {
+    return authStore.getUserAvatar;
+});
 
 const getUserAvatarPath = (avatarName: string): string => {
     return `/src/assets/images/profile/user-${avatarName}.jpg`;

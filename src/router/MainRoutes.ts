@@ -8,22 +8,34 @@ const MainRoutes = {
     children: [
         {
             path: '/',
-            redirect: "/dashboards/analytical",
+            redirect: '/dashboards/analytical'
         },
         {
             name: 'Analytical',
             path: '/dashboards/analytical',
-            component: () => import('@/views/dashboards/analytical/Analytical.vue'),
+            component: () => import('@/views/dashboards/analytical/Analytical.vue')
         },
+        {
+            name: 'Menu',
+            path: '/dashboards/settings/menu',
+            component: () => import('@/views/dashboards/settings/Menu.vue')
+        },
+        {
+            name: 'Currency',
+            path: '/dashboards/keydefinitions/general/currency',
+            component: () => import('@/views/dashboards/keydefinations/general/Currency.vue')
+        },
+
+        /////////////////////////////////////////////////////////////////////////////
         {
             name: 'Ecommerce',
             path: '/dashboards/ecommerce',
-            component: () => import('@/views/dashboards/ecommerce/Ecommerce.vue'),
+            component: () => import('@/views/dashboards/ecommerce/Ecommerce.vue')
         },
         {
             name: 'Modern',
             path: '/dashboards/modern',
-            component: () => import('@/views/dashboards/modern/Modern.vue'),
+            component: () => import('@/views/dashboards/modern/Modern.vue')
         },
         {
             name: 'Chats',
@@ -106,7 +118,7 @@ const MainRoutes = {
             path: '/apps/kanban',
             component: () => import('@/views/apps/kanban/Kanban.vue')
         },
-       {
+        {
             name: 'Alert',
             path: '/ui-components/alert',
             component: () => import('@/views/ui-elements/UiAlert.vue')
@@ -367,16 +379,15 @@ const MainRoutes = {
             component: () => import('@/views/tables/datatables/Slots.vue')
         },
         {
-            name: "Material",
-            path: "/icons/material",
-            component: () => import("@/views/icons/MaterialIcons.vue"),
-          },
-          {
-            name: "Tabler",
-            path: "/icons/tabler",
-            component: () => import("@/views/icons/TablerIcons.vue"),
-          },
-        
+            name: 'Material',
+            path: '/icons/material',
+            component: () => import('@/views/icons/MaterialIcons.vue')
+        },
+        {
+            name: 'Tabler',
+            path: '/icons/tabler',
+            component: () => import('@/views/icons/TablerIcons.vue')
+        }
     ]
 };
 

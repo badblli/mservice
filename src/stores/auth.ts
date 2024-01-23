@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia';
 import { router } from '@/router';
-import { callPostApi, parse } from '@/utils/helpers/globalHelper';
+import { callPostApi, getApi, parse } from '@/utils/helpers/globalHelper';
 import p from '@/utils/helpers/pathConfig';
 import envConfig from '@/utils/config';
 import { useSettingsStore } from '@/stores/settings';
 import { useCustomizerStore } from '@/stores/customizer';
 import { get } from 'lodash';
+import { useLanguages } from './language';
 
 export const useAuthStore = defineStore({
     id: 'auth',
@@ -20,7 +21,8 @@ export const useAuthStore = defineStore({
         controllerName2: 'Admin',
         applicationName: p.Auth,
         applicationName2: p.AuthAdmin,
-        userAvatar: JSON.parse(localStorage.getItem('user'))?.UserProfile?.UserAvatar
+        userAvatar: JSON.parse(localStorage.getItem('user'))?.UserProfile?.UserAvatar,
+        loading: false
     }),
     getters: {
         getDarkMode: (state) => {
@@ -50,15 +52,27 @@ export const useAuthStore = defineStore({
             this.user.UserProfile.UserAvatar = avatar;
             this.userAvatar = avatar;
 
-            // let params = {
-            //     UserAvatar: JSON.stringify(avatar)
-            // };
-            // const response = callPostApi(this.applicationName2, this.controllerName2, this.name2, params, [], false);
+            let params = {
+                UserAvatar: avatar
+            };
+            const response = callPostApi(this.applicationName2, this.controllerName2, this.name2, params, [], false);
 
-            // if (response && response.data && response.data.status === 1) {
+            if (response && response.data && response.data.status === 1) {
+                this.getUserAvatar();
+            }
+        },
+        async getTranslationList() {
+            let params = {
+                ShortCode: "TR",
+              }
+            const response = await getApi(this.applicationName, "Auth", "GetTranslationList", params, true)
 
-            //     getUserAvatar();
-            // }
+            if (response && response.data && response.data.status === 1) {
+
+                let data = JSON.parse(response.data.result);
+                useLanguages().setTranslationList(data);
+                useLanguages().addPageLanguage('Login');
+            }
         },
         async login(username: string, password: string, selectedLanguage: { Name: string; ID: number; IsoCode: string }) {
             let data = {
@@ -69,14 +83,16 @@ export const useAuthStore = defineStore({
                 ApplicationID: envConfig.applicationId
             };
             const response = await callPostApi(this.applicationName, this.controllerName, this.name, data, [], true);
-
+this.loading = true;
             if (response && response.data && response.data.status === 1) {
                 // Handle successful login
                 const user = parse(response.data.result);
                 this.user = user;
                 localStorage.setItem('user', JSON.stringify(user));
-                useSettingsStore().setMenuList();
-                useCustomizerStore().SET_THEME(this.user.UserProfile.DarkTheme);
+                await useSettingsStore().setMenuList();
+                await useCustomizerStore().SET_THEME(this.user.UserProfile.DarkTheme);
+                await this.getTranslationList();
+                this.loading = false;
                 // redirect to previous url or default to home page
                 router.push('/');
             }

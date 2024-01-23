@@ -8,6 +8,7 @@ import pathConfig from '@/utils/helpers/pathConfig'
 const checkbox = ref(false);
 const valid = ref(false);
 const show1 = ref(false);
+const loading = ref(false);
 const password = ref('123456');
 const username = ref('busenur.adibelli');
 const selectedLanguage = ref<{ Name: string; ID: number; IsoCode: string }>({ Name: 'Turkish', ID: 1, IsoCode: 'TR' });
@@ -41,6 +42,7 @@ const selectOptionsLanguage = async () => {
 
 function validate(values: any, { setErrors }: any) {
     const authStore = useAuthStore();
+    loading.value = authStore.loading;
     return authStore.login(username.value, password.value, selectedLanguage.value).catch((error) => setErrors({ apiError: error }));
 }
 

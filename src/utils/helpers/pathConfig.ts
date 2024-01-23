@@ -1,16 +1,9 @@
-const siteName: string = 'ProSpot';
+const siteName: string = 'Mservice';
 const Auth: string = 'auth';
 const AuthAdmin: string = 'authAdmin';
 const Master: string = 'nswmaster';
 const Prospot: string = 'master';
-const Sale: string = 'sale';
-const Router: string = 'router';
-const ProspotRouter: string = 'routermanagement';
-const CRM: string = 'crm';
-const Content: string = 'content';
-const Log: string = 'log';
-const Storage: string = 'api.depoantalya.com';
-const Whatsapp: string = 'whatsappapi';
+
 
 export default {
     Auth,
@@ -18,12 +11,5 @@ export default {
     Master,
     Prospot,
     siteName,
-    Sale,
-    Router,
-    ProspotRouter,
-    Content,
-    CRM,
-    Log,
-    Storage,
-    Whatsapp
+
 };

@@ -4,6 +4,10 @@ import envConfig from '../config'; // config dosyasını import et
 import api from '../axios'; // axios dosyasını import et
 import { useLanguages } from '@/stores/language';
 import { useAuthStore } from '@/stores/auth';
+import { useTablesStore } from '@/stores/table';
+import { useSettingsStore } from '@/stores/settings';
+import { useNotify } from '@/stores/snackbar';
+import { router } from '@/router';
 
 const uid = () => {
     return Math.random().toString(36).substr(2, 9);
@@ -70,7 +74,7 @@ const getApi = async <T>(
         console.log(error);
         if (error.response && error.response.status === 401) {
             localStorage.setItem('loginModal', 'true'); // Convert boolean value to string
-            // storeSettings.state.loginModal = true;
+            useSettingsStore().loginModal = true;
         }
 
         throw error; // Hata tekrar fırlatılır
@@ -127,8 +131,8 @@ const callPostApi = async (
         }
     } catch (error: any) {
         if (error.response && error.response.status === 401) {
-            localStorage.setItem('loginModal', 'true');
-            // storeSettings.state.loginModal = true;
+            router.push('/auth/login');
+            // useSettingsStore().state.loginModal = true;
         }
 
         throw error;
@@ -136,6 +140,182 @@ const callPostApi = async (
 
     return false; // In case no condition is met, for example, if the response status is not handled.
 };
+const saveRow = function (
+    applicationName: string,
+    controllerName: string,
+    name: string,
+    data: any,
+    formatDate: any[] = [],
+    backResponse: number = 1,
+    secondFormatDate: any[] = [],
+    baseURLLink: boolean = false
+  ): Promise<boolean | any> {
+    if (formatDate.length > 0) {
+      data = beforeSubmitData(data, formatDate);
+    }
+  
+    if (secondFormatDate.length > 0) {
+      data[secondFormatDate[0]].filter(function (e: any) {
+        return beforeSubmitData(e, formatDate);
+      });
+    }
+  
+    let mainUrl = "";
+    if (baseURLLink) {
+      mainUrl = "http://" + applicationName;
+    } else {
+      mainUrl = envConfig.basePath(applicationName);
+    }
+  
+    console.log("response.data.status1");
+    api.defaults.headers.common.Authorization = useAuthStore().getToken;
+    api.defaults.headers.common.GlobalCompanyID = 'ProtalyaOfisTest';
+    api.defaults.headers.common.ApplicationID = envConfig.applicationId || 1;
+  
+    return api
+      .post(`${controllerName}/Save${name}`, data, {
+        baseURL: mainUrl,
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.data.status === 1) {
+          localStorage.setItem("success", "true");
+         useNotify().showSnackbar({
+            color: "positive",
+            position: "bottom-right",
+            message: getLabel("Success", "Common"),
+            icon: "mdi-check-circle",
+          });
+          console.log("response.data.status");
+          console.log(response.data.status);
+          if (backResponse === 1) {
+            localStorage;
+            getTable(
+              applicationName,
+              controllerName,
+              name,
+              null,
+              false,
+              [],
+              false,
+              baseURLLink
+            );
+          } else {
+            return response.data.result;
+          }
+          return true;
+        } else if (response.data.status === 3) {
+          localStorage.setItem("success", false);
+          response.data.validationErrorList.forEach(function (a: any) {
+           useNotify().showSnackbar({
+              color: "negative",
+              position: "bottom-right",
+              message: `${a.propertyName} ${a.errorDescription}`,
+             icon: "mdi-alert-circle",
+            });
+          });
+          return false;
+        } else if (response.data.status === 2) {
+          localStorage.setItem("success", false);
+         useNotify().showSnackbar({
+            color: "negative",
+            position: "bottom-right",
+            message: response.data.errorMessage,
+           icon: "mdi-alert-circle",
+          });
+          return false;
+        } else {
+          localStorage.setItem("success", false);
+         useNotify().showSnackbar({
+            color: "negative",
+            position: "top",
+            message: response.data.title,
+           icon: "mdi-alert-circle",
+          });
+        }
+      })
+      .catch(function (error) {
+       useTablesStore().resetRows();
+        if (error.response && error.response.status === 401) {
+         useNotify().showSnackbar({
+            color: "negative",
+            position: "top",
+            message: "Lütfen Oturum Açın",
+           icon: "mdi-alert-circle",
+          });
+  
+          localStorage.setItem("loginModal", "true");
+          useSettingsStore().loginModal = true;
+        } else if (error.response && error.response.status === 400) {
+         useNotify().showSnackbar({
+            color: "negative",
+            position: "bottom-right",
+            message: `${error.response.statusText}:${error.response.data.title}`,
+           icon: "mdi-alert-circle",
+          });
+        }
+      });
+  };
+const deleteRow = function (
+    applicationName: string,
+    controllerName: string,
+    name: string,
+    ID: number,
+    title: string = "",
+    getTableName: string | null = null,
+    askDelete: boolean = true,
+    getAfter: boolean = true,
+    baseURLLink: boolean = false
+  ): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let mainUrl = "";
+      if (baseURLLink) {
+        mainUrl = "http://" + applicationName;
+      } else {
+        mainUrl = envConfig.basePath(applicationName);
+      }
+  
+    
+        // direk siler
+        api.defaults.headers.common.Authorization = useAuthStore().getToken;
+        api.defaults.headers.common.GlobalCompanyID = 'ProtalyaOfisTest';
+        api.defaults.headers.common.ApplicationID = envConfig.applicationId || 1;
+        return api
+          .post(`${controllerName}/Delete${name}/${ID}`, "", {
+            baseURL: mainUrl,
+          })
+          .then((response) => {
+            if (response.data.result === 3) {
+            } else {
+              if (getTableName !== null) {
+                getTable(
+                  applicationName,
+                  controllerName,
+                  getTableName,
+                  null,
+                  false,
+                  [],
+                  false,
+                  baseURLLink
+                );
+              } else {
+                getTable(
+                  applicationName,
+                  controllerName,
+                  name,
+                  null,
+                  false,
+                  [],
+                  false,
+                  baseURLLink
+                );
+              }
+            }
+            resolve(response);
+          });
+      
+    });
+  };
 const checkEmptyValue = function (fields: any, status: boolean): boolean {
     if (fields === null && status === true) {
         return true;
@@ -260,6 +440,102 @@ const createMenu = (list: any[]): any[] => {
 
     return roots;
 };
+const getTable = function (
+    applicationName: string,
+    controllerName: string,
+    name: string,
+    params: any = null,
+    deleteRow: boolean = false,
+    formatDate: any[] = [],
+    baseURLLink: boolean = false,
+    baseURLLinkWithGet: boolean = false
+) {
+    localStorage.setItem('requestURL', '');
+    localStorage.setItem('requestParam', '');
+    localStorage.setItem('requestPageName', '');
+    useTablesStore().resetRows();
+    api.defaults.headers.common.Authorization = useAuthStore().getToken;
+    api.defaults.headers.common.GlobalCompanyID = 'ProtalyaOfisTest';
+    api.defaults.headers.common.ApplicationID = envConfig.applicationId || 1;
+    // Yeni eklendi.
+    if (formatDate.length > 0) {
+        params = beforeSubmitData(params, formatDate);
+    }
+    if (deleteRow) {
+        if (localStorage.has(controllerName + 'Params') === true) {
+            params = localStorage.getItem(controllerName + 'Params');
+        }
+    }
+
+    useTablesStore().loadingTrue();
+
+    if (baseURLLink) {
+        api.get(controllerName + '/' + name, {
+            params,
+            baseURL: 'http://' + applicationName
+        })
+            .then((response) => {
+                localStorage.setItem('requestURL', response.config.url);
+                localStorage.setItem('requestParam', response.config.params);
+                localStorage.setItem('requestPageName', name);
+                if (response.data.status === 1) {
+                    useTablesStore().addRows(JSON.parse(response.data.result));
+
+                }
+            })
+            .catch(function (error) {
+                useTablesStore().resetRows();
+                if (error.response && error.response.status === 401) {
+                    localStorage.setItem('loginModal', true);
+                }
+            });
+    } else {
+        let mainUrl = '';
+        if (baseURLLinkWithGet) {
+            mainUrl = 'http://' + applicationName;
+        } else {
+            mainUrl = envConfig.basePath(applicationName);
+        }
+
+        api.get(controllerName + '/Get' + name, {
+            params,
+            baseURL: mainUrl
+        })
+            .then((response) => {
+                localStorage.setItem('requestURL', response.config.url);
+                localStorage.setItem('requestParam', response.config.params);
+                localStorage.setItem('requestPageName', name);
+                if (response.data.status === 1) {
+                    useTablesStore().addRows(JSON.parse(response.data.result));
+                } else {
+                    useTablesStore().resetRows();
+                }
+            })
+            .catch(function (error) {
+                useTablesStore().resetRows();
+                if (error.response && error.response.status === 401) {
+                    localStorage.setItem('loginModal', true);
+                }
+            });
+    }
+};
+const tabCreate = function (
+    Tabs: { ID: number }[],
+    List: { LanguageID?: number }[],
+    Empty: { [key: string]: any }[]
+): { [key: string]: any }[] {
+    if (Tabs.length > List.length) {
+        for (let ii = List.length - 1; ii < Tabs.length; ii++) {
+            List.push({ ...Empty });
+            if (Tabs[ii]) {
+                List[ii].LanguageID = Tabs[ii].ID;
+            }
+        }
+        List.splice(-1, 1);
+    }
+    return List;
+};
+
 interface MenuItem {
     ParentID: number;
     ID: number;
@@ -322,4 +598,19 @@ function organizedMenu(originalMenu: OriginalMenuItem[]): MenuItem[] {
     return result;
 }
 
-export { getApi, callPostApi, parse, checkEmptyValue, checkDate, checkDateAndTime, convertDate, getLabel, createMenu, organizedMenu };
+export {
+    getApi,
+    callPostApi,
+    getTable,
+    tabCreate,
+    deleteRow,
+    saveRow,
+    parse,
+    checkEmptyValue,
+    checkDate,
+    checkDateAndTime,
+    convertDate,
+    getLabel,
+    createMenu,
+    organizedMenu
+};

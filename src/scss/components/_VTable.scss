@@ -5,6 +5,15 @@
 }
 
 .v-data-table{
+    th:last-child, td:last-child {
+        position: -webkit-sticky;
+        position: sticky;
+        right: 0;
+        /* To make the last column sticky, use 'right' instead of 'left' */
+        z-index: 1;
+        background-color: red;
+        /* Add your preferred background color */
+    }
     th.v-data-table__th{
         font-size:16px;
         color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity));
@@ -12,6 +21,7 @@
     td.v-data-table__td{
         font-size: 14px;
         text-wrap: nowrap;
+        background-color: red;
     }
     .v-data-table-footer{
         padding: 15px 8px;
