@@ -31,7 +31,7 @@ const breadcrumbs = ref([
 const editedIndex = ref(-1);
 const forms = ref({
     Name: '',
-    IsoCode: '',
+    ISOCode: '',
     Iso2Code: ''
 });
 
@@ -58,6 +58,14 @@ const headers = ref([
             key: 'ISOCode',
             sortable: true
         },
+        {
+            required: true,
+            title: getLabel('Iso2Code'),
+            align: 'start',
+            key: 'Iso2Code',
+            sortable: true
+        },
+
         {
             required: true,
             title: getLabel('CreateDate', 'Common'),
@@ -99,7 +107,7 @@ const resetForm = () => {
     modalVisible.value = false;
     forms.value = {
         Name: '',
-        IsoCode: '',
+        ISOCode: '',
         Iso2Code: ''
     };
 };
@@ -134,7 +142,7 @@ const resetForm = () => {
                     <v-col cols="12" sm="4"
                         ><v-text-field
                             density="compact"
-                            v-model="forms.IsoCode"
+                            v-model="forms.ISOCode"
                             label="Iso Code"
                             hide-details
                             variant="outlined"
@@ -144,7 +152,7 @@ const resetForm = () => {
                         ><v-text-field
                             density="compact"
                             v-model="forms.Iso2Code"
-                            label="Iso Code"
+                            label="Iso Code2"
                             hide-details
                             variant="outlined"
                         ></v-text-field
