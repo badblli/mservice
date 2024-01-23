@@ -26,8 +26,8 @@ const dark = computed(() => {
 </script>
 <template>
   <v-locale-provider v-if="customizer.setRTLLayout" rtl>
-    <RtlLogoLight v-if="dark" />
-    <RtlLogoDark v-else />
+    <LogoLight v-if="dark" />
+    <LogoDark v-else />
   </v-locale-provider>
   <v-locale-provider v-else>
     <LogoLight v-if="dark" />

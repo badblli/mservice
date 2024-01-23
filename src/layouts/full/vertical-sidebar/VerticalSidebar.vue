@@ -31,7 +31,7 @@ interface SidebarItem {
 
 <template>
     <v-navigation-drawer left v-model="customizer.Sidebar_drawer" elevation="0" rail-width="75" mobile-breakpoint="960" app
-        class="leftSidebar" :rail="customizer.mini_sidebar" expand-on-hover width="256">
+        class="leftSidebar" :rail="customizer.mini_sidebar" expand-on-hover width="300">
         <div class="pa-5 pl-4">
             <Logo />
         </div>
