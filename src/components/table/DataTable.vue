@@ -9,44 +9,43 @@ export default {
     props: {
         applicationName: {
             type: String,
-            required: true,
+            required: true
         },
         controllerName: {
             type: String,
-            required: true,
+            required: true
         },
         name: {
             type: String,
-            required: true,
+            required: true
         },
         ParentName: {
             type: String,
-            required: false,
+            required: false
         },
         headers: {
             type: Array,
-            required: false,
+            required: false
         },
         visibleHeaders: {
             type: Array,
-            required: false,
+            required: false
         },
         searchDisplay: {
             type: String,
             default: true,
-            required: false,
+            required: false
         },
         excelBtn: {
             type: Boolean,
             default: true,
-            required: false,
+            required: false
         },
         selectable: {
             type: Boolean,
             default: false,
-            required: false,
-        },
-
+            required: false
+        }
     },
     data() {
         return {
@@ -54,7 +53,7 @@ export default {
             editedIndex: -1,
             editedItem: {},
             search: '',
-            selected: [],
+            selected: []
         };
     },
     methods: {
@@ -65,28 +64,21 @@ export default {
             this.$emit('editedItem', this.editedItem);
         },
         getTableData() {
-            getTable(this.applicationName, this.controllerName, this.name);
+            getTable(this.applicationName, this.controllerName, this.name, true);
             this.getTableHeader();
         },
         getTableHeader() {
-
             if (!this.headers) {
-                table.addHeaders(this.rows, this.ParentName)
-            }
-            else {
+                table.addHeaders(this.rows, this.ParentName);
+            } else {
                 table.setColumns(this.headers);
             }
-
         },
         openModal(item) {
-
-
             this.modal = true;
             this.$emit('modal', true);
-
         },
         deleteItem(item) {
-
             deleteRow(this.applicationName, this.controllerName, this.name, item.value.ID, item.value.Name);
         },
         editItem(item) {
@@ -97,27 +89,26 @@ export default {
             this.$emit('modal', true);
         },
         editItemClick($event, { item }) {
-            console.log(item)
-            this.editedIndex = this.items.indexOf(item)
-            this.editedItem = Object.assign({}, item)
-            this.dialog = true
-        },
+            console.log(item);
+            this.editedIndex = this.items.indexOf(item);
+            this.editedItem = Object.assign({}, item);
+            this.dialog = true;
+        }
     },
     computed: {
         title() {
-            return getLabel("Caption", "Question");
+            return getLabel('Caption', 'Question');
         },
         data() {
             return table.rows;
         },
         loading() {
             return table.loading;
-        },
+        }
     },
     mounted() {
         this.getTableData();
         this.getTableHeader();
-
     },
     watch: {
         data() {
@@ -125,46 +116,56 @@ export default {
         },
         selected(newVal) {
             this.$emit('selected', newVal);
-        },
-
-
-    },
+        }
+    }
     // ... Other component options (e.g., computed properties, watch, etc.) ...
 };
 </script>
-  
+
 <style scoped>
 /* Add scoped styles if necessary */
 </style>
-  
+
 <template>
-    <v-data-table fixed-header density="compact" item-value="ID" v-model="selected" return-object :show-select="selectable"
-        :headers="headers" :items="data" :search="search" :loading="loading" @click:row="rowClick"
-        :rows-per-page-items="[10, 20, 30]">
+    <v-data-table
+        fixed-header
+        density="compact"
+        item-value="ID"
+        v-model="selected"
+        return-object
+        :show-select="selectable"
+        :headers="headers"
+        :items="data"
+        :search="search"
+        :loading="loading"
+        @click:row="rowClick"
+        :rows-per-page-items="[10, 20, 30]"
+    >
         <template v-slot:top>
             <v-toolbar flat>
                 <v-row>
                     <v-col cols="4" lg="4" md="4">
-                        <v-text-field v-if="searchDisplay" density="compact" v-model="search" label="Search menus"
-                            hide-details variant="outlined"></v-text-field>
+                        <v-text-field
+                            v-if="searchDisplay"
+                            density="compact"
+                            v-model="search"
+                            label="Search menus"
+                            hide-details
+                            variant="outlined"
+                        ></v-text-field>
                     </v-col>
 
                     <v-col class="ml-auto text-right" cols="8" lg="8" md="8">
                         <!-- Added ml-auto to push it to the end -->
-                        <v-btn color="secondary" variant="tonal" class="mr-2 ">
+                        <v-btn color="secondary" variant="tonal" class="mr-2">
                             <v-icon class="mr-2">mdi-file-excel</v-icon>Export Excel
                         </v-btn>
 
-                        <v-btn color="primary" variant="tonal" @click="openModal">
-                            <v-icon class="mr-2">mdi-plus</v-icon>Add
-                        </v-btn>
+                        <v-btn color="primary" variant="tonal" @click="openModal"> <v-icon class="mr-2">mdi-plus</v-icon>Add </v-btn>
                     </v-col>
                 </v-row>
-
             </v-toolbar>
         </template>
-
-
 
         <template v-slot:item.actions="{ item }">
             <div class="align-center">
@@ -178,19 +179,14 @@ export default {
                                 <template v-slot:prepend>
                                     <v-icon icon="mdi-pencil-outline"></v-icon>
                                 </template>
-                                <v-list-item-title>
-                                    Edit
-                                </v-list-item-title>
+                                <v-list-item-title> Edit </v-list-item-title>
                             </v-list-item>
                             <v-list-item value="action" hide-details min-height="38" @click="deleteItem(item)">
                                 <template v-slot:prepend>
                                     <v-icon icon="mdi-delete-outline"></v-icon>
                                 </template>
-                                <v-list-item-title>
-                                    Delete
-                                </v-list-item-title>
+                                <v-list-item-title> Delete </v-list-item-title>
                             </v-list-item>
-
                         </v-list>
                     </v-menu>
                 </v-btn>
@@ -198,5 +194,3 @@ export default {
         </template>
     </v-data-table>
 </template>
-  
-
