@@ -28,7 +28,7 @@ const breadcrumbs = ref([
 ]);
 </script>
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="File Inputs">
@@ -66,19 +66,19 @@ const breadcrumbs = ref([
                     <!-- File prepend icon-->
                     <v-col cols="12" sm="6">
                         <UiChildCard title="Prepend Icon">
-                            <FilePrepand/>
+                            <FilePrepand />
                         </UiChildCard>
                     </v-col>
                     <!-- File validation-->
                     <v-col cols="12" sm="6">
                         <UiChildCard title="Validation">
-                            <FileValidation/>
+                            <FileValidation />
                         </UiChildCard>
                     </v-col>
-                      <!-- File selection slots-->
-                      <v-col cols="12" sm="6">
+                    <!-- File selection slots-->
+                    <v-col cols="12" sm="6">
                         <UiChildCard title="Complex selection slots">
-                            <FileSelection/>
+                            <FileSelection />
                         </UiChildCard>
                     </v-col>
                 </v-row>

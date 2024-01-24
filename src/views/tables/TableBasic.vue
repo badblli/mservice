@@ -31,20 +31,20 @@ const breadcrumbs = ref([
     <!-- ---------------------------------------------------- -->
     <!-- Table Basic -->
     <!-- ---------------------------------------------------- -->
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Basic Table">
                 <!--Basic Table 1-->
-                <Table1/>
+                <Table1 />
                 <!--Basic Table 2-->
-                <Table2/>
+                <Table2 />
                 <!--Basic Table 3-->
-                <Table3/>
+                <Table3 />
                 <!--Basic Table 4-->
-                <Table4/>
+                <Table4 />
                 <!--Basic Table 5-->
-                <Table5/>
+                <Table5 />
             </UiParentCard>
         </v-col>
     </v-row>

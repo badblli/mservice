@@ -45,25 +45,19 @@ const breadcrumbs = ref([
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <ProfileBanner />
     <v-row class="justify-content-end mt-5">
         <v-col cols="12">
             <div class="d-sm-flex align-center mb-5">
                 <h3 class="text-h3">
                     Friends
-                    <v-chip size="small" class="ml-2 elevation-0" variant="elevated" color="secondary">{{ filteredCards.length }}</v-chip>
+                    <v-chip size="small" class="ml-2 elevation-0" variant="elevated" color="secondary">{{
+                        filteredCards.length }}</v-chip>
                 </h3>
                 <v-sheet width="250" class="ml-0 ml-sm-auto mt-3 mt-sm-0">
-                    <v-text-field
-                        color="primary"
-                        hide-details
-                        variant="outlined"
-                        placeholder="Search Friends"
-                        density="compact"
-                        prepend-inner-icon="mdi-magnify"
-                        v-model="searchValue"
-                    >
+                    <v-text-field color="primary" hide-details variant="outlined" placeholder="Search Friends"
+                        density="compact" prepend-inner-icon="mdi-magnify" v-model="searchValue">
                     </v-text-field>
                 </v-sheet>
             </div>
@@ -106,12 +100,15 @@ const breadcrumbs = ref([
 .text-facebook {
     color: rgb(24, 119, 242) !important;
 }
+
 .text-instagram {
     color: rgb(215, 51, 109) !important;
 }
+
 .text-github {
     color: rgb(0, 96, 151) !important;
 }
+
 .text-twitter {
     color: rgb(28, 156, 234) !important;
 }

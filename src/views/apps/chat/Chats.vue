@@ -23,7 +23,7 @@ const breadcrumbs = ref([
     <!-- ---------------------------------------------------- -->
     <!-- Table Basic -->
     <!-- ---------------------------------------------------- -->
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
 
     <v-card elevation="10">
         <AppBaseCard>

@@ -35,7 +35,7 @@ const breadcrumbs = ref([
 ]);
 </script>
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>        
+    <BaseBreadcrumb />
     <v-row>
         <!-- Followers Chart -->
         <v-col cols="12" sm="3">

@@ -33,7 +33,7 @@ const breadcrumbs = ref([
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Rating">
@@ -41,58 +41,58 @@ const breadcrumbs = ref([
                     <!-- Basic -->
                     <v-col cols="12" lg="4">
                         <UiChildCard title="Basic">
-                            <BasicRatting/>
+                            <BasicRatting />
                         </UiChildCard>
                     </v-col>
                     <!-- Read Only -->
                     <v-col cols="12" lg="4">
                         <UiChildCard title="Read Only">
-                            <ReadOnlyRatting/>
+                            <ReadOnlyRatting />
                         </UiChildCard>
                     </v-col>
-                     <!-- Clearable -->
-                     <v-col cols="12" lg="4">
+                    <!-- Clearable -->
+                    <v-col cols="12" lg="4">
                         <UiChildCard title="Clearable">
-                            <ClearableRatting/>
+                            <ClearableRatting />
                         </UiChildCard>
                     </v-col>
                     <!-- Hover -->
                     <v-col cols="12" lg="4">
                         <UiChildCard title="Hover">
-                            <HoverRatting/>
+                            <HoverRatting />
                         </UiChildCard>
                     </v-col>
                     <!-- Half Ratting -->
                     <v-col cols="12" lg="4">
                         <UiChildCard title="Half Ratting">
-                            <HalfRatting/>
+                            <HalfRatting />
                         </UiChildCard>
                     </v-col>
                     <!-- Length Ratting -->
                     <v-col cols="12" lg="4">
                         <UiChildCard title="Length">
-                            <LengthRatting/>
+                            <LengthRatting />
                         </UiChildCard>
                     </v-col>
-                   
-                    
-                    
+
+
+
                     <!-- Label -->
                     <v-col cols="12" lg="4">
                         <UiChildCard title="Label">
-                            <LabelRatting/>
+                            <LabelRatting />
                         </UiChildCard>
                     </v-col>
                     <!-- Icons -->
                     <v-col cols="12" lg="4">
                         <UiChildCard title="Icons">
-                            <IconsRatting/>
+                            <IconsRatting />
                         </UiChildCard>
                     </v-col>
                     <!-- Size -->
                     <v-col cols="12" lg="4">
                         <UiChildCard title="Size">
-                            <SizeRatting/>
+                            <SizeRatting />
                         </UiChildCard>
                     </v-col>
                 </v-row>

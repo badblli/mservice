@@ -20,10 +20,10 @@ const breadcrumbs = ref([
     <!-- ---------------------------------------------------- -->
     <!-- Table Basic -->
     <!-- ---------------------------------------------------- -->
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
-          <BlogPosts/>
+            <BlogPosts />
         </v-col>
     </v-row>
 </template>

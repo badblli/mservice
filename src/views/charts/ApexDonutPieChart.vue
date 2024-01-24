@@ -125,7 +125,7 @@ const pieChart = {
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <v-row>
@@ -134,7 +134,8 @@ const pieChart = {
                     <!-- Donut Chart -->
                     <!-- ---------------------------------------------------- -->
                     <UiChildCard title="Donut Chart" class="bg-surface">
-                        <apexchart type="donut" height="300" :options="donutchartOptions" :series="donutChart.series"> </apexchart>
+                        <apexchart type="donut" height="300" :options="donutchartOptions" :series="donutChart.series">
+                        </apexchart>
                     </UiChildCard>
                 </v-col>
                 <v-col cols="12" lg="6">
@@ -142,7 +143,8 @@ const pieChart = {
                     <!-- Pie Chart -->
                     <!-- ---------------------------------------------------- -->
                     <UiChildCard title="Pie Chart" class="bg-surface">
-                        <apexchart type="pie" height="300" :options="piechartOptions" :series="pieChart.series"> </apexchart>
+                        <apexchart type="pie" height="300" :options="piechartOptions" :series="pieChart.series">
+                        </apexchart>
                     </UiChildCard>
                 </v-col>
             </v-row>

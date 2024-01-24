@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref,computed } from 'vue';
+import { ref, computed } from 'vue';
 import BaseBreadcrumb from '@/components/shared/BaseBreadcrumb.vue';
 import UiParentCard from '@/components/shared/UiParentCard.vue';
 import { BasicDatatables } from '@/_mockApis/components/datatable/dataTable';
@@ -36,12 +36,12 @@ const pageCount = Math.ceil(BasicDatatables.length / itemsPerPage.value)
 
 </script>
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="External Pagination">
-                <v-data-table :items-per-page="itemsPerPage" :headers="headers" :items="BasicDatatables" v-model:page="pagination"
-                    hide-default-footer class="border rounded-md">
+                <v-data-table :items-per-page="itemsPerPage" :headers="headers" :items="BasicDatatables"
+                    v-model:page="pagination" hide-default-footer class="border rounded-md">
                     <template v-slot:bottom>
                         <div class="text-center pt-2 mb-3 px-3">
                             <v-pagination v-model="pagination" :length="pageCount"></v-pagination>

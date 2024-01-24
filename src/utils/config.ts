@@ -24,13 +24,9 @@ const config: Record<string, EnvironmentConfig> = {
         getMedia: 'http://10.10.22.13/assets/company/',
     
         basePath: function (path: string) {
-            if (path.includes("auth")){
-                // return 'http://' +this.mode+ path + '.prospot.online';
+          
                 return  'http://'+this.mode  + path + '.meanderservices.com';
-            }
-            else{
-                return  'http://'+this.mode  + path + '.meanderservices.com';
-            }
+            
         }
         // Diğer dev konfigürasyonları...
     },
@@ -42,13 +38,9 @@ const config: Record<string, EnvironmentConfig> = {
         getMedia: 'http://login.meanderservices.com/assets/company',
       
         basePath: function (path: string) {
-            if (path.includes("auth")){
-                // return 'http://' + path + '.prospot.online';
+
                 return 'http://' + path + '.meanderservices.com';
-            }
-            else{
-                return  'http://' + path + '.meanderservices.com';
-            }
+      
         }
         // Diğer prod konfigürasyonları...
     }

@@ -22,22 +22,26 @@ const breadcrumbs = ref([
     <!-- ---------------------------------------------------- -->
     <!-- Table Basic -->
     <!-- ---------------------------------------------------- -->
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
 
     <v-card elevation="10">
         <AppBaseCard>
-            <template v-slot:leftpart> <NotesListing /></template>
-            <template v-slot:rightpart><NotesContent /> </template>
+            <template v-slot:leftpart>
+                <NotesListing />
+            </template>
+            <template v-slot:rightpart>
+                <NotesContent />
+            </template>
 
-            <template v-slot:mobileLeftContent><NotesListing /> </template>
+            <template v-slot:mobileLeftContent>
+                <NotesListing />
+            </template>
         </AppBaseCard>
     </v-card>
 </template>
 
-<style scoped lang="scss">
-@media (max-width: 1279px) {
+<style scoped lang="scss">@media (max-width: 1279px) {
     .v-card {
         position: unset;
     }
-}
-</style>
+}</style>

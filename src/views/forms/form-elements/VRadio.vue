@@ -32,7 +32,7 @@ const breadcrumbs = ref([
 
 // ===============================|| Ui Radio ||=============================== //
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Radio">
@@ -40,40 +40,40 @@ const breadcrumbs = ref([
                     <!-- Default Radio -->
                     <v-col cols="12" lg="6">
                         <UiChildCard title="Default">
-                            <Default/>
+                            <Default />
                         </UiChildCard>
                     </v-col>
                     <!-- Radio with Label -->
                     <v-col cols="12" lg="6">
                         <UiChildCard title="Label">
-                            <Label/> 
+                            <Label />
                         </UiChildCard>
                     </v-col>
                     <!-- With Colors -->
                     <v-col cols="12" lg="6">
                         <UiChildCard title="Colors">
-                            <Color/>
+                            <Color />
                         </UiChildCard>
                     </v-col>
                     <!-- With Colors -->
                     <v-col cols="12" lg="6">
                         <UiChildCard title="Colors with Label">
-                            <ColorwithLabel/>
+                            <ColorwithLabel />
                         </UiChildCard>
                     </v-col>
                     <!-- Default Direction -->
                     <v-col cols="12" lg="6">
                         <UiChildCard title="Default Direction">
-                            <DefaultDirection/>
+                            <DefaultDirection />
                         </UiChildCard>
                     </v-col>
-                     <!-- Inline Direction -->
-                     <v-col cols="12" lg="6">
+                    <!-- Inline Direction -->
+                    <v-col cols="12" lg="6">
                         <UiChildCard title="Inline Direction">
-                            <InlineDirection/>
+                            <InlineDirection />
                         </UiChildCard>
                     </v-col>
-                    
+
                 </v-row>
             </UiParentCard>
         </v-col>

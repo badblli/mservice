@@ -27,7 +27,7 @@ const breadcrumbs = ref([
 
 // ===============================|| Ui Checkbox ||=============================== //
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Date Time">
@@ -35,13 +35,13 @@ const breadcrumbs = ref([
                     <!-- Date Picker -->
                     <v-col cols="12" lg="6">
                         <UiChildCard title="Date Picker">
-                            <DatePicker/>
+                            <DatePicker />
                         </UiChildCard>
                     </v-col>
                     <!-- Time Picker -->
                     <v-col cols="12" lg="6">
                         <UiChildCard title="Time Picker">
-                            <TimePicker/>
+                            <TimePicker />
                         </UiChildCard>
                     </v-col>
                 </v-row>

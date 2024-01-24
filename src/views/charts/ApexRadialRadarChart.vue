@@ -71,9 +71,9 @@ const radarOptions = computed(() => {
             type: 'radar',
             height: 300,
             fontFamily: `inherit`,
-             toolbar: {
-                    show: false,
-                },
+            toolbar: {
+                show: false,
+            },
         },
         colors: ['#0b70fb'],
         labels: ['January', 'February', 'March', 'April', 'May', 'June'],
@@ -91,7 +91,7 @@ const radarChart = {
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <v-row>
@@ -100,7 +100,8 @@ const radarChart = {
                     <!-- Radialbar Chart -->
                     <!-- ---------------------------------------------------- -->
                     <UiChildCard title="Radialbar Chart" class="bg-surface">
-                        <apexchart type="radialBar" height="300" :options="radialBarchartOptions" :series="radialBarChart.series">
+                        <apexchart type="radialBar" height="300" :options="radialBarchartOptions"
+                            :series="radialBarChart.series">
                         </apexchart>
                     </UiChildCard>
                 </v-col>
@@ -109,7 +110,8 @@ const radarChart = {
                     <!-- Radar Chart -->
                     <!-- ---------------------------------------------------- -->
                     <UiChildCard title="Radar Chart" class="bg-surface">
-                        <apexchart type="radar" height="300" :options="radarOptions" :series="radarChart.series"> </apexchart>
+                        <apexchart type="radar" height="300" :options="radarOptions" :series="radarChart.series">
+                        </apexchart>
                     </UiChildCard>
                 </v-col>
             </v-row>
