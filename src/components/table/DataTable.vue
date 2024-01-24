@@ -76,6 +76,9 @@ export default {
             }
         },
         openModal(item) {
+            this.editedItem = [];
+            this.$emit('editedItem', this.editedItem);
+
             this.modal = true;
             this.$emit('modal', true);
         },
