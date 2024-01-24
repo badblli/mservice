@@ -26,7 +26,12 @@ const config: Record<string, EnvironmentConfig> = {
         //     return 'http://' + this.mode + path + '.meanderservices.com';
         // }
         basePath: function (path: string) {
-           return 'http://' + this.mode + path + '.prospot.online';
+            if (path.includes("auth")){
+                return 'http://' +this.mode+ path + '.prospot.online';
+            }
+            else{
+                return  'http://'+this.mode  + path + '.meanderservices.com';
+            }
         }
         // Diğer dev konfigürasyonları...
     },
@@ -40,7 +45,12 @@ const config: Record<string, EnvironmentConfig> = {
         //     return 'http://' + path + '.meanderservices.com';
         // }
         basePath: function (path: string) {
-            return  'http://' + path + '.meanderservices.com';
+            if (path.includes("auth")){
+                return 'http://' + path + '.prospot.online';
+            }
+            else{
+                return  'http://' + path + '.meanderservices.com';
+            }
         }
         // Diğer prod konfigürasyonları...
     }

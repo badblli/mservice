@@ -30,6 +30,11 @@ const MainRoutes = {
             path: '/dashboards/keydefinitions/general/geography/country',
             component: () => import('@/views/dashboards/keydefinations/general/geography/Country.vue')
         },
+        {
+            name: 'SelectItemCategory',
+            path: '/dashboards/settings/selectitemcategory',
+            component: () => import('@/views/dashboards/settings/SelectItemCategory.vue')
+        },
 
         /////////////////////////////////////////////////////////////////////////////
         {

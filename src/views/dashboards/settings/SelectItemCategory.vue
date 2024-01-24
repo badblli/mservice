@@ -118,8 +118,8 @@ const resetForm = () => {
             <v-card-text>
                 <v-row>
                     <v-col cols="12" sm="6"
-                        ><v-text-field density="compact" v-model="forms.Name" label="Name" hide-details variant="outlined"></v-text-field>
-                    </v-col>
+                        ><v-text-field density="compact" v-model="forms.Name" label="Name" hide-details variant="outlined"></v-text-field
+                    ></v-col>
                 </v-row>
             </v-card-text>
             <v-card-actions class="pa-4">

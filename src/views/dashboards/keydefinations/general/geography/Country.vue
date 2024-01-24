@@ -117,16 +117,9 @@ const resetForm = () => {
     <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
     <v-card elevation="10">
         <v-card-text>
-            <DataTable
-                :applicationName="applicationName"
-                :controllerName="controllerName"
-                :name="name"
-                :headers="headers"
-                :ParentName="ParentName"
-                @modal="modalVisible = true"
-                @items="item = items"
-                @editedItem="(editedItem) => (forms = editedItem)"
-            />
+            <DataTable :applicationName="applicationName" :controllerName="controllerName" :name="name" :headers="headers"
+                :ParentName="ParentName" @modal="modalVisible = true" @items="item = items"
+                @editedItem="(editedItem) => (forms = editedItem)" />
         </v-card-text>
     </v-card>
     <v-dialog v-model="modalVisible" max-width="500">
@@ -136,42 +129,22 @@ const resetForm = () => {
             </v-card-title>
             <v-card-text>
                 <v-row>
-                    <v-col cols="12" sm="4"
-                        ><v-text-field density="compact" v-model="forms.Name" label="Name" hide-details variant="outlined"></v-text-field
-                    ></v-col>
-                    <v-col cols="12" sm="4"
-                        ><v-text-field
-                            density="compact"
-                            v-model="forms.ISOCode"
-                            label="Iso Code"
-                            hide-details
-                            variant="outlined"
-                        ></v-text-field
-                    ></v-col>
-                    <v-col cols="12" sm="4"
-                        ><v-text-field
-                            density="compact"
-                            v-model="forms.Iso2Code"
-                            label="Iso Code2"
-                            hide-details
-                            variant="outlined"
-                        ></v-text-field
-                    ></v-col>
+                    <v-col cols="12" sm="4"><v-text-field density="compact" v-model="forms.Name" label="Name" hide-details
+                            variant="outlined"></v-text-field></v-col>
+                    <v-col cols="12" sm="4"><v-text-field density="compact" v-model="forms.ISOCode" label="Iso Code"
+                            hide-details variant="outlined"></v-text-field></v-col>
+                    <v-col cols="12" sm="4"><v-text-field density="compact" v-model="forms.Iso2Code" label="Iso Code2"
+                            hide-details variant="outlined"></v-text-field></v-col>
                 </v-row>
             </v-card-text>
             <v-card-actions class="pa-4">
                 <v-spacer></v-spacer>
                 <v-btn color="error" :label="getLabel('Cancel', 'Common')" @click="resetForm" />
-                <v-btn
-                    variant="flat"
-                    color="secondary"
-                    :label="getLabel('Save', 'Common')"
-                    @click="
-                        saveRow(applicationName, controllerName, name, forms).then((result: boolean) => {
-                            result == true ? resetForm() : '';
-                        })
-                    "
-                />
+                <v-btn variant="flat" color="secondary" :label="getLabel('Save', 'Common')" @click="
+                    saveRow(applicationName, controllerName, name, forms).then((result: boolean) => {
+                        result == true ? resetForm() : '';
+                    })
+                    " />
             </v-card-actions>
         </v-card>
     </v-dialog>
