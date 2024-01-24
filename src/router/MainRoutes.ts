@@ -25,6 +25,16 @@ const MainRoutes = {
             path: '/dashboards/keydefinitions/general/currency',
             component: () => import('@/views/dashboards/keydefinations/general/Currency.vue')
         },
+        {
+            name: 'Country',
+            path: '/dashboards/keydefinitions/general/geography/country',
+            component: () => import('@/views/dashboards/keydefinations/general/geography/Country.vue')
+        },
+        {
+            name: 'SelectItemCategory',
+            path: '/dashboards/settings/selectitemcategory',
+            component: () => import('@/views/dashboards/settings/SelectItemCategory.vue')
+        },
 
         /////////////////////////////////////////////////////////////////////////////
         {
@@ -133,6 +143,7 @@ const MainRoutes = {
             path: '/ui-components/avatar',
             component: () => import('@/views/ui-elements/UiAvatar.vue')
         },
+
         {
             name: 'Chip',
             path: '/ui-components/chip',

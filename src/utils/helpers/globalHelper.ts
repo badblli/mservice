@@ -9,6 +9,7 @@ import { useSettingsStore } from '@/stores/settings';
 import { useNotify } from '@/stores/snackbar';
 import { router } from '@/router';
 
+
 const uid = () => {
     return Math.random().toString(36).substr(2, 9);
 };
@@ -73,6 +74,13 @@ const getApi = async <T>(
     } catch (error: any) {
         console.log(error);
         if (error.response && error.response.status === 401) {
+            useNotify().showSnackbar({
+                color: "negative",
+                message: "Lütfen Oturum Açın",
+                icon: "mdi-alert-circle",
+                show: true,
+                timeout: 5000,
+              });
             localStorage.setItem('loginModal', 'true'); // Convert boolean value to string
             useSettingsStore().loginModal = true;
         }
@@ -115,15 +123,35 @@ const callPostApi = async (
         if (response.data.status === 1) {
             if (!dontGoTable) {
                 // Assuming getApi is defined elsewhere
-                await getApi<any>(applicationName, controllerName, name, null, false, [], baseURLLink);
+                await getTable(applicationName, controllerName, name, null, false, [], baseURLLink);
+                useNotify().showSnackbar({
+                    color: "positive",
+                    message: getLabel("Success", "Common"),
+                    icon: "mdi-check-circle",
+                    show: true,
+                    timeout: 5000,
+                  });
             }
             return response;
         } else if (response.data.status === 2) {
-            console.log(response.data.message);
+            useNotify().showSnackbar({
+                color: "negative",
+                message: response.data.errorMessage,
+                icon: "mdi-alert-circle",
+                show: true,
+                timeout: 5000,
+              });
             return false;
         } else if (response.data.status === 3) {
-            response.data.validationErrorList.forEach((a: any[]) => {
-                console.log(a);
+           response.data.validationErrorList.forEach(function (a: any) {
+           useNotify().showSnackbar({
+              color: "negative",
+              position: "bottom-right",
+              message: `${a.propertyName} ${a.errorDescription}`,
+             icon: "mdi-alert-circle",
+                show: true,
+             timeout: 5000,
+            });
             });
             return false;
         } else if (response.data.status === 5) {
@@ -132,6 +160,13 @@ const callPostApi = async (
     } catch (error: any) {
         if (error.response && error.response.status === 401) {
             router.push('/auth/login');
+            useNotify().showSnackbar({
+                color: "negative",
+                message: "Lütfen Oturum Açın",
+                icon: "mdi-alert-circle",
+                show: true,
+                timeout: 5000,
+              });
             // useSettingsStore().state.loginModal = true;
         }
 
@@ -185,6 +220,8 @@ const saveRow = function (
             position: "bottom-right",
             message: getLabel("Success", "Common"),
             icon: "mdi-check-circle",
+               show: true,
+             timeout: 5000,
           });
           console.log("response.data.status");
           console.log(response.data.status);
@@ -205,6 +242,7 @@ const saveRow = function (
           }
           return true;
         } else if (response.data.status === 3) {
+            console.log("response.data.status3");
           localStorage.setItem("success", false);
           response.data.validationErrorList.forEach(function (a: any) {
            useNotify().showSnackbar({
@@ -212,6 +250,8 @@ const saveRow = function (
               position: "bottom-right",
               message: `${a.propertyName} ${a.errorDescription}`,
              icon: "mdi-alert-circle",
+                show: true,
+             timeout: 5000,
             });
           });
           return false;
@@ -222,6 +262,8 @@ const saveRow = function (
             position: "bottom-right",
             message: response.data.errorMessage,
            icon: "mdi-alert-circle",
+              show: true,
+             timeout: 5000,
           });
           return false;
         } else {
@@ -231,6 +273,8 @@ const saveRow = function (
             position: "top",
             message: response.data.title,
            icon: "mdi-alert-circle",
+              show: true,
+             timeout: 5000,
           });
         }
       })
@@ -242,6 +286,8 @@ const saveRow = function (
             position: "top",
             message: "Lütfen Oturum Açın",
            icon: "mdi-alert-circle",
+              show: true,
+             timeout: 5000,
           });
   
           localStorage.setItem("loginModal", "true");
@@ -252,6 +298,8 @@ const saveRow = function (
             position: "bottom-right",
             message: `${error.response.statusText}:${error.response.data.title}`,
            icon: "mdi-alert-circle",
+              show: true,
+             timeout: 5000,
           });
         }
       });
@@ -286,6 +334,18 @@ const deleteRow = function (
           })
           .then((response) => {
             if (response.data.result === 3) {
+                response.data.validationErrorList.forEach(function (a: any) {
+                    useNotify().showSnackbar({
+                       color: "negative",
+                       position: "bottom-right",
+                       message: `${a.propertyName} ${a.errorDescription}`,
+                      icon: "mdi-alert-circle",
+                         show: true,
+                      timeout: 5000,
+                     });
+                     });
+                     return false;
+                
             } else {
               if (getTableName !== null) {
                 getTable(
@@ -486,6 +546,13 @@ const getTable = function (
             .catch(function (error) {
                 useTablesStore().resetRows();
                 if (error.response && error.response.status === 401) {
+                    useNotify().showSnackbar({
+                        color: "negative",
+                        message: "Lütfen Oturum Açın",
+                        icon: "mdi-alert-circle",
+                        show: true,
+                        timeout: 5000,
+                      });
                     localStorage.setItem('loginModal', true);
                 }
             });
@@ -514,6 +581,13 @@ const getTable = function (
             .catch(function (error) {
                 useTablesStore().resetRows();
                 if (error.response && error.response.status === 401) {
+                    useNotify().showSnackbar({
+                        color: "negative",
+                        message: "Lütfen Oturum Açın",
+                        icon: "mdi-alert-circle",
+                        show: true,
+                        timeout: 5000,
+                      });
                     localStorage.setItem('loginModal', true);
                 }
             });

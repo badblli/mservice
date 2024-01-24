@@ -13,13 +13,12 @@ export const useNotify = defineStore('snackbar', {
   }),
 
   actions: {
-    showSnackbar({ message, color, timeout, icon }: any) {
+    showSnackbar({ message, color, timeout, icon, show }: any) {
+      this.show = show;
       this.message = message;
       this.color = color;
       this.timeout = timeout;
-this.icon = icon;
-      this.show = true;
-
+      this.icon = icon;
       setTimeout(() => {
         this.hideSnackbar();
       }, timeout);
