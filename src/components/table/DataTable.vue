@@ -72,6 +72,7 @@ export default {
                 table.addHeaders(this.rows, this.ParentName);
             } else {
                 table.setColumns(this.headers);
+                console.log(table.rows, "rows");
             }
         },
         openModal(item) {
@@ -127,32 +128,15 @@ export default {
 </style>
 
 <template>
-    <v-data-table
-        fixed-header
-        density="compact"
-        item-value="ID"
-        v-model="selected"
-        return-object
-        :show-select="selectable"
-        :headers="headers"
-        :items="data"
-        :search="search"
-        :loading="loading"
-        @click:row="rowClick"
-        :rows-per-page-items="[10, 20, 30]"
-    >
+    <v-data-table fixed-header density="compact" item-value="ID" v-model="selected" return-object :show-select="selectable"
+        :headers="headers" :items="data" :search="search" :loading="loading" @click:row="rowClick"
+        :rows-per-page-items="[10, 20, 30]">
         <template v-slot:top>
             <v-toolbar flat>
                 <v-row>
                     <v-col cols="4" lg="4" md="4">
-                        <v-text-field
-                            v-if="searchDisplay"
-                            density="compact"
-                            v-model="search"
-                            label="Search menus"
-                            hide-details
-                            variant="outlined"
-                        ></v-text-field>
+                        <v-text-field v-if="searchDisplay" density="compact" v-model="search" label="Search menus"
+                            hide-details variant="outlined"></v-text-field>
                     </v-col>
 
                     <v-col class="ml-auto text-right" cols="8" lg="8" md="8">
@@ -161,7 +145,8 @@ export default {
                             <v-icon class="mr-2">mdi-file-excel</v-icon>Export Excel
                         </v-btn>
 
-                        <v-btn color="primary" variant="tonal" @click="openModal"> <v-icon class="mr-2">mdi-plus</v-icon>Add </v-btn>
+                        <v-btn color="primary" variant="tonal" @click="openModal"> <v-icon class="mr-2">mdi-plus</v-icon>Add
+                        </v-btn>
                     </v-col>
                 </v-row>
             </v-toolbar>
