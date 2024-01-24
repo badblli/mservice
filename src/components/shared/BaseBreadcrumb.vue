@@ -18,7 +18,7 @@ function updateBreadcrumbs() {
     breadcrumbs.value = matchedRoutes.flatMap(route => getBreadcrumbTitles(route)).slice(1);
 
     // Set the pageTitle to the title of the last breadcrumb
-    pageTitle.value = breadcrumbs.value.length > 0 ? breadcrumbs.value[breadcrumbs.value.length - 1].title : '';
+    pageTitle.value = breadcrumbs.value.length > 0 ? breadcrumbs.value[breadcrumbs.value.length - 1].text : '';
 }
 
 function getBreadcrumbTitles(route: any) {
