@@ -225,6 +225,7 @@ const saveRow = function (
                 console.log('response.data.status');
                 console.log(response.data.status);
                 if (backResponse === 1) {
+                    console.log('get TABLE');
                     getTable(applicationName, controllerName, name, null, false, [], false, baseURLLink);
                 } else {
                     return response.data.result;
