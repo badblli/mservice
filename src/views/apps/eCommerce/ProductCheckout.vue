@@ -20,6 +20,6 @@ const breadcrumbs = ref([
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <CartCheckout />
 </template>

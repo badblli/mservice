@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import BaseBreadcrumb from '@/components/shared/BaseBreadcrumb.vue';
 import UiParentCard from '@/components/shared/UiParentCard.vue';
-import { BasicDatatables,UppercaseFilter } from '@/_mockApis/components/datatable/dataTable';
+import { BasicDatatables, UppercaseFilter } from '@/_mockApis/components/datatable/dataTable';
 const page = ref({ title: 'Data Table Filtering' });
 const breadcrumbs = ref([
     {
@@ -39,7 +39,7 @@ function filterOnlyCapsText(value: { toString: () => string; } | null, query: st
 
 </script>
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Basic Filter">
@@ -51,8 +51,8 @@ function filterOnlyCapsText(value: { toString: () => string; } | null, query: st
             </UiParentCard>
 
             <UiParentCard title="Custom Filter" class="mt-6">
-                <v-text-field v-model="customsearch" append-inner-icon="mdi-magnify" label="Search (UPPER CASE ONLY)" single-line hide-details
-                    class="mb-5" />
+                <v-text-field v-model="customsearch" append-inner-icon="mdi-magnify" label="Search (UPPER CASE ONLY)"
+                    single-line hide-details class="mb-5" />
                 <v-data-table items-per-page="5" :headers="headers" :items="UppercaseFilter" :search="customsearch"
                     :custom-filter="filterOnlyCapsText" class="border rounded-md">
                 </v-data-table>

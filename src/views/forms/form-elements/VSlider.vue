@@ -5,14 +5,14 @@ import BaseBreadcrumb from '@/components/shared/BaseBreadcrumb.vue';
 import UiParentCard from '@/components/shared/UiParentCard.vue';
 import UiChildCard from '@/components/shared/UiChildCard.vue';
 
- import Default from '@/components/forms/form-elements/slider/Default.vue';
- import Disabled from '@/components/forms/form-elements/slider/Disabled.vue';
- import Volume from '@/components/forms/form-elements/slider/Volume.vue';
- import TickSize from '@/components/forms/form-elements/slider/TickSize.vue';
- import Steps from '@/components/forms/form-elements/slider/Steps.vue';
- import Ticks from '@/components/forms/form-elements/slider/Ticks.vue';
- import Vertical from '@/components/forms/form-elements/slider/Vertical.vue';
- import Custom from '@/components/forms/form-elements/slider/Custom.vue';
+import Default from '@/components/forms/form-elements/slider/Default.vue';
+import Disabled from '@/components/forms/form-elements/slider/Disabled.vue';
+import Volume from '@/components/forms/form-elements/slider/Volume.vue';
+import TickSize from '@/components/forms/form-elements/slider/TickSize.vue';
+import Steps from '@/components/forms/form-elements/slider/Steps.vue';
+import Ticks from '@/components/forms/form-elements/slider/Ticks.vue';
+import Vertical from '@/components/forms/form-elements/slider/Vertical.vue';
+import Custom from '@/components/forms/form-elements/slider/Custom.vue';
 
 // theme breadcrumb
 const page = ref({ title: 'Slider' });
@@ -30,7 +30,7 @@ const breadcrumbs = ref([
 ]);
 </script>
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Slider">
@@ -38,49 +38,49 @@ const breadcrumbs = ref([
                     <!-- Default Slider -->
                     <v-col cols="12" lg="4">
                         <UiChildCard title="Default">
-                            <Default/>
+                            <Default />
                         </UiChildCard>
                     </v-col>
-                     <!-- Volume -->
-                     <v-col cols="12" lg="4">
+                    <!-- Volume -->
+                    <v-col cols="12" lg="4">
                         <UiChildCard title="Icon">
-                            <Volume/>
+                            <Volume />
                         </UiChildCard>
                     </v-col>
                     <!-- Disabled -->
                     <v-col cols="12" lg="4">
                         <UiChildCard title="Disabled">
-                             <Disabled/>
+                            <Disabled />
                         </UiChildCard>
                     </v-col>
                     <!-- Steps -->
                     <v-col cols="12" lg="4">
                         <UiChildCard title="Steps">
-                            <Steps/>
+                            <Steps />
                         </UiChildCard>
                     </v-col>
                     <!-- Ticks -->
                     <v-col cols="12" lg="4">
                         <UiChildCard title="Ticks">
-                            <Ticks/>
+                            <Ticks />
                         </UiChildCard>
                     </v-col>
                     <!-- Tick Size-->
                     <v-col cols="12" lg="4">
                         <UiChildCard title="Tick Size">
-                            <TickSize/>
+                            <TickSize />
                         </UiChildCard>
                     </v-col>
                     <!-- Custom-->
                     <v-col cols="12" lg="6">
                         <UiChildCard title="Custom">
-                            <Custom/>
+                            <Custom />
                         </UiChildCard>
                     </v-col>
                     <!-- Vertical Slider -->
                     <v-col cols="12" lg="6">
                         <UiChildCard title="Vertical">
-                            <Vertical/>
+                            <Vertical />
                         </UiChildCard>
                     </v-col>
                 </v-row>

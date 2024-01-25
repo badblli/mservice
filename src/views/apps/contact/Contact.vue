@@ -16,7 +16,7 @@ const breadcrumbs = ref([
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-card elevation="10">
         <v-card-text>
             <EditableTable />

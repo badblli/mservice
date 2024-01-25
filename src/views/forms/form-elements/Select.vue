@@ -25,7 +25,7 @@ const breadcrumbs = ref([
 ]);
 </script>
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Select">
@@ -39,25 +39,25 @@ const breadcrumbs = ref([
                     <!--Select Readonly-->
                     <v-col cols="12" sm="6">
                         <UiChildCard title="Read only">
-                            <SelectReadonly/>
+                            <SelectReadonly />
                         </UiChildCard>
                     </v-col>
                     <!--Select Multiple-->
                     <v-col cols="12" sm="6">
                         <UiChildCard title="Multiple">
-                            <SelectMultiple/>
+                            <SelectMultiple />
                         </UiChildCard>
                     </v-col>
                     <!--Select Chip-->
                     <v-col cols="12" sm="6">
                         <UiChildCard title="Chips">
-                            <SelectChip/>
+                            <SelectChip />
                         </UiChildCard>
                     </v-col>
                     <!--Select Density-->
                     <v-col cols="12" sm="12">
                         <UiChildCard title="Density">
-                            <SelectDensity/>
+                            <SelectDensity />
                         </UiChildCard>
                     </v-col>
                 </v-row>

@@ -32,7 +32,7 @@ const breadcrumbs = ref([
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <!---Congratulation card---->
         <v-col cols="12" sm="12" lg="5">

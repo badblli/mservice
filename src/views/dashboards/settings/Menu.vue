@@ -287,7 +287,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-card elevation="10">
         <v-card-text>
             <!-- <v-data-table fixed-header density="compact" :headers="headers" :items="data" :search="search"

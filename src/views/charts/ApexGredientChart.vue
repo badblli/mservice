@@ -68,7 +68,7 @@ const chartOptions = computed(() => {
                 '5/11/2001',
                 '6/11/2001'
             ]
-        },  
+        },
         fill: {
             type: 'gradient',
             gradient: {
@@ -119,7 +119,7 @@ const gredientChart = {
     <!-- ---------------------------------------------------- -->
     <!-- Gredient Chart -->
     <!-- ---------------------------------------------------- -->
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Gredient Chart">

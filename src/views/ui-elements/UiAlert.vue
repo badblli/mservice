@@ -31,7 +31,7 @@ const breadcrumbs = ref([
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Alert">
@@ -39,45 +39,45 @@ const breadcrumbs = ref([
                     <!-- Basic -->
                     <v-col cols="12">
                         <UiChildCard title="Basic">
-                            <Basic/>
+                            <Basic />
                         </UiChildCard>
                     </v-col>
                     <!-- Filled -->
                     <v-col cols="12">
                         <UiChildCard title="Filled">
-                            <Filled/>
+                            <Filled />
                         </UiChildCard>
                     </v-col>
                     <!-- Outlined -->
                     <v-col cols="12">
                         <UiChildCard title="Outlined">
-                            <Outlined/>
+                            <Outlined />
                         </UiChildCard>
                     </v-col>
-                    
+
                     <!-- Description -->
                     <v-col cols="12">
                         <UiChildCard title="Description">
-                            <Description/>
+                            <Description />
                         </UiChildCard>
                     </v-col>
                     <!-- With Action -->
                     <v-col cols="12">
                         <UiChildCard title="Action">
-                            <Action/>
+                            <Action />
                         </UiChildCard>
                     </v-col>
                     <!-- With Icons -->
                     <v-col cols="12">
                         <UiChildCard title="With Icons">
-                            <Icons/>
+                            <Icons />
                         </UiChildCard>
                     </v-col>
-                    
+
                     <!-- Closable -->
                     <v-col cols="12">
                         <UiChildCard title="Closable">
-                            <Closable/>
+                            <Closable />
                         </UiChildCard>
                     </v-col>
                 </v-row>
