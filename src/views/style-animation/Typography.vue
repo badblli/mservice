@@ -24,24 +24,24 @@ const breadcrumbs = ref([
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12" md="12">
             <UiParentCard title="Basic Typography">
                 <UiChildCard title="Heading">
-                    <Heading/>
+                    <Heading />
                 </UiChildCard>
-                 <UiChildCard title="Default Text" class="mt-5">
-                    <Default/>
+                <UiChildCard title="Default Text" class="mt-5">
+                    <Default />
                 </UiChildCard>
                 <UiChildCard title="Text-alignment" class="mt-5">
-                    <TextAlignment/>
+                    <TextAlignment />
                 </UiChildCard>
                 <UiChildCard title="Decoration" class="mt-5">
-                    <TextDecoration/>
+                    <TextDecoration />
                 </UiChildCard>
                 <UiChildCard title="Opacity" class="mt-5">
-                    <Opacity/>
+                    <Opacity />
                 </UiChildCard>
             </UiParentCard>
         </v-col>

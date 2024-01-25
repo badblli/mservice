@@ -47,13 +47,13 @@ function getColor(status: string) {
 
 </script>
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Basic Table">
-                    <v-data-table items-per-page="5" :headers="headers" :items="BasicDatatables" item-value="name"
-                        class="border rounded-md">
-                    </v-data-table>
+                <v-data-table items-per-page="5" :headers="headers" :items="BasicDatatables" item-value="name"
+                    class="border rounded-md">
+                </v-data-table>
             </UiParentCard>
 
             <UiParentCard title="Selection" class="mt-6 pb-0">

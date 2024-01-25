@@ -26,7 +26,7 @@ const breadcrumbs = ref([
 ]);
 </script>
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Custom Inputs">
@@ -55,14 +55,14 @@ const breadcrumbs = ref([
                             <InputPrepandAppend />
                         </UiChildCard>
                     </v-col>
-                     <!-- Input Hide Details-->
-                     <v-col cols="12" sm="6">
+                    <!-- Input Hide Details-->
+                    <v-col cols="12" sm="6">
                         <UiChildCard title="Hide Details">
                             <InputHideDetails />
                         </UiChildCard>
                     </v-col>
-                     <!-- Input Rules-->
-                     <v-col cols="12" sm="6">
+                    <!-- Input Rules-->
+                    <v-col cols="12" sm="6">
                         <UiChildCard title="Rules">
                             <InputRules />
                         </UiChildCard>

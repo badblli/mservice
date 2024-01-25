@@ -22,16 +22,11 @@ const config: Record<string, EnvironmentConfig> = {
         mediaUrl: 'http://logintest.meanderservices.com/assets',
         loginPageLink: 'http://loginpreview.meanderservices.com/',
         getMedia: 'http://10.10.22.13/assets/company/',
-        // basePath: function (path: string) {
-        //     return 'http://' + this.mode + path + '.meanderservices.com';
-        // }
+    
         basePath: function (path: string) {
-            if (path.includes("auth")){
-                return 'http://' +this.mode+ path + '.prospot.online';
-            }
-            else{
+          
                 return  'http://'+this.mode  + path + '.meanderservices.com';
-            }
+            
         }
         // Diğer dev konfigürasyonları...
     },
@@ -41,16 +36,11 @@ const config: Record<string, EnvironmentConfig> = {
         mediaUrl: 'http://login.meanderservices.com/assets',
         loginPageLink: 'http://loginpreview.meanderservices.com/',
         getMedia: 'http://login.meanderservices.com/assets/company',
-        // basePath: function (path: string) {
-        //     return 'http://' + path + '.meanderservices.com';
-        // }
+      
         basePath: function (path: string) {
-            if (path.includes("auth")){
-                return 'http://' + path + '.prospot.online';
-            }
-            else{
-                return  'http://' + path + '.meanderservices.com';
-            }
+
+                return 'http://' + path + '.meanderservices.com';
+      
         }
         // Diğer prod konfigürasyonları...
     }

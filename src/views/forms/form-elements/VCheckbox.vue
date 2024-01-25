@@ -28,7 +28,7 @@ const breadcrumbs = ref([
 
 // ===============================|| Ui Checkbox ||=============================== //
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Checkbox">
@@ -36,25 +36,25 @@ const breadcrumbs = ref([
                     <!-- Custom checkboxes -->
                     <v-col cols="12" lg="6">
                         <UiChildCard title="Custom">
-                            <Custom/>
+                            <Custom />
                         </UiChildCard>
                     </v-col>
                     <!-- With Colors -->
                     <v-col cols="12" lg="6">
                         <UiChildCard title="Colors">
-                            <ColorCheckboxes/>
+                            <ColorCheckboxes />
                         </UiChildCard>
                     </v-col>
                     <!-- Basic checkboxes -->
                     <v-col cols="12" lg="6">
                         <UiChildCard title="Default">
-                            <BasicCheckboxes/>
+                            <BasicCheckboxes />
                         </UiChildCard>
                     </v-col>
                     <!-- With label -->
                     <v-col cols="12" lg="6">
                         <UiChildCard title="States">
-                            <LabelCheckboxes/>
+                            <LabelCheckboxes />
                         </UiChildCard>
                     </v-col>
                 </v-row>

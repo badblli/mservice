@@ -35,7 +35,7 @@ const chartOptions = computed(() => {
                 show: false
             }
         },
-        colors: [getPrimary.value,getSecondary.value],
+        colors: [getPrimary.value, getSecondary.value],
         dataLabels: {
             enabled: false
         },
@@ -93,7 +93,7 @@ const areaChart = {
     <!-- ---------------------------------------------------- -->
     <!-- Area Chart -->
     <!-- ---------------------------------------------------- -->
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Area Chart">

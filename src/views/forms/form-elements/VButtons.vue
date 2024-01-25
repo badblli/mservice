@@ -47,7 +47,7 @@ const btnsColor = ref(['primary', 'secondary', 'success', 'error', 'warning']);
 
 // ===============================|| Ui Buttons ||=============================== //
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Buttons">
@@ -144,8 +144,8 @@ const btnsColor = ref(['primary', 'secondary', 'success', 'error', 'warning']);
                             <Plain />
                         </UiChildCard>
                     </v-col>
-                     <!-- Outlined -->
-                     <v-col cols="12" lg="6">
+                    <!-- Outlined -->
+                    <v-col cols="12" lg="6">
                         <UiChildCard title="Outlined">
                             <Outlined />
                         </UiChildCard>

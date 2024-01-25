@@ -97,7 +97,11 @@ export const useSettingsStore = defineStore({
             if (response && response.data && response.data.status === 1) {
                 // Handle successful login
                 const menu = parse(response.data.result);
-                this.menuList = organizedMenu(createMenu(menu));
+    this.menuList = [
+      { header: "Meander" },
+      ...menu,
+    ];
+                // this.menuList = organizedMenu(createMenu(menu));
                 console.log('menuList', this.menuList);
                 localStorage.setItem('menuList', JSON.stringify(this.menuList));
             }

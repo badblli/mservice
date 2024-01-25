@@ -35,7 +35,7 @@ const breadcrumbs = ref([
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-card elevation="10">
         <div class="pa-5">
             <v-row>
