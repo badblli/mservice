@@ -6,11 +6,11 @@ import BaseBreadcrumb from '@/components/shared/BaseBreadcrumb.vue';
 import DataTable from '@/components/table/DataTable.vue';
 
 const applicationName = p.MService;
-const controllerName = 'MService';
+const controllerName = 'AuthAdmin';
 const name = 'Languages';
 const ParentName = 'Languages';
 const modalVisible = ref(false);
-const page = ref({ title: 'Languages' });
+const page = ref({ title: 'All Languages' });
 const item = ref({});
 const modalTitle = computed(() => {
     return editedIndex.value === -1 ? 'New ' : 'Edit ';
@@ -31,8 +31,8 @@ const breadcrumbs = ref([
 const editedIndex = ref(-1);
 const forms = ref({
     Name: '',
-    IsoCode: '',
-    NameNative: ''
+    NameNative: '',
+    IsoCode: ''
 });
 
 const headers = ref([
@@ -65,7 +65,6 @@ const headers = ref([
             key: 'IsoCode',
             sortable: true
         },
-
         {
             required: true,
             title: getLabel('CreateDate', 'Common'),
@@ -114,12 +113,19 @@ const resetForm = () => {
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-card elevation="10">
         <v-card-text>
-            <DataTable :applicationName="applicationName" :controllerName="controllerName" :name="name" :headers="headers"
-                :ParentName="ParentName" @modal="modalVisible = true" @items="item = items"
-                @editedItem="(editedItem) => (forms = editedItem)" />
+            <DataTable
+                :applicationName="applicationName"
+                :controllerName="controllerName"
+                :name="name"
+                :headers="headers"
+                :ParentName="ParentName"
+                @modal="modalVisible = true"
+                @items="item = items"
+                @editedItem="(editedItem) => (forms = editedItem)"
+            />
         </v-card-text>
     </v-card>
     <v-dialog v-model="modalVisible" max-width="500">
@@ -129,22 +135,42 @@ const resetForm = () => {
             </v-card-title>
             <v-card-text>
                 <v-row>
-                    <v-col cols="12" sm="4"><v-text-field density="compact" v-model="forms.Name" label="Name" hide-details
-                            variant="outlined"></v-text-field></v-col>
-                    <v-col cols="12" sm="4"><v-text-field density="compact" v-model="forms.NameNative" label="NameNative"
-                            hide-details variant="outlined"></v-text-field></v-col>
-                    <v-col cols="12" sm="4"><v-text-field density="compact" v-model="forms.IsoCode" label="IsoCode"
-                            hide-details variant="outlined"></v-text-field></v-col>
+                    <v-col cols="12" sm="4"
+                        ><v-text-field density="compact" v-model="forms.Name" label="Name" hide-details variant="outlined"></v-text-field
+                    ></v-col>
+                    <v-col cols="12" sm="4"
+                        ><v-text-field
+                            density="compact"
+                            v-model="forms.NameNative"
+                            label="NameNative"
+                            hide-details
+                            variant="outlined"
+                        ></v-text-field
+                    ></v-col>
+                    <v-col cols="12" sm="4"
+                        ><v-text-field
+                            density="compact"
+                            v-model="forms.IsoCode"
+                            label="Iso Code"
+                            hide-details
+                            variant="outlined"
+                        ></v-text-field
+                    ></v-col>
                 </v-row>
             </v-card-text>
             <v-card-actions class="pa-4">
                 <v-spacer></v-spacer>
                 <v-btn color="error" :label="getLabel('Cancel', 'Common')" @click="resetForm" />
-                <v-btn variant="flat" color="secondary" :label="getLabel('Save', 'Common')" @click="
-                    saveRow(applicationName, controllerName, name, forms).then((result: boolean) => {
-                        result == true ? resetForm() : '';
-                    })
-                    " />
+                <v-btn
+                    variant="flat"
+                    color="secondary"
+                    :label="getLabel('Save', 'Common')"
+                    @click="
+                        saveRow(applicationName, controllerName, name, forms).then((result: boolean) => {
+                            result == true ? resetForm() : '';
+                        })
+                    "
+                />
             </v-card-actions>
         </v-card>
     </v-dialog>
