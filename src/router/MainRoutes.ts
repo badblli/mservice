@@ -35,6 +35,11 @@ const MainRoutes = {
             path: '/dashboards/settings/selectitemcategory',
             component: () => import('@/views/dashboards/settings/SelectItemCategory.vue')
         },
+        {
+            name: 'Languages',
+            path: '/dashboards/settings/languages',
+            component: () => import('@/views/dashboards/settings/Languages.vue')
+        },
 
         /////////////////////////////////////////////////////////////////////////////
         {
