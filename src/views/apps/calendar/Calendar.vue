@@ -29,7 +29,7 @@ const breadcrumbs = ref([
 ]);
 </script>
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12" lg="4" sm="12">
             <UiParentCard title="Calendar with Date">
@@ -51,12 +51,10 @@ const breadcrumbs = ref([
             <UiParentCard title="Calendar Date & Time">
                 <div>
                     <div class="flex mb-2">
-                        <label class="text-gray-600 font-medium"
-                            ><input class="mr-1" type="radio" value="" v-model="timezone" />Local</label
-                        >
-                        <label class="text-gray-600 font-medium ml-3"
-                            ><input class="mr-1" type="radio" value="utc" v-model="timezone" />UTC</label
-                        >
+                        <label class="text-gray-600 font-medium"><input class="mr-1" type="radio" value=""
+                                v-model="timezone" />Local</label>
+                        <label class="text-gray-600 font-medium ml-3"><input class="mr-1" type="radio" value="utc"
+                                v-model="timezone" />UTC</label>
                     </div>
                     <v-date-picker v-model="date" mode="dateTime" :timezone="timezone" />
                 </div>

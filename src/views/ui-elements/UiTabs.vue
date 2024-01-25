@@ -34,7 +34,7 @@ const breadcrumbs = ref([
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Tabs">
@@ -42,55 +42,55 @@ const breadcrumbs = ref([
                     <!-- Basic -->
                     <v-col cols="12" lg="12">
                         <UiChildCard title="Basic">
-                            <BasicTabs/>
+                            <BasicTabs />
                         </UiChildCard>
                     </v-col>
                     <!-- With Icons -->
                     <v-col cols="12" lg="12">
                         <UiChildCard title="Stacked">
-                            <IconsWithLabelTabs/>
+                            <IconsWithLabelTabs />
                         </UiChildCard>
-                    </v-col>      
+                    </v-col>
                     <!-- Center -->
                     <v-col cols="12" lg="12">
                         <UiChildCard title="Center Active">
-                            <CenterTabs/>
+                            <CenterTabs />
                         </UiChildCard>
                     </v-col>
-                      <!-- Custom Icons -->
-                      <v-col cols="12" lg="12">
+                    <!-- Custom Icons -->
+                    <v-col cols="12" lg="12">
                         <UiChildCard title="Custom Icons">
-                            <CustomIcons/>
+                            <CustomIcons />
                         </UiChildCard>
                     </v-col>
-                     <!-- Align Center -->
-                     <v-col cols="12" lg="12">
+                    <!-- Align Center -->
+                    <v-col cols="12" lg="12">
                         <UiChildCard title="Align Center">
-                            <AlignCenterTabs/>
+                            <AlignCenterTabs />
                         </UiChildCard>
                     </v-col>
                     <!-- Align End -->
                     <v-col cols="12" lg="12">
                         <UiChildCard title="Align End">
-                            <AlignEndTabs/>
+                            <AlignEndTabs />
                         </UiChildCard>
                     </v-col>
-                     <!-- Icons -->
-                     <v-col cols="12" lg="12">
+                    <!-- Icons -->
+                    <v-col cols="12" lg="12">
                         <UiChildCard title="Icon">
-                            <IconTabs/>
+                            <IconTabs />
                         </UiChildCard>
                     </v-col>
                     <!-- Disabled -->
                     <v-col cols="12" lg="12">
                         <UiChildCard title="Disabled">
-                            <DisableTabs/>
+                            <DisableTabs />
                         </UiChildCard>
                     </v-col>
                     <!-- Colors -->
                     <v-col cols="12" lg="12">
                         <UiChildCard title="Colors">
-                            <ColorTabs/>
+                            <ColorTabs />
                         </UiChildCard>
                     </v-col>
                 </v-row>

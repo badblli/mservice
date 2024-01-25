@@ -21,21 +21,21 @@ const breadcrumbs = ref([
 ]);
 </script>
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12" md="6">
             <UiParentCard title="Simple">
-                <SimpleTooltip/>
+                <SimpleTooltip />
             </UiParentCard>
         </v-col>
         <v-col cols="12" md="6">
             <UiParentCard title="Icon">
-                <IconTooltip/>
+                <IconTooltip />
             </UiParentCard>
         </v-col>
         <v-col cols="12">
             <UiParentCard title="Toggle Tolltip">
-                <ToggleTolltip/>
+                <ToggleTolltip />
             </UiParentCard>
         </v-col>
     </v-row>

@@ -31,7 +31,7 @@ const chartOptions = computed(() => {
             height: 350,
             fontFamily: `inherit`,
             toolbar: {
-              show: false,
+                show: false,
             },
         },
         colors: ['#6ac3fd', '#0b70fb', '#f64e60'],
@@ -55,29 +55,29 @@ const chartOptions = computed(() => {
             categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']
         },
         yaxis: {
-          title: {
-            text: '$ (thousands)',
-          },
+            title: {
+                text: '$ (thousands)',
+            },
         },
         fill: {
             opacity: 1
         },
-       
+
         tooltip: {
             theme: 'dark',
             y: {
-              formatter(val:any) {
-                return `$ ${val} thousands`;
-              },
+                formatter(val: any) {
+                    return `$ ${val} thousands`;
+                },
             },
         },
         grid: {
-          show: false,
+            show: false,
         },
         legend: {
-          show: true,
-          position: 'bottom',
-          width: '50px',
+            show: true,
+            position: 'bottom',
+            width: '50px',
         },
         responsive: [
             {
@@ -114,7 +114,7 @@ const columnChart = {
     <!-- ---------------------------------------------------- -->
     <!-- Column Chart -->
     <!-- ---------------------------------------------------- -->
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Column Chart">

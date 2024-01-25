@@ -28,21 +28,21 @@ const breadcrumbs = ref([
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <!---Earning download--->
         <v-col cols="12" lg="4">
             <EarningsDownload />
         </v-col>
-         <!---Top cards--->
+        <!---Top cards--->
         <v-col cols="12" lg="8">
             <TopCards />
         </v-col>
-         <!---Product chart-->
-         <v-col cols="12" lg="8">
+        <!---Product chart-->
+        <v-col cols="12" lg="8">
             <ProductsChart />
         </v-col>
-         <!---Earning / Yearlysales-->
+        <!---Earning / Yearlysales-->
         <v-col cols="12" lg="4">
             <Earnings />
             <YearlySales />
@@ -60,7 +60,7 @@ const breadcrumbs = ref([
             <WeeklyStats />
         </v-col>
         <!---Medical Pro binding-->
-         <v-col cols="12" lg="4">
+        <v-col cols="12" lg="4">
             <MedicalProBranding />
         </v-col>
         <!---DailyActivities-->

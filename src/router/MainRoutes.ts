@@ -17,7 +17,7 @@ const MainRoutes = {
         },
         {
             name: 'Menu',
-            path: '/dashboards/settings/menu',
+            path: '/settings/menu',
             component: () => import('@/views/dashboards/settings/Menu.vue')
         },
         {
