@@ -1,7 +1,15 @@
 <template>
     <div>
-        <v-select v-model="model" :items="options" :multiple="multiple" item-value="ID" item-title="Name"
-            :label="this.label" return-object single-line></v-select>
+        <v-select
+            v-model="model"
+            :items="options"
+            :multiple="multiple"
+            item-value="ID"
+            item-title="Name"
+            :label="this.label"
+            return-object
+            single-line
+        ></v-select>
     </div>
 </template>
 
@@ -55,7 +63,13 @@ export default {
     },
     methods: {
         getData() {
-            const params = { ID: this.ID };
+            let params;
+            if (this.ID) {
+                params = { CountryID: this.ID };
+            } else {
+                params = { ID: 0 };
+            }
+
             getApi(this.applicationName, this.controllerName, this.name, params).then((response) => {
                 const data = JSON.parse(response.data.result);
                 this.options = data.map((item) => ({
@@ -81,9 +95,7 @@ export default {
     },
 
     mounted() {
-
         this.getData();
-
     }
 };
 </script>

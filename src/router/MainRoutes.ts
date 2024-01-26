@@ -23,27 +23,28 @@ const MainRoutes = {
         {
             name: 'Currency',
             path: '/keydefinitions/currency',
-            component: () => import('@/views/keydefinations/Currency.vue')
+            component: () => import('@/views/keydefinitions/Currency.vue')
         },
         {
             name: 'Bank',
             path: '/keydefinitions/bank',
-            component: () => import('@/views/keydefinations/bank/Bank.vue')
+            component: () => import('@/views/keydefinitions/bank/Bank.vue')
         },
         {
             name: 'Country',
             path: '/keydefinitions/geography/country',
-            component: () => import('@/views/keydefinations/geography/Country.vue')
+            component: () => import('@/views/keydefinitions/geography/Country.vue')
         },
         {
             name: 'City',
             path: '/keydefinitions/geography/city',
-            component: () => import('@/views/keydefinations/geography/City.vue')
+            component: () => import('@/views/keydefinitions/geography/City.vue')
         },
         {
             name: 'Town',
             path: '/keydefinitions/geography/town',
-            component: () => import('@/views/keydefinations/geography/Town.vue')
+            component: () => import('@/views/keydefinitions/geography/Town.vue'),
+            props: true
         },
         {
             name: 'SelectItemCategory',
