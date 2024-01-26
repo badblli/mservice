@@ -4,36 +4,26 @@ import p from '@/utils/helpers/pathConfig';
 import { getLabel, saveRow } from '@/utils/helpers/globalHelper';
 import BaseBreadcrumb from '@/components/shared/BaseBreadcrumb.vue';
 import DataTable from '@/components/table/DataTable.vue';
+import { ro } from 'date-fns/locale';
 
-const applicationName = p.Master;
-const controllerName = 'Master';
-const name = 'Country';
-const ParentName = 'Country';
+const applicationName = p.MService;
+const controllerName = 'AuthAdmin';
+const name = 'Languages';
+const ParentName = 'Languages';
 const modalVisible = ref(false);
-const page = ref({ title: 'Country' });
+const page = ref({ title: 'All Languages' });
 const item = ref({});
 const modalTitle = computed(() => {
     return editedIndex.value === -1 ? 'New ' : 'Edit ';
 });
 
-const breadcrumbs = ref([
-    {
-        text: 'Dashboard',
-        disabled: true,
-        href: '#'
-    },
-    {
-        text: 'Country',
-        disabled: true,
-        href: '#'
-    }
-]);
+
 const editedIndex = ref(-1);
 const forms = ref({
     ID: 0,
     Name: '',
-    ISOCode: '',
-    Iso2Code: ''
+    NameNative: '',
+    IsoCode: ''
 });
 
 const headers = ref([
@@ -54,19 +44,18 @@ const headers = ref([
         },
         {
             required: true,
-            title: getLabel('IsoCode'),
+            title: getLabel('NameNative'),
             align: 'start',
-            key: 'ISOCode',
+            key: 'NameNative',
             sortable: true
         },
         {
             required: true,
-            title: getLabel('Iso2Code'),
+            title: getLabel('IsoCode'),
             align: 'start',
-            key: 'Iso2Code',
+            key: 'IsoCode',
             sortable: true
         },
-
         {
             required: true,
             title: getLabel('CreateDate', 'Common'),
@@ -103,11 +92,12 @@ const headers = ref([
         }
     ]
 ]);
+
 const update = (row: any) => {
     forms.value.ID = row.ID;
-    forms.value.ISOCode = row.ISOCode;
+    forms.value.IsoCode = row.IsoCode;
     forms.value.Name = row.Name;
-    forms.value.Iso2Code = row.Iso2Code;
+    forms.value.NameNative = row.NameNative;
 };
 
 const resetForm = () => {
@@ -115,8 +105,8 @@ const resetForm = () => {
     forms.value = {
         ID: 0,
         Name: '',
-        ISOCode: '',
-        Iso2Code: ''
+        NameNative: '',
+        IsoCode: ''
     };
 };
 </script>
@@ -138,10 +128,10 @@ const resetForm = () => {
                 <v-row>
                     <v-col cols="12" sm="4"><v-text-field density="compact" v-model="forms.Name" label="Name" hide-details
                             variant="outlined"></v-text-field></v-col>
-                    <v-col cols="12" sm="4"><v-text-field density="compact" v-model="forms.ISOCode" label="Iso Code"
+                    <v-col cols="12" sm="4"><v-text-field density="compact" v-model="forms.NameNative" label="NameNative"
                             hide-details variant="outlined"></v-text-field></v-col>
-                    <v-col cols="12" sm="4"><v-text-field density="compact" v-model="forms.Iso2Code" label="Iso Code2"
-                            hide-details variant="outlined"></v-text-field></v-col>
+                    <v-col cols="12" sm="4"><v-text-field density="compact" v-model="forms.IsoCode" label="Iso Code"
+                            hide-details variant="outlined" maxlength="3"></v-text-field></v-col>
                 </v-row>
             </v-card-text>
             <v-card-actions class="pa-4">

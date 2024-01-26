@@ -16,20 +16,9 @@ const modalTitle = computed(() => {
     return editedIndex.value === -1 ? 'New ' : 'Edit ';
 });
 
-const breadcrumbs = ref([
-    {
-        text: 'Dashboard',
-        disabled: true,
-        href: '#'
-    },
-    {
-        text: 'SelectItemCategory',
-        disabled: true,
-        href: '#'
-    }
-]);
 const editedIndex = ref(-1);
 const forms = ref({
+    ID: 0,
     Name: ''
 });
 
@@ -86,9 +75,16 @@ const headers = ref([
     ]
 ]);
 
+const update = (row: any) => {
+    forms.value.ID = row.ID;
+    forms.value.Name = row.Name;
+
+};
+
 const resetForm = () => {
     modalVisible.value = false;
     forms.value = {
+        ID: 0,
         Name: ''
     };
 };
@@ -99,8 +95,7 @@ const resetForm = () => {
     <v-card elevation="10">
         <v-card-text>
             <DataTable :applicationName="applicationName" :controllerName="controllerName" :name="name" :headers="headers"
-                :ParentName="ParentName" @modal="modalVisible = true" @items="item = items"
-                @editedItem="(editedItem) => (forms = editedItem)" />
+                :ParentName="ParentName" @modal="modalVisible = true" @row="(row) => update(row)" />
         </v-card-text>
     </v-card>
     <v-dialog v-model="modalVisible" max-width="500">

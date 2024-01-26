@@ -31,6 +31,7 @@ const breadcrumbs = ref([
 ]);
 const editedIndex = ref(-1);
 const forms = ref({
+    ID: 0,
     Name: '',
     IsoCode: '',
 });
@@ -105,9 +106,15 @@ const headers = ref([
     ]
 ])
 
+const update = (row: any) => {
+    forms.value.ID = row.ID;
+    forms.value.IsoCode = row.IsoCode;
+    forms.value.Name = row.Name;
+};
 const resetForm = () => {
     modalVisible.value = false;
     forms.value = {
+        ID: 0,
         Name: '',
         IsoCode: '',
     }
@@ -119,8 +126,7 @@ const resetForm = () => {
     <v-card elevation="10">
         <v-card-text>
             <DataTable :applicationName="applicationName" :controllerName="controllerName" :name="name" :headers="headers"
-                :ParentName="ParentName" @modal="modalVisible = true" @items="item = items"
-                @editedItem="(editedItem) => (forms = editedItem)" />
+                :ParentName="ParentName" @modal="modalVisible = true" @row="(row) => update(row)" />
 
         </v-card-text>
     </v-card>
