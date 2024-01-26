@@ -1,16 +1,11 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import {dailyActivitiesData} from "@/_mockApis/components/dashboards/AnalyticalData"
-const items = ref([
-    { title: "Click Me" },
-    { title: "Click Me" },
-    { title: "Click Me" },
-    { title: "Click Me 2" },
-]);
+import { ref } from 'vue';
+import { dailyActivitiesData } from '@/_mockApis/components/dashboards/AnalyticalData';
+const items = ref([{ title: 'Click Me' }, { title: 'Click Me' }, { title: 'Click Me' }, { title: 'Click Me 2' }]);
 </script>
 <template>
     <v-card elevation="10">
-        <v-card-text class="pb-sm-13 ">
+        <v-card-text class="pb-sm-13">
             <div class="d-flex align-center mb-1">
                 <h2 class="text-h4">Daily Activities</h2>
                 <v-spacer></v-spacer>
@@ -29,8 +24,15 @@ const items = ref([
                     </v-menu>
                 </div>
             </div>
-            <v-timeline  class="theme-timeline pt-3" density="compact" side="end" truncate-line="both">
-                <v-timeline-item v-for="item in dailyActivitiesData"  :key="item.title" class="mb-4" :dot-color="item.color" fill-dot size="x-small">
+            <v-timeline class="theme-timeline pt-3" density="compact" side="end" truncate-line="both">
+                <v-timeline-item
+                    v-for="item in dailyActivitiesData"
+                    :key="item.title"
+                    class="mb-4"
+                    :dot-color="item.color"
+                    fill-dot
+                    size="x-small"
+                >
                     <div class="d-flex justify-space-between">
                         <div class="h5 font-weight-medium">{{ item.title }}</div>
                         <span class="text-medium-emphasis text-subtitle-1 font-weight-medium ml-auto text-no-wrap">{{ item.time }}</span>

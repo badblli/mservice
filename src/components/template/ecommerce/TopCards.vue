@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { topCardsData } from "@/_mockApis/components/dashboards/EcommerceData";
+import { ref } from 'vue';
+import { topCardsData } from '@/_mockApis/components/dashboards/EcommerceData';
 </script>
 
 <template>
@@ -14,19 +14,11 @@ import { topCardsData } from "@/_mockApis/components/dashboards/EcommerceData";
                         </v-btn>
                     </div>
                     <div>
-                        <h4 class="
-                        text-h4
-                        d-flex
-                        align-center
-                        mt-6
-                      ">
+                        <h4 class="text-h4 d-flex align-center mt-6">
                             {{ item.title }}
-                            <span :class="item.status + ' text-caption ml-1'">
-                                {{ item.price }}</span>
+                            <span :class="item.status + ' text-caption ml-1'"> {{ item.price }}</span>
                         </h4>
-                        <span class="
-                        text-subtitle-1 font-weight-medium text-medium-emphasis
-                      ">{{ item.desc }}</span>
+                        <span class="text-subtitle-1 font-weight-medium text-medium-emphasis">{{ item.desc }}</span>
                     </div>
                 </div>
                 <!-- <v-divider vertical></v-divider> -->

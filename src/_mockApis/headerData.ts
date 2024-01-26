@@ -56,19 +56,19 @@ const profileDD: profileType[] = [
         title: 'My Profile',
         subtitle: 'Account settings',
         href: '/apps/user/profile'
-    },
-    {
-        avatar: proUser2,
-        title: 'My Inbox',
-        subtitle: 'Messages & Emails',
-        href: '/apps/inbox'
-    },
-    {
-        avatar: proUser3,
-        title: 'My Tasks',
-        subtitle: 'To-do and Daily tasks',
-        href: '/apps/task'
     }
+    // {
+    //     avatar: proUser2,
+    //     title: 'My Inbox',
+    //     subtitle: 'Messages & Emails',
+    //     href: '/apps/inbox'
+    // },
+    // {
+    //     avatar: proUser3,
+    //     title: 'My Tasks',
+    //     subtitle: 'To-do and Daily tasks',
+    //     href: '/apps/task'
+    // }
 ];
 
 //
@@ -191,11 +191,11 @@ const quickLink: quickLinksType[] = [
 const searchSugg: searchType[] = [
     {
         title: 'Modern',
-        href: '/dashboards/modern'
+        href: '/template/modern'
     },
     {
         title: 'eCommerce',
-        href: '/dashboards/ecommerce'
+        href: '/template/ecommerce'
     },
     {
         title: 'Contacts',

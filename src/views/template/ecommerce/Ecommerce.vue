@@ -1,29 +1,29 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import BaseBreadcrumb from "@/components/shared/BaseBreadcrumb.vue";
-import EarningsDownload from "@/components/dashboards/ecommerce/EarningsDownload.vue";
-import TopCards from "@/components/dashboards/ecommerce/TopCards.vue";
-import ProductsChart from "@/components/dashboards/ecommerce/ProductsChart.vue";
-import Earnings from "@/components/dashboards/ecommerce/Earnings.vue";
-import YearlySales from "@/components/dashboards/ecommerce/YearlySales.vue";
-import RecentTransactions from "@/components/dashboards/ecommerce/RecentTransactions.vue";
-import ProductPerformance from "@/components/dashboards/ecommerce/ProductPerformance.vue";
-import WeeklyStats from "@/components/dashboards/analytical/WeeklyStats.vue";
-import MedicalProBranding from "@/components/dashboards/ecommerce/MedicalProBranding.vue";
-import DailyActivities from "@/components/dashboards/ecommerce/DailyActivities.vue";
+import { ref } from 'vue';
+import BaseBreadcrumb from '@/components/shared/BaseBreadcrumb.vue';
+import EarningsDownload from '@/components/template/ecommerce/EarningsDownload.vue';
+import TopCards from '@/components/template/ecommerce/TopCards.vue';
+import ProductsChart from '@/components/template/ecommerce/ProductsChart.vue';
+import Earnings from '@/components/template/ecommerce/Earnings.vue';
+import YearlySales from '@/components/template/ecommerce/YearlySales.vue';
+import RecentTransactions from '@/components/template/ecommerce/RecentTransactions.vue';
+import ProductPerformance from '@/components/template/ecommerce/ProductPerformance.vue';
+import WeeklyStats from '@/components/template/analytical/WeeklyStats.vue';
+import MedicalProBranding from '@/components/template/ecommerce/MedicalProBranding.vue';
+import DailyActivities from '@/components/template/ecommerce/DailyActivities.vue';
 
-const page = ref({ title: "Ecommerce" });
+const page = ref({ title: 'Ecommerce' });
 const breadcrumbs = ref([
     {
-        text: "Dashboard",
+        text: 'Dashboard',
         disabled: false,
-        href: "#",
+        href: '#'
     },
     {
-        text: "Ecommerce",
+        text: 'Ecommerce',
         disabled: true,
-        href: "#",
-    },
+        href: '#'
+    }
 ]);
 </script>
 
