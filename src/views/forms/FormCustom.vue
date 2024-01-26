@@ -22,12 +22,12 @@ const breadcrumbs = ref([
 </script>
 
 <template>
-   <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
-   <v-row>
+    <BaseBreadcrumb />
+    <v-row>
         <v-col cols="12" class="mb-12">
             <UiParentCard title="Custom Form">
-                <CustomFrom/>
-            </UiParentCard>           
+                <CustomFrom />
+            </UiParentCard>
         </v-col>
-   </v-row>           
+    </v-row>
 </template>

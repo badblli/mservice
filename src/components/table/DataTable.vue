@@ -27,12 +27,16 @@ export default {
             type: Array,
             required: false
         },
+        rows: {
+            type: Array,
+            required: false
+        },
         visibleHeaders: {
             type: Array,
             required: false
         },
         searchDisplay: {
-            type: String,
+            type: Boolean,
             default: true,
             required: false
         },
@@ -61,7 +65,7 @@ export default {
             this.modal = true;
             this.$emit('modal', true);
             this.editedItem = row.item.value;
-            this.$emit('editedItem', this.editedItem);
+            this.$emit('row', this.editedItem);
         },
         getTableData() {
             getTable(this.applicationName, this.controllerName, this.name, true);
@@ -72,12 +76,12 @@ export default {
                 table.addHeaders(this.rows, this.ParentName);
             } else {
                 table.setColumns(this.headers);
-                console.log(table.rows, "rows");
+                console.log(table.rows, 'rows');
             }
         },
         openModal(item) {
-            this.editedItem = [];
-            this.$emit('editedItem', this.editedItem);
+            this.editedItem = {};
+            this.$emit('row', this.editedItem);
 
             this.modal = true;
             this.$emit('modal', true);
@@ -87,9 +91,9 @@ export default {
         },
         editItem(item) {
             this.editedIndex = table.rows.indexOf(item);
-            this.$emit('editedIndex', this.editedIndex);
+            this.$emit('row', this.editedIndex);
             this.editedItem = Object.assign({}, item.columns);
-            this.$emit('editedItem', this.editedItem);
+            this.$emit('row', this.editedItem);
             this.$emit('modal', true);
         },
         editItemClick($event, { item }) {
@@ -120,6 +124,9 @@ export default {
         },
         selected(newVal) {
             this.$emit('selected', newVal);
+        },
+        rows() {
+            this.getTableData();
         }
     }
     // ... Other component options (e.g., computed properties, watch, etc.) ...

@@ -9,10 +9,10 @@ import type { addMethod } from 'yup';
 //import DatetimePicker from 'vuetify-datetime-picker';
 //import VirtualPosType from "components/master/VirtualPosType.vue";
 
-const applicationName = p.PaymentMaster;
-const controllerName = "PaymentMaster";
-const name = 'Bank';
-const ParentName = 'Bank';
+const applicationName = ref(p.PaymentMaster);
+const controllerName = ref("PaymentMaster");
+const name = ref('Bank');
+const ParentName = ref('Bank');
 const modalVisible = ref(false);
 const addImageModal = ref(false);
 const page = ref({ title: 'Bank' });
@@ -61,7 +61,7 @@ const forms = ref({
     ImageThURL: '',
     ImageURL: '',
 });
-    
+
 const headers = ref([
     [
         {
@@ -92,8 +92,8 @@ const headers = ref([
             key: "CreateDate",
             sortable: true,
             //format: () => DatetimePicker.formatDate(eval, "DD.MM.YYYY HH:mm:ss"),
-            formattedDate: Date.now.toString() 
-            
+            formattedDate: Date.now.toString()
+
         },
         {
             required: true,
@@ -161,25 +161,20 @@ const resetImageModal = () => {
     addImageModal.value = false
 }
 const addImage = () => {
-     addImageModal.value = true
-     //forms.ID = row.ID
+    addImageModal.value = true
+    //forms.ID = row.ID
 
-    }
+}
 
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-card elevation="10">
         <v-card-text>
-            <DataTable :applicationName="applicationName"
-                       :controllerName="controllerName"
-                       :name="name"
-                       :headers="headers"
-                       :ParentName="ParentName"
-                       @modal="modalVisible = true"
-                       @items="item = items"
-                       @editedItem="(editedItem) => (forms = editedItem)" />
+            <DataTable :applicationName="applicationName" :controllerName="controllerName" :name="name" :headers="headers"
+                :ParentName="ParentName" @modal="modalVisible = true" @items="item = items"
+                @editedItem="(editedItem) => (forms = editedItem)" />
         </v-card-text>
     </v-card>
     <v-dialog v-model="modalVisible" max-width="500">
@@ -199,19 +194,12 @@ const addImage = () => {
         </v-datetime-picker>
     </v-col>-->
                     <v-col cols="12" sm="6">
-                        <v-text-field density="compact"
-                                      v-model="forms.Name"
-                                      label="Name"
-                                      hide-details
-                                      variant="outlined">
+                        <v-text-field density="compact" v-model="forms.Name" label="Name" hide-details variant="outlined">
                         </v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6">
-                        <v-text-field density="compact"
-                                      v-model="forms.TCMBBankCode"
-                                      label="TCMBBankCode"
-                                      hide-details
-                                      variant="outlined">
+                        <v-text-field density="compact" v-model="forms.TCMBBankCode" label="TCMBBankCode" hide-details
+                            variant="outlined">
                         </v-text-field>
                     </v-col>
                     <!--<v-col cols="12" sm="6">
@@ -222,35 +210,23 @@ const addImage = () => {
 
     </v-col>-->
                     <v-col cols="12" sm="6">
-                        <v-text-field density="compact"
-                                      v-model="forms.VirtualPosAddress"
-                                      label="VirtualPosAddress"
-                                      hide-details
-                                      variant="outlined">
+                        <v-text-field density="compact" v-model="forms.VirtualPosAddress" label="VirtualPosAddress"
+                            hide-details variant="outlined">
                         </v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6">
-                        <v-text-field density="compact"
-                                      v-model="forms.VirtualPosUser"
-                                      label="VirtualPosUser"
-                                      hide-details
-                                      variant="outlined">
+                        <v-text-field density="compact" v-model="forms.VirtualPosUser" label="VirtualPosUser" hide-details
+                            variant="outlined">
                         </v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6">
-                        <v-text-field density="compact"
-                                      v-model="forms.VirtualPosPassword"
-                                      label="VirtualPosPassword"
-                                      hide-details
-                                      variant="outlined">
+                        <v-text-field density="compact" v-model="forms.VirtualPosPassword" label="VirtualPosPassword"
+                            hide-details variant="outlined">
                         </v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6">
-                        <v-checkbox density="compact"
-                                    v-model="forms.IsDefault"
-                                    label="IsDefault"
-                                    hide-details
-                                    variant="outlined">
+                        <v-checkbox density="compact" v-model="forms.IsDefault" label="IsDefault" hide-details
+                            variant="outlined">
                             >
 
                         </v-checkbox>
@@ -259,14 +235,9 @@ const addImage = () => {
             </v-card-text>
             <v-card-actions class="pa-4">
                 <v-spacer></v-spacer>
-                <v-btn flat
-                       color="error"
-                       :label="getLabel('Cancel', 'Common')"
-                       @click="resetForm" />
-                <v-btn variant="flat"
-                       color="secondary"
-                       :label="getLabel('Save', 'Common')"
-                       @click="saveRow(applicationName, controllerName, name, forms).then((result: boolean)=>{result == true ? resetForm() : '';})" />
+                <v-btn flat color="error" :label="getLabel('Cancel', 'Common')" @click="resetForm" />
+                <v-btn variant="flat" color="secondary" :label="getLabel('Save', 'Common')"
+                    @click="saveRow(applicationName, controllerName, name, forms).then((result: boolean) => { result == true ? resetForm() : ''; })" />
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -282,10 +253,7 @@ const addImage = () => {
                     <!--<BankLogo :bankID="forms.ID"
                               :propertyName="'BankLogo'"
                               :parentName="'Bank'" />-->
-                    <v-btn flat
-                           :label="$gf.getLabel('Cancel', 'Common')"
-                           v-close-popup
-                           @click="resetImageModal()" />
+                    <v-btn flat :label="$gf.getLabel('Cancel', 'Common')" v-close-popup @click="resetImageModal()" />
 
                 </v-form>
             </v-card-section>

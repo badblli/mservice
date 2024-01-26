@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref} from 'vue';
+import { ref } from 'vue';
 // common components
 import BaseBreadcrumb from '@/components/shared/BaseBreadcrumb.vue';
 import UiParentCard from '@/components/shared/UiParentCard.vue';
@@ -29,36 +29,36 @@ const breadcrumbs = ref([
 </script>
 
 <template>
-   <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
-   <v-row>
+    <BaseBreadcrumb />
+    <v-row>
         <v-col cols="12" lg="6" class="mb-0">
             <UiParentCardLogo>
-                <VeeValidation/>
-            </UiParentCardLogo>           
+                <VeeValidation />
+            </UiParentCardLogo>
         </v-col>
         <v-col cols="12" lg="6" class="mb-0">
             <UiParentCardLogo>
-                <MailValidation/>
-            </UiParentCardLogo>   
+                <MailValidation />
+            </UiParentCardLogo>
             <UiParentCard title="Select" class="mt-6">
-                <SelectBox/>
-            </UiParentCard>        
+                <SelectBox />
+            </UiParentCard>
         </v-col>
         <v-col cols="12" lg="6" class="">
             <UiParentCard title="On Leave">
-                <OnType/>
-            </UiParentCard>           
+                <OnType />
+            </UiParentCard>
         </v-col>
         <v-col cols="12" lg="6" class="">
             <UiParentCard title="Checkboxes">
-                <CheckBox/>
-            </UiParentCard>           
+                <CheckBox />
+            </UiParentCard>
         </v-col>
         <v-col cols="12" lg="6" class="">
             <UiParentCard title="Radio">
-                <Radio/>
-            </UiParentCard>           
+                <Radio />
+            </UiParentCard>
         </v-col>
-        
-   </v-row>           
+
+    </v-row>
 </template>
