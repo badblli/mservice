@@ -1,63 +1,56 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed } from 'vue';
 import { getPrimary, getSecondary } from '@/utils/UpdateColors';
 import { weeklyStatesData } from '@/_mockApis/components/dashboards/AnalyticalData';
-import type { DotsIcon } from "vue-tabler-icons";
+import type { DotsIcon } from 'vue-tabler-icons';
 /*Chart*/
 const chartOptions = computed(() => {
     return {
         series: [
             {
-                name: "Weekly Stats",
-                data: [40, 60, 50, 65],
-            },
+                name: 'Weekly Stats',
+                data: [40, 60, 50, 65]
+            }
         ],
         colors: [getSecondary.value],
         fill: {
             colors: getSecondary.value,
             opacity: 0.05,
-            type: "solid",
+            type: 'solid'
         },
         chart: {
-            type: "area",
+            type: 'area',
             height: 135,
             toolbar: {
-                show: false,
+                show: false
             },
-            foreColor: "#adb0bb",
+            foreColor: '#adb0bb',
             fontFamily: `inherit`,
             sparkline: {
-                enabled: true,
-            },
+                enabled: true
+            }
         },
         dataLabels: {
-            enabled: false,
+            enabled: false
         },
         markers: {
-            size: 0,
+            size: 0
         },
         legend: {
-            show: false,
+            show: false
         },
         stroke: {
             show: true,
             width: 2,
-            curve: "smooth",
+            curve: 'smooth'
         },
         tooltip: {
-            theme: "dark",
-        },
-    }
+            theme: 'dark'
+        }
+    };
 });
-const items = ref([
-    { title: "Click Me" },
-    { title: "Click Me" },
-    { title: "Click Me" },
-    { title: "Click Me 2" },
-]);
-
+const items = ref([{ title: 'Click Me' }, { title: 'Click Me' }, { title: 'Click Me' }, { title: 'Click Me 2' }]);
 </script>
-
 
 <template>
     <v-card elevation="10" class="overflow-hidden">
@@ -89,15 +82,10 @@ const items = ref([
                         </v-btn>
                     </div>
                     <div class="ml-2">
-                        <h4 class="text-h6  mb-1 mt-n1">
+                        <h4 class="text-h6 mb-1 mt-n1">
                             {{ item.title }}
                         </h4>
-                        <span class="
-                                text-medium-emphasis
-                                text-subtitle-1
-                                d-block
-                                text-truncate
-                              ">{{ item.desc }}</span>
+                        <span class="text-medium-emphasis text-subtitle-1 d-block text-truncate">{{ item.desc }}</span>
                     </div>
                     <div class="ml-auto">
                         <v-chip label size="small" class="font-weight-bold" color="inherit"> +{{ item.percent }}% </v-chip>
@@ -106,8 +94,7 @@ const items = ref([
             </div>
         </v-card-text>
         <div class="position-relative">
-            <apexchart type="area" height="135px" :options="chartOptions" :series="chartOptions.series">
-            </apexchart>
+            <apexchart type="area" height="135px" :options="chartOptions" :series="chartOptions.series"> </apexchart>
         </div>
     </v-card>
 </template>

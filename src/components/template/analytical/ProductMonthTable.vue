@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { projectTableData } from "@/_mockApis/components/dashboards/AnalyticalData";
-const select = ref("March");
-const items = ref(["March", "April", "May", "June"]);
+import { ref } from 'vue';
+import { projectTableData } from '@/_mockApis/components/dashboards/AnalyticalData';
+const select = ref('March');
+const items = ref(['March', 'April', 'May', 'June']);
 </script>
 <template>
     <VCard elevation="10">
@@ -27,8 +27,7 @@ const items = ref(["March", "April", "May", "June"]);
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="item in projectTableData" :key="item.leadname" :class="item.activestate"
-                            class="month-item">
+                        <tr v-for="item in projectTableData" :key="item.leadname" :class="item.activestate" class="month-item">
                             <td>
                                 <div class="d-flex align-center">
                                     <v-avatar size="40">
@@ -45,13 +44,12 @@ const items = ref(["March", "April", "May", "June"]);
                                 </div>
                             </td>
                             <td>
-                                <h5 class="text-subtitle-1 text-medium-emphasis text-no-wrap font-weight-medium ">
+                                <h5 class="text-subtitle-1 text-medium-emphasis text-no-wrap font-weight-medium">
                                     {{ item.projectname }}
                                 </h5>
                             </td>
                             <td>
-                                <v-chip class="ma-2" :color="item.statuscolor" size="small" label>{{ item.statustext
-                                }}</v-chip>
+                                <v-chip class="ma-2" :color="item.statuscolor" size="small" label>{{ item.statustext }}</v-chip>
                             </td>
                             <td>
                                 <h4 class="text-body-1 font-weight-semibold">{{ item.money }}</h4>

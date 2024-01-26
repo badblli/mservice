@@ -191,11 +191,11 @@ const quickLink: quickLinksType[] = [
 const searchSugg: searchType[] = [
     {
         title: 'Modern',
-        href: '/dashboards/modern'
+        href: '/template/modern'
     },
     {
         title: 'eCommerce',
-        href: '/dashboards/ecommerce'
+        href: '/template/ecommerce'
     },
     {
         title: 'Contacts',

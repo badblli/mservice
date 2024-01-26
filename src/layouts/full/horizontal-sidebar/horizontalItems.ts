@@ -3,7 +3,15 @@ import {
     AppsIcon,
     BorderAllIcon,
     BrandTablerIcon,
-    CircleDotIcon, ClipboardIcon, FileDescriptionIcon, HomeIcon, LoginIcon, RotateIcon, SettingsIcon, UserPlusIcon, ZoomCodeIcon,
+    CircleDotIcon,
+    ClipboardIcon,
+    FileDescriptionIcon,
+    HomeIcon,
+    LoginIcon,
+    RotateIcon,
+    SettingsIcon,
+    UserPlusIcon,
+    ZoomCodeIcon,
     ColumnsIcon,
     RowInsertBottomIcon,
     EyeTableIcon,
@@ -13,7 +21,6 @@ import {
     BoxModelIcon,
     ServerIcon,
     BrandAirtableIcon
-
 } from 'vue-tabler-icons';
 
 export interface menu {
@@ -35,28 +42,26 @@ export interface menu {
 }
 
 const horizontalItems: menu[] = [
-   
     {
         title: 'Dashboard',
         icon: HomeIcon,
         to: '#',
         children: [
             {
-                title: "Analytical",
+                title: 'Analytical',
                 icon: CircleDotIcon,
-                to: "/dashboards/analytical",
-              },
-              {
-                title: "eCommerce",
+                to: '/template/analytical'
+            },
+            {
+                title: 'eCommerce',
                 icon: CircleDotIcon,
-                to: "/dashboards/ecommerce",
-              },
-              {
-                title: "Modern",
+                to: '/template/ecommerce'
+            },
+            {
+                title: 'Modern',
                 icon: CircleDotIcon,
-                to: "/dashboards/modern",
-              },
-
+                to: '/template/modern'
+            }
         ]
     },
     {
@@ -154,7 +159,7 @@ const horizontalItems: menu[] = [
                 title: 'Kanban',
                 icon: CircleDotIcon,
                 to: '/apps/kanban'
-            },
+            }
         ]
     },
 
@@ -504,7 +509,7 @@ const horizontalItems: menu[] = [
                 title: 'Editable Table',
                 icon: CircleDotIcon,
                 to: '/tables/editable'
-            },
+            }
         ]
     },
     {
@@ -551,7 +556,7 @@ const horizontalItems: menu[] = [
                 title: 'Table Slots',
                 icon: ServerIcon,
                 to: '/datatables/slots'
-            },
+            }
         ]
     },
     {
@@ -560,17 +565,17 @@ const horizontalItems: menu[] = [
         to: '#',
         children: [
             {
-                title: "Material",
+                title: 'Material',
                 icon: CircleDotIcon,
-                to: "/icons/material",
-              },
-              {
-                title: "Tabler",
+                to: '/icons/material'
+            },
+            {
+                title: 'Tabler',
                 icon: CircleDotIcon,
-                to: "/icons/tabler",
-              },
+                to: '/icons/tabler'
+            }
         ]
-    },   
+    }
 ];
 
 export default horizontalItems;
