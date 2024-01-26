@@ -17,7 +17,7 @@ function formatDate(item: string): string {
         const second: string = matchArray[6];
 
         // Biçimlendirilmiş tarih ve saat değerini döndür
-        return `${day}/${month}/${year} ${hour}:${minute}:${second}`;
+        return `${day}.${month}.${year} ${hour}:${minute}:${second}`;
     } else {
         // Eğer eşleşme yoksa, orijinal değeri döndür
         return item;
