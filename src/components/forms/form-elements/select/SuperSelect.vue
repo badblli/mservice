@@ -1,10 +1,18 @@
 <template>
     <div>
-        <v-select v-model="model" :items="options" :multiple="multiple" item-value="ID" item-title="Name"
-            :label="this.label" return-object single-line></v-select>
+        <v-select
+            v-model="model"
+            :items="options"
+            :multiple="multiple"
+            item-value="ID"
+            item-title="Name"
+            :label="this.label"
+            return-object
+            single-line
+        ></v-select>
     </div>
 </template>
-  
+
 <script>
 import { getApi, getLabel } from '@/utils/helpers/globalHelper';
 
@@ -26,6 +34,11 @@ export default {
         name: {
             type: String,
             required: true
+        },
+        ID: {
+            type: Number,
+            required: false,
+            default: 0
         },
         multiple: {
             type: Boolean,
@@ -50,23 +63,32 @@ export default {
     },
     methods: {
         getData() {
-            const params = { ID: 0 };
-            getApi(this.applicationName, this.controllerName, this.name, params)
-                .then(response => {
-                    const data = JSON.parse(response.data.result);
-                    this.options = data.map(item => ({
-                        ID: item.ID,
-                        Name: item.Name
-                    }));
-                });
+            let params;
+            if (this.ID) {
+                params = { CountryID: this.ID };
+            } else {
+                params = { ID: 0 };
+            }
 
-
-        },
+            getApi(this.applicationName, this.controllerName, this.name, params).then((response) => {
+                const data = JSON.parse(response.data.result);
+                this.options = data.map((item) => ({
+                    ID: item.ID,
+                    Name: item.Name
+                }));
+            });
+        }
     },
     watch: {
         model: {
             handler: function (newVal, oldVal) {
                 this.$emit('model', newVal);
+            },
+            deep: true
+        },
+        ID: {
+            handler: function (newVal, oldVal) {
+                this.getData(newVal);
             },
             deep: true
         }
@@ -75,6 +97,5 @@ export default {
     mounted() {
         this.getData();
     }
-
 };
 </script>

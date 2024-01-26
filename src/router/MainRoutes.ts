@@ -8,59 +8,65 @@ const MainRoutes = {
     children: [
         {
             path: '/',
-            redirect: '/dashboards/analytical'
+            redirect: '/template/analytical'
         },
         {
             name: 'Analytical',
-            path: '/dashboards/analytical',
-            component: () => import('@/views/dashboards/analytical/Analytical.vue')
+            path: '/template/analytical',
+            component: () => import('@/views/template/analytical/Analytical.vue')
         },
         {
             name: 'Menu',
             path: '/settings/menu',
-            component: () => import('@/views/dashboards/settings/Menu.vue')
+            component: () => import('@/views/settings/Menu.vue')
         },
         {
             name: 'Currency',
-            path: '/dashboards/keydefinitions/general/currency',
-            component: () => import('@/views/dashboards/keydefinations/general/Currency.vue')
+            path: '/keydefinitions/currency',
+            component: () => import('@/views/keydefinitions/Currency.vue')
         },
         {
             name: 'Bank',
-            path: '/dashboards/keydefinitions/bank',
-            component: () => import('@/views/dashboards/keydefinations/bank/Bank.vue')
+            path: '/keydefinitions/bank',
+            component: () => import('@/views/keydefinitions/bank/Bank.vue')
         },
         {
             name: 'Country',
-            path: '/dashboards/keydefinitions/general/geography/country',
-            component: () => import('@/views/dashboards/keydefinations/general/geography/Country.vue')
+            path: '/keydefinitions/geography/country',
+            component: () => import('@/views/keydefinitions/geography/Country.vue')
         },
         {
             name: 'City',
-            path: '/dashboards/keydefinitions/general/geography/city',
-            component: () => import('@/views/dashboards/keydefinations/general/geography/City.vue')
+            path: '/keydefinitions/geography/city',
+            component: () => import('@/views/keydefinitions/geography/City.vue')
+        },
+        {
+            name: 'Town',
+            path: '/keydefinitions/geography/town',
+            component: () => import('@/views/keydefinitions/geography/Town.vue'),
+            props: true
         },
         {
             name: 'SelectItemCategory',
-            path: '/dashboards/settings/selectitemcategory',
-            component: () => import('@/views/dashboards/settings/SelectItemCategory.vue')
+            path: '/settings/selectitemcategory',
+            component: () => import('@/views/settings/SelectItemCategory.vue')
         },
         {
             name: 'Languages',
-            path: '/dashboards/settings/languages',
-            component: () => import('@/views/dashboards/settings/Languages.vue')
+            path: '/settings/languages',
+            component: () => import('@/views/settings/Languages.vue')
         },
 
         /////////////////////////////////////////////////////////////////////////////
         {
             name: 'Ecommerce',
-            path: '/dashboards/ecommerce',
-            component: () => import('@/views/dashboards/ecommerce/Ecommerce.vue')
+            path: '/template/ecommerce',
+            component: () => import('@/views/template/ecommerce/Ecommerce.vue')
         },
         {
             name: 'Modern',
-            path: '/dashboards/modern',
-            component: () => import('@/views/dashboards/modern/Modern.vue')
+            path: '/template/modern',
+            component: () => import('@/views/template/modern/Modern.vue')
         },
         {
             name: 'Chats',

@@ -25,7 +25,6 @@ const getUserAvatarPath = (avatarName: string): string => {
                 <v-avatar size="35">
                     <img :src="getUserAvatarPath(userAvatar)" width="35" alt="Julia" />
                 </v-avatar>
-
             </v-btn>
         </template>
         <v-sheet rounded="md" width="360" elevation="10">
@@ -40,17 +39,16 @@ const getUserAvatarPath = (avatarName: string): string => {
                         <span class="text-subtitle-1 font-weight-regular textSecondary">Designer</span>
                         <div class="d-flex align-center mt-1">
                             <UserIcon size="18" stroke-width="1.5" />
-                            <span class="text-subtitle-1 font-weight-regular textSecondary ml-2">{{ authStore.getUserName
-                            }}</span>
+                            <span class="text-subtitle-1 font-weight-regular textSecondary ml-2">{{ authStore.getUserName }}</span>
                         </div>
                     </div>
                 </div>
                 <v-divider></v-divider>
             </div>
-            <perfect-scrollbar style="height: calc(100vh - 240px); max-height: 240px">
+            <!-- <perfect-scrollbar style="height: calc(100vh - 240px); max-height: 240px"> -->
+            <perfect-scrollbar style="height: fit-content; max-height: 240px">
                 <v-list class="py-0 theme-list" lines="two">
-                    <v-list-item v-for="item in profileDD" :key="item.title" class="py-4 px-8 custom-text-primary"
-                        :to="item.href">
+                    <v-list-item v-for="item in profileDD" :key="item.title" class="py-4 px-8 custom-text-primary" :to="item.href">
                         <template v-slot:prepend>
                             <v-avatar size="48" color="lightprimary" class="mr-3" rounded="md">
                                 <v-img :src="item.avatar" width="24" height="24" :alt="item.avatar" />

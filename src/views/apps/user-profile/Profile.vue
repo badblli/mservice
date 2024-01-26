@@ -9,9 +9,6 @@ import PhotosCard from '@/components/apps/user-profile/PhotosCard.vue';
 import PostListing from '@/components/apps/user-profile/PostListing.vue';
 import AddPost from '@/components/apps/user-profile/posts/AddPost.vue';
 
-
-
-
 const page = ref({ title: 'Social Profile' });
 const breadcrumbs = ref([
     {
@@ -31,7 +28,7 @@ const breadcrumbs = ref([
     <BaseBreadcrumb />
     <ProfileBanner />
 
-    <v-row class="mt-4">
+    <!-- <v-row class="mt-4">
         <v-col cols="12" lg="4" md="4">
             <ProfileInfo />
             <PhotosCard />
@@ -40,5 +37,5 @@ const breadcrumbs = ref([
             <AddPost />
             <PostListing />
         </v-col>
-    </v-row>
+    </v-row> -->
 </template>

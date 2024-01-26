@@ -1,33 +1,32 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import BaseBreadcrumb from "@/components/shared/BaseBreadcrumb.vue";
-import CongratulationCard from "@/components/dashboards/modern/CongratulationCard.vue";
-import Purchases from "@/components/dashboards/modern/Purchases.vue";
-import TotalEarnings from "@/components/dashboards/modern/TotalEarnings.vue";
-import RevenueUpdates from "@/components/dashboards/modern/RevenueUpdates.vue";
-import MonthlyEarnings from "@/components/dashboards/modern/MonthlyEarnings.vue";
-import Customers from "@/components/dashboards/modern/Customers.vue";
-import TotalSales from "@/components/dashboards/analytical/TotalSales.vue";
-import ProductPerformance from "@/components/dashboards/modern/ProductPerformance.vue";
-import DailyActivities from "@/components/dashboards/analytical/DailyActivities.vue";
-import TheSalesOverview from "@/components/dashboards/analytical/TheSalesOverview.vue";
-import TheBlogCard from "@/components/dashboards/analytical/TheBlogCard.vue";
-import WeeklyStats from "@/components/dashboards/analytical/WeeklyStats.vue";
-import MedicalProBranding from "@/components/dashboards/ecommerce/MedicalProBranding.vue";
+import { ref } from 'vue';
+import BaseBreadcrumb from '@/components/shared/BaseBreadcrumb.vue';
+import CongratulationCard from '@/components/template/modern/CongratulationCard.vue';
+import Purchases from '@/components/template/modern/Purchases.vue';
+import TotalEarnings from '@/components/template/modern/TotalEarnings.vue';
+import RevenueUpdates from '@/components/template/modern/RevenueUpdates.vue';
+import MonthlyEarnings from '@/components/template/modern/MonthlyEarnings.vue';
+import Customers from '@/components/template/modern/Customers.vue';
+import TotalSales from '@/components/template/analytical/TotalSales.vue';
+import ProductPerformance from '@/components/template/modern/ProductPerformance.vue';
+import DailyActivities from '@/components/template/analytical/DailyActivities.vue';
+import TheSalesOverview from '@/components/template/analytical/TheSalesOverview.vue';
+import TheBlogCard from '@/components/template/analytical/TheBlogCard.vue';
+import WeeklyStats from '@/components/template/analytical/WeeklyStats.vue';
+import MedicalProBranding from '@/components/template/ecommerce/MedicalProBranding.vue';
 
-
-const page = ref({ title: "Modern" });
+const page = ref({ title: 'Modern' });
 const breadcrumbs = ref([
     {
-        text: "Dashboard",
+        text: 'Dashboard',
         disabled: false,
-        href: "#",
+        href: '#'
     },
     {
-        text: "Modern",
+        text: 'Modern',
         disabled: true,
-        href: "#",
-    },
+        href: '#'
+    }
 ]);
 </script>
 
