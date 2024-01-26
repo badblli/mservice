@@ -102,6 +102,15 @@ const filter = () => {
     getTable(applicationName.value, controllerName.value, name.value, params);
 };
 
+const update = (row: any) => {
+    selectModel.value = [{ ID: row.CityID, Name: row.CityName }];
+    forms.value.CountryID = row.CountryID;
+    forms.value.CountryName = row.CountryName;
+    forms.value.Name = row.Name;
+    forms.value.CityID = row.CityID;
+    forms.value.CityName = row.CityName;
+};
+
 const resetForm = () => {
     modalVisible.value = false;
     forms.value = {
@@ -122,24 +131,43 @@ const resetForm = () => {
                 <v-card-text>
                     <v-row>
                         <v-col cols="12" sm="4">
-                            <SuperSelect :modelValue="selectModel" :applicationName="p.Master" :controllerName="'Master'"
-                                :name="'Country'" :PropertyName="'CountryID'" :ParentName="'HotSpotAllUserList'"
-                                :multiple="false" @model="(model) => {
+                            <SuperSelect
+                                :modelValue="selectModel"
+                                :applicationName="p.Master"
+                                :controllerName="'Master'"
+                                :name="'Country'"
+                                :PropertyName="'CountryID'"
+                                :ParentName="'HotSpotAllUserList'"
+                                :multiple="false"
+                                @model="
+                                    (model) => {
                                         forms.CountryID = model.ID;
                                     }
-                                    " />
+                                "
+                            />
                         </v-col>
                         <v-col cols="12" sm="4">
-                            <SuperSelect :modelValue="selectModel" :applicationName="p.Master" :controllerName="'Master'"
-                                :name="'City'" :PropertyName="'City'" :ParentName="'Common'" :multiple="false"
-                                :ID="forms.CountryID" @model="(model) => {
+                            <SuperSelect
+                                :modelValue="selectModel"
+                                :applicationName="p.Master"
+                                :controllerName="'Master'"
+                                :name="'City'"
+                                :PropertyName="'City'"
+                                :ParentName="'Common'"
+                                :multiple="false"
+                                :ID="forms.CountryID"
+                                @model="
+                                    (model) => {
                                         forms.CityID = model.ID;
                                     }
-                                    " />
+                                "
+                            />
                         </v-col>
-                        <v-col cols="12" sm="4"><v-btn color="primary" variant="tonal" @click="filter">
+                        <v-col cols="12" sm="4"
+                            ><v-btn color="primary" variant="tonal" @click="filter">
                                 <v-icon class="mr-2">mdi-magnify</v-icon>Search
-                            </v-btn></v-col>
+                            </v-btn></v-col
+                        >
                     </v-row>
                 </v-card-text>
             </v-card>
@@ -147,9 +175,17 @@ const resetForm = () => {
         <v-col cols="12">
             <v-card elevation="10">
                 <v-card-text>
-                    <DataTable :applicationName="applicationName" :controllerName="controllerName" :name="name"
-                        :headers="headers" :ParentName="ParentName" @modal="modalVisible = true" @items="rows = items"
-                        @editedItem="(editedItem) => (forms = editedItem)" />
+                    <DataTable
+                        :applicationName="applicationName"
+                        :controllerName="controllerName"
+                        :name="name"
+                        :headers="headers"
+                        :ParentName="ParentName"
+                        @modal="modalVisible = true"
+                        @items="rows = items"
+                        @editedItem="(editedItem) => (forms = editedItem)"
+                        @row="(row) => update(row)"
+                    />
                 </v-card-text>
             </v-card>
         </v-col>
@@ -162,8 +198,9 @@ const resetForm = () => {
             </v-card-title>
             <v-card-text>
                 <v-row>
-                    <v-col cols="12" sm="6"><v-text-field density="compact" v-model="forms.Name" label="Name" hide-details
-                            variant="outlined"></v-text-field></v-col>
+                    <v-col cols="12" sm="6"
+                        ><v-text-field density="compact" v-model="forms.Name" label="Name" hide-details variant="outlined"></v-text-field
+                    ></v-col>
                     <!-- <v-col cols="12" sm="6">
                         <SuperSelect
                             :modelValue="selectModel"
@@ -182,23 +219,37 @@ const resetForm = () => {
                         />
                     </v-col> -->
                     <v-col cols="12" sm="6">
-                        <SuperSelect :modelValue="selectModel" :applicationName="p.Master" :controllerName="'Master'"
-                            :name="'City'" :PropertyName="'City'" :ParentName="'Common'" :multiple="false" @model="(model) => {
+                        <SuperSelect
+                            :modelValue="selectModel"
+                            :applicationName="p.Master"
+                            :controllerName="'Master'"
+                            :name="'City'"
+                            :PropertyName="'City'"
+                            :ParentName="'Common'"
+                            :multiple="false"
+                            @model="
+                                (model) => {
                                     forms.CityID = model.ID;
                                     forms.CityName = model.Name;
                                 }
-                                " />
+                            "
+                        />
                     </v-col>
                 </v-row>
             </v-card-text>
             <v-card-actions class="pa-4">
                 <v-spacer></v-spacer>
                 <v-btn color="error" :label="getLabel('Cancel', 'Common')" @click="resetForm" />
-                <v-btn variant="flat" color="secondary" :label="getLabel('Save', 'Common')" @click="
-                    saveRow(applicationName, controllerName, name, forms).then((result: boolean) => {
-                        result == true ? resetForm() : '';
-                    })
-                    " />
+                <v-btn
+                    variant="flat"
+                    color="secondary"
+                    :label="getLabel('Save', 'Common')"
+                    @click="
+                        saveRow(applicationName, controllerName, name, forms).then((result: boolean) => {
+                            result == true ? resetForm() : '';
+                        })
+                    "
+                />
             </v-card-actions>
         </v-card>
     </v-dialog>
