@@ -42,7 +42,7 @@ const MainRoutes = {
         },
         {
             name: 'Town',
-            path: '/dashboards/keydefinitions/general/geography/district',
+            path: '/dashboards/keydefinitions/general/geography/town',
             component: () => import('@/views/dashboards/keydefinations/general/geography/Town.vue')
         },
         {
