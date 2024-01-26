@@ -1,38 +1,31 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
 import p from '@/utils/helpers/pathConfig';
-import { getLabel, saveRow } from '@/utils/helpers/globalHelper';
+import { getLabel, saveRow, getTable } from '@/utils/helpers/globalHelper';
 import BaseBreadcrumb from '@/components/shared/BaseBreadcrumb.vue';
 import DataTable from '@/components/table/DataTable.vue';
+import SuperSelect from '@/components/forms/form-elements/select/SuperSelect.vue';
 
-const applicationName = p.Master;
-const controllerName = 'Master';
-const name = 'City';
+
+const applicationName = ref(p.Master);
+const controllerName = ref("Master");
+const name = ref('City');
 const ParentName = 'City';
 const modalVisible = ref(false);
-const page = ref({ title: 'City' });
 const item = ref({});
 const modalTitle = computed(() => {
     return editedIndex.value === -1 ? 'New ' : 'Edit ';
 });
 
-const breadcrumbs = ref([
-    {
-        text: 'Dashboard',
-        disabled: true,
-        href: '#'
-    },
-    {
-        text: 'City',
-        disabled: true,
-        href: '#'
-    }
-]);
+
 const editedIndex = ref(-1);
 const forms = ref({
-    Name: ''
+    Name: '',
+    CountryID: 0,
+    CountryName: ''
 });
 
+const selectModel = ref([]);
 const headers = ref([
     [
         {
@@ -94,30 +87,56 @@ const headers = ref([
     ]
 ]);
 
+const filter = () => {
+    const params = {
+        CountryID: forms.value.CountryID
+    };
+    getTable(applicationName.value, controllerName.value, name.value, params);
+
+
+};
+
 const resetForm = () => {
     modalVisible.value = false;
     forms.value = {
-        Name: ''
+        Name: '',
+        CountryID: 0,
+        CountryName: ''
     };
 };
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
-    <v-card elevation="10">
-        <v-card-text>
-            <DataTable
-                :applicationName="applicationName"
-                :controllerName="controllerName"
-                :name="name"
-                :headers="headers"
-                :ParentName="ParentName"
-                @modal="modalVisible = true"
-                @items="item = items"
-                @editedItem="(editedItem) => (forms = editedItem)"
-            />
-        </v-card-text>
-    </v-card>
+    <BaseBreadcrumb />
+    <v-row>
+        <v-col cols="12">
+            <v-card elevation="10">
+                <v-card-text>
+                    <v-row>
+                        <v-col cols="12" sm="4">
+                            <SuperSelect :modelValue="selectModel" :applicationName="p.Master" :controllerName="'Master'"
+                                :name="'Country'" :PropertyName="'NationalityID'" :ParentName="'HotSpotAllUserList'"
+                                :multiple="false" @model="(model) => {
+                                    forms.CountryID = model.ID;
+                                }" />
+                        </v-col>
+                        <v-col cols="12" sm="4"><v-btn color="primary" variant="tonal" @click="filter"> <v-icon
+                                    class="mr-2">mdi-magnify</v-icon>Search
+                            </v-btn></v-col>
+                    </v-row>
+                </v-card-text>
+            </v-card>
+        </v-col>
+        <v-col cols="12"> <v-card elevation="10">
+                <v-card-text>
+                    <DataTable :applicationName="applicationName" :controllerName="controllerName" :name="name"
+                        :headers="headers" :ParentName="ParentName" @modal="modalVisible = true" @items="rows = items"
+                        @editedItem="(editedItem) => (forms = editedItem)" />
+                </v-card-text>
+            </v-card>
+        </v-col>
+    </v-row>
+
     <v-dialog v-model="modalVisible" max-width="500">
         <v-card class="">
             <v-card-title class="pa-4 bg-secondary">
@@ -125,33 +144,26 @@ const resetForm = () => {
             </v-card-title>
             <v-card-text>
                 <v-row>
-                    <v-col cols="12" sm="4"
-                        ><v-text-field density="compact" v-model="forms.Name" label="Name" hide-details variant="outlined"></v-text-field
-                    ></v-col>
-                    <!-- <v-col cols="12" sm="4"
-                        ><v-text-field
-                            density="compact"
-                            v-model="forms.ISOCode"
-                            label="Iso Code"
-                            hide-details
-                            variant="outlined"
-                        ></v-text-field
-                    ></v-col> -->
+                    <v-col cols="12" sm="6"><v-text-field density="compact" v-model="forms.Name" label="Name" hide-details
+                            variant="outlined"></v-text-field></v-col>
+                    <v-col cols="12" sm="6">
+                        <SuperSelect :modelValue="selectModel" :applicationName="p.Master" :controllerName="'Master'"
+                            :name="'Country'" :PropertyName="'NationalityID'" :ParentName="'HotSpotAllUserList'"
+                            :multiple="false" @model="(model) => {
+                                forms.CountryID = model.ID;
+                                forms.CountryName = model.Name;
+                            }" />
+                    </v-col>
                 </v-row>
             </v-card-text>
             <v-card-actions class="pa-4">
                 <v-spacer></v-spacer>
                 <v-btn color="error" :label="getLabel('Cancel', 'Common')" @click="resetForm" />
-                <v-btn
-                    variant="flat"
-                    color="secondary"
-                    :label="getLabel('Save', 'Common')"
-                    @click="
-                        saveRow(applicationName, controllerName, name, forms).then((result: boolean) => {
-                            result == true ? resetForm() : '';
-                        })
-                    "
-                />
+                <v-btn variant="flat" color="secondary" :label="getLabel('Save', 'Common')" @click="
+                    saveRow(applicationName, controllerName, name, forms).then((result: boolean) => {
+                        result == true ? resetForm() : '';
+                    })
+                    " />
             </v-card-actions>
         </v-card>
     </v-dialog>

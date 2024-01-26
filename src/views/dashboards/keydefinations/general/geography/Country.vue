@@ -5,10 +5,10 @@ import { getLabel, saveRow } from '@/utils/helpers/globalHelper';
 import BaseBreadcrumb from '@/components/shared/BaseBreadcrumb.vue';
 import DataTable from '@/components/table/DataTable.vue';
 
-const applicationName = p.Master;
-const controllerName = 'Master';
-const name = 'Country';
-const ParentName = 'Country';
+const applicationName = ref(p.Master);
+const controllerName = ref('Master');
+const name = ref('Country');
+const ParentName = ref('Country');
 const modalVisible = ref(false);
 const page = ref({ title: 'Country' });
 const item = ref({});

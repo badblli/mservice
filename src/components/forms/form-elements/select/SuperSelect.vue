@@ -1,6 +1,5 @@
 <template>
     <div>
-        {{ model }}
         <v-select v-model="model" :items="options" :multiple="multiple" item-value="ID" item-title="Name"
             :label="this.label" return-object single-line></v-select>
     </div>

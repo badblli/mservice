@@ -6,10 +6,10 @@ import BaseBreadcrumb from '@/components/shared/BaseBreadcrumb.vue';
 import DataTable from '@/components/table/DataTable.vue';
 
 
-const applicationName = p.Master;
-const controllerName = "Master";
-const name = 'Currency';
-const ParentName = 'Currency';
+const applicationName = ref(p.Master);
+const controllerName = ref("Master");
+const name = ref('Currency');
+const ParentName = ref('Currency');
 const modalVisible = ref(false);
 const page = ref({ title: 'All Currency' });
 const item = ref({});
