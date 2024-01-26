@@ -9,10 +9,10 @@ import type { addMethod } from 'yup';
 //import DatetimePicker from 'vuetify-datetime-picker';
 //import VirtualPosType from "components/master/VirtualPosType.vue";
 
-const applicationName = p.PaymentMaster;
-const controllerName = "PaymentMaster";
-const name = 'Bank';
-const ParentName = 'Bank';
+const applicationName = ref(p.PaymentMaster);
+const controllerName = ref("PaymentMaster");
+const name = ref('Bank');
+const ParentName = ref('Bank');
 const modalVisible = ref(false);
 const addImageModal = ref(false);
 const page = ref({ title: 'Bank' });

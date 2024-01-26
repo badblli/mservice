@@ -27,6 +27,10 @@ export default {
             type: Array,
             required: false
         },
+        rows: {
+            type: Array,
+            required: false
+        },
         visibleHeaders: {
             type: Array,
             required: false
@@ -115,11 +119,14 @@ export default {
         this.getTableHeader();
     },
     watch: {
-        // data() {
-        //     this.$emit('items', this.data);
-        // },
+        data() {
+            this.$emit('items', this.data);
+        },
         selected(newVal) {
             this.$emit('selected', newVal);
+        },
+        rows() {
+            this.getTableData();
         }
     }
     // ... Other component options (e.g., computed properties, watch, etc.) ...

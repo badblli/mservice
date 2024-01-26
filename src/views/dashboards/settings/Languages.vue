@@ -6,10 +6,10 @@ import BaseBreadcrumb from '@/components/shared/BaseBreadcrumb.vue';
 import DataTable from '@/components/table/DataTable.vue';
 import { ro } from 'date-fns/locale';
 
-const applicationName = p.MService;
-const controllerName = 'AuthAdmin';
-const name = 'Languages';
-const ParentName = 'Languages';
+const applicationName = ref(p.MService);
+const controllerName = ref('AuthAdmin')
+const name = ref('Languages');
+const ParentName = ref('Languages');
 const modalVisible = ref(false);
 const page = ref({ title: 'All Languages' });
 const item = ref({});
