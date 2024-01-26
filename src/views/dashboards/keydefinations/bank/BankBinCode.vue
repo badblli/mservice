@@ -35,19 +35,20 @@
     ]);
     const editedIndex = ref(-1);
     const forms = ref({
-         BankID: 3,
-         CreateUserID: 14,
-         CreateUserName: 'string',
-         BankName: 'string',
-         BinCode: 'string',
-         CreditCardFamilyID: 0,
-         CreditCardFamilyName: 'string',
-         Organization: 'string',
-         BinGroup: 'string',
-         CardType: 'string',
-         InstallmentInd: 'string',
-         RewardType: 'string',
-         CommercialCard: 'string'
+        ID: 0,
+        // default deðer verildi
+        BankID: 3,
+        BankName: '',
+        // default deðer verildi
+        BinCode: 'str',
+        CreditCardFamilyID: 0,
+        CreditCardFamilyName: '',
+        Organization: '',
+        BinGroup: '',
+        CardType: '',
+        InstallmentInd: '',
+        RewardType: '',
+        CommercialCard: ''
         
 
     });
@@ -133,9 +134,8 @@
     const resetForm = () => {
         modalVisible.value = false;
         forms.value = {
+            ID: 0,
             BankID: 0,
-            CreateUserID: 14,
-            CreateUserName: 'string',
             BankName: '',
             BinCode: '',
             CreditCardFamilyID: 0,
