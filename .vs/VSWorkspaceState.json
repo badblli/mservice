@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\components",
+    "\\src\\components\\dashboards",
+    "\\src\\components\\dashboards\\ecommerce",
+    "\\src\\components\\dashboards\\master",
+    "\\src\\utils",
+    "\\src\\utils\\helpers",
+    "\\src\\views",
+    "\\src\\views\\dashboards"
+  ],
+  "PreviewInSolutionExplorer": false
+}

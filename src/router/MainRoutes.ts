@@ -17,13 +17,18 @@ const MainRoutes = {
         },
         {
             name: 'Menu',
-            path: '/dashboards/settings/menu',
+            path: '/settings/menu',
             component: () => import('@/views/dashboards/settings/Menu.vue')
         },
         {
             name: 'Currency',
             path: '/dashboards/keydefinitions/general/currency',
             component: () => import('@/views/dashboards/keydefinations/general/Currency.vue')
+        },
+        {
+            name: 'Bank',
+            path: '/dashboards/keydefinitions/bank',
+            component: () => import('@/views/dashboards/keydefinations/bank/Bank.vue')
         },
         {
             name: 'Country',
@@ -39,6 +44,11 @@ const MainRoutes = {
             name: 'SelectItemCategory',
             path: '/dashboards/settings/selectitemcategory',
             component: () => import('@/views/dashboards/settings/SelectItemCategory.vue')
+        },
+        {
+            name: 'Languages',
+            path: '/dashboards/settings/languages',
+            component: () => import('@/views/dashboards/settings/Languages.vue')
         },
 
         /////////////////////////////////////////////////////////////////////////////

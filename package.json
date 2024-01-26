@@ -29,6 +29,7 @@
         "vite-plugin-vuetify": "1.0.2",
         "vue": "3.2.31",
         "vue-clipboard3": "^2.0.0",
+        "vue-draggable-next": "^2.2.1",
         "vue-i18n": "^9.2.2",
         "vue-router": "4.0.12",
         "vue-scrollto": "^2.20.0",
@@ -41,8 +42,8 @@
         "vue3-recaptcha-v2": "1.0.1",
         "vuedraggable": "^2.24.3",
         "vuetify": "3.3.3",
-        "yup": "^0.32.11",
-        "vue-draggable-next": "^2.2.1"
+        "vuetify-datetime-picker": "^2.1.1",
+        "yup": "^0.32.11"
     },
     "devDependencies": {
         "@mdi/font": "^6.5.95",

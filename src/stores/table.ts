@@ -1,6 +1,28 @@
 import { defineStore } from 'pinia';
 import { getLabel } from '@/utils/helpers/globalHelper';
-import { map } from 'lodash';
+
+// Tarih formatını kontrol etmek için regex
+const dateRegex: RegExp = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).(\d+)([\+\-]\d{2}):(\d{2})$/;
+
+// Tarihi biçimlendiren yardımcı fonksiyon
+function formatDate(item: string): string {
+    const matchArray: RegExpMatchArray | null = item.match(dateRegex);
+    if (matchArray) {
+        // Eğer eşleşme varsa, tarihi biçimlendir
+        const day: string = matchArray[3];
+        const month: string = matchArray[2];
+        const year: string = matchArray[1];
+        const hour: string = matchArray[4];
+        const minute: string = matchArray[5];
+        const second: string = matchArray[6];
+
+        // Biçimlendirilmiş tarih ve saat değerini döndür
+        return `${day}/${month}/${year} ${hour}:${minute}:${second}`;
+    } else {
+        // Eğer eşleşme yoksa, orijinal değeri döndür
+        return item;
+    }
+}
 
 const getDefaultState = () => {
     return {
@@ -32,15 +54,27 @@ export const useTablesStore = defineStore({
             this.loading = true;
         },
 
-        addRows(data: any) {
+       
+        
+        addRows(data: any[]) {
             try {
-                this.rows = data;
-            
+                // Veriyi formatla ve rows'a ekle
+                this.rows = data.map((item: any) => {
+                    // Eğer CreateDate alanı varsa ve bir dize ise formatla, yoksa orijinal değeri kullan
+                    const createDate = typeof item.CreateDate === 'string' ? formatDate(item.CreateDate) : item.CreateDate;
+                    // Eğer EditDate alanı varsa ve bir dize ise formatla, yoksa orijinal değeri kullan
+                    const editDate = typeof item.EditDate === 'string' ? formatDate(item.EditDate) : item.EditDate;
+                    return { ...item, CreateDate: createDate, EditDate: editDate };
+                });
             } catch (error) {
-                console.log(error);
+                console.error(error);
+            } finally {
+                // Yükleme durumunu ayarla
+                this.loading = false;
             }
-            this.loading = false;
         },
+        
+        
         setColumns(data: any) {
             try {
                 this.columns = data;

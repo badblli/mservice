@@ -23,7 +23,7 @@ const breadcrumbs = ref([
     <!-- ---------------------------------------------------- -->
     <!-- Table Basic -->
     <!-- ---------------------------------------------------- -->
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
 
     <v-card elevation="10" class="inside-left-sidebar">
         <AppBaseCard>
@@ -35,7 +35,7 @@ const breadcrumbs = ref([
             </template>
 
             <template v-slot:mobileLeftContent>
-               test
+                test
             </template>
         </AppBaseCard>
     </v-card>

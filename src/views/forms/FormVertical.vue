@@ -34,23 +34,23 @@ const breadcrumbs = ref([
 </script>
 
 <template>
-   <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
-   <v-row>
+    <BaseBreadcrumb />
+    <v-row>
         <v-col cols="12" md="6">
             <UiParentCard title="Basic Layout">
-                <BasicLayout/>
-            </UiParentCard>           
+                <BasicLayout />
+            </UiParentCard>
         </v-col>
         <v-col cols="12" md="6">
             <UiParentCard title="Basic with Icons">
-                <BasicWithIcons/>
-            </UiParentCard>           
+                <BasicWithIcons />
+            </UiParentCard>
         </v-col>
         <v-col cols="12">
-            <FormSeprator/>        
+            <FormSeprator />
         </v-col>
         <v-col cols="12">
-            <Collapsible/>        
+            <Collapsible />
         </v-col>
         <v-col cols="12">
             <h5 class="text-h5 mb-6 mt-3">Form with Tabs</h5>
@@ -64,17 +64,17 @@ const breadcrumbs = ref([
                 <v-card-text class="pa-sm-6 pa-3 pb-sm-6 pb-6">
                     <v-window v-model="tab">
                         <v-window-item value="PersonalInfo">
-                            <PersonalInfoTab/>
+                            <PersonalInfoTab />
                         </v-window-item>
                         <v-window-item value="AccountDetails">
-                            <AccountDetailsTab/>
+                            <AccountDetailsTab />
                         </v-window-item>
                         <v-window-item value="SocialLinks">
-                            <SocialLinksTab/>
+                            <SocialLinksTab />
                         </v-window-item>
                     </v-window>
                 </v-card-text>
-            </v-card>    
+            </v-card>
         </v-col>
-   </v-row>           
+    </v-row>
 </template>

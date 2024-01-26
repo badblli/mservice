@@ -3,7 +3,7 @@ import { ref } from 'vue';
 // common components
 import BaseBreadcrumb from '@/components/shared/BaseBreadcrumb.vue';
 import UiParentCard from '@/components/shared/UiParentCard.vue';
-import { heightTableData, tableActionData} from '@/_mockApis/components/table/basicTables';
+import { heightTableData, tableActionData } from '@/_mockApis/components/table/basicTables';
 // theme breadcrumb
 const page = ref({ title: 'Height Table' });
 const breadcrumbs = ref([
@@ -24,7 +24,7 @@ const breadcrumbs = ref([
     <!-- ---------------------------------------------------- -->
     <!-- Table Height -->
     <!-- ---------------------------------------------------- -->
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12">
             <UiParentCard title="Height Table">
@@ -72,8 +72,8 @@ const breadcrumbs = ref([
                                         </v-avatar>
                                         <v-menu activator="parent">
                                             <v-list>
-                                                <v-list-item value="action" v-for="list in tableActionData" :key="list.listtitle"
-                                                    hide-details min-height="38">
+                                                <v-list-item value="action" v-for="list in tableActionData"
+                                                    :key="list.listtitle" hide-details min-height="38">
                                                     <v-list-item-title>
                                                         <v-avatar size="20" class="mr-2">
                                                             <component :is="list.icon" stroke-width="2" size="20" />

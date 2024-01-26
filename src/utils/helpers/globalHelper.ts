@@ -73,6 +73,13 @@ const getApi = async <T>(
     } catch (error: any) {
         console.log(error);
         if (error.response && error.response.status === 401) {
+            useNotify().showSnackbar({
+                color: 'negative',
+                message: 'Lütfen Oturum Açın',
+                icon: 'mdi-alert-circle',
+                show: true,
+                timeout: 5000
+            });
             localStorage.setItem('loginModal', 'true'); // Convert boolean value to string
             useSettingsStore().loginModal = true;
         }
@@ -115,15 +122,35 @@ const callPostApi = async (
         if (response.data.status === 1) {
             if (!dontGoTable) {
                 // Assuming getApi is defined elsewhere
-                await getApi<any>(applicationName, controllerName, name, null, false, [], baseURLLink);
+                await getTable(applicationName, controllerName, name, null, false, [], baseURLLink);
+                useNotify().showSnackbar({
+                    color: 'positive',
+                    message: getLabel('Success', 'Common'),
+                    icon: 'mdi-check-circle',
+                    show: true,
+                    timeout: 5000
+                });
             }
             return response;
         } else if (response.data.status === 2) {
-            console.log(response.data.message);
+            useNotify().showSnackbar({
+                color: 'negative',
+                message: response.data.errorMessage,
+                icon: 'mdi-alert-circle',
+                show: true,
+                timeout: 5000
+            });
             return false;
         } else if (response.data.status === 3) {
-            response.data.validationErrorList.forEach((a: any[]) => {
-                console.log(a);
+            response.data.validationErrorList.forEach(function (a: any) {
+                useNotify().showSnackbar({
+                    color: 'negative',
+                    position: 'bottom-right',
+                    message: `${a.propertyName} ${a.errorDescription}`,
+                    icon: 'mdi-alert-circle',
+                    show: true,
+                    timeout: 5000
+                });
             });
             return false;
         } else if (response.data.status === 5) {
@@ -132,6 +159,13 @@ const callPostApi = async (
     } catch (error: any) {
         if (error.response && error.response.status === 401) {
             router.push('/auth/login');
+            useNotify().showSnackbar({
+                color: 'negative',
+                message: 'Lütfen Oturum Açın',
+                icon: 'mdi-alert-circle',
+                show: true,
+                timeout: 5000
+            });
             // useSettingsStore().state.loginModal = true;
         }
 
@@ -149,173 +183,168 @@ const saveRow = function (
     backResponse: number = 1,
     secondFormatDate: any[] = [],
     baseURLLink: boolean = false
-  ): Promise<boolean | any> {
+): Promise<boolean | any> {
     if (formatDate.length > 0) {
-      data = beforeSubmitData(data, formatDate);
+        data = beforeSubmitData(data, formatDate);
     }
-  
+
     if (secondFormatDate.length > 0) {
-      data[secondFormatDate[0]].filter(function (e: any) {
-        return beforeSubmitData(e, formatDate);
-      });
+        data[secondFormatDate[0]].filter(function (e: any) {
+            return beforeSubmitData(e, formatDate);
+        });
     }
-  
-    let mainUrl = "";
+
+    let mainUrl = '';
     if (baseURLLink) {
-      mainUrl = "http://" + applicationName;
+        mainUrl = 'http://' + applicationName;
     } else {
-      mainUrl = envConfig.basePath(applicationName);
+        mainUrl = envConfig.basePath(applicationName);
     }
-  
-    console.log("response.data.status1");
+
+    console.log('response.data.status1');
     api.defaults.headers.common.Authorization = useAuthStore().getToken;
     api.defaults.headers.common.GlobalCompanyID = 'ProtalyaOfisTest';
     api.defaults.headers.common.ApplicationID = envConfig.applicationId || 1;
-  
+
     return api
-      .post(`${controllerName}/Save${name}`, data, {
-        baseURL: mainUrl,
-      })
-      .then((response) => {
-        console.log(response);
-        if (response.data.status === 1) {
-          localStorage.setItem("success", "true");
-         useNotify().showSnackbar({
-            color: "positive",
-            position: "bottom-right",
-            message: getLabel("Success", "Common"),
-            icon: "mdi-check-circle",
-          });
-          console.log("response.data.status");
-          console.log(response.data.status);
-          if (backResponse === 1) {
-            localStorage;
-            getTable(
-              applicationName,
-              controllerName,
-              name,
-              null,
-              false,
-              [],
-              false,
-              baseURLLink
-            );
-          } else {
-            return response.data.result;
-          }
-          return true;
-        } else if (response.data.status === 3) {
-          localStorage.setItem("success", false);
-          response.data.validationErrorList.forEach(function (a: any) {
-           useNotify().showSnackbar({
-              color: "negative",
-              position: "bottom-right",
-              message: `${a.propertyName} ${a.errorDescription}`,
-             icon: "mdi-alert-circle",
-            });
-          });
-          return false;
-        } else if (response.data.status === 2) {
-          localStorage.setItem("success", false);
-         useNotify().showSnackbar({
-            color: "negative",
-            position: "bottom-right",
-            message: response.data.errorMessage,
-           icon: "mdi-alert-circle",
-          });
-          return false;
-        } else {
-          localStorage.setItem("success", false);
-         useNotify().showSnackbar({
-            color: "negative",
-            position: "top",
-            message: response.data.title,
-           icon: "mdi-alert-circle",
-          });
-        }
-      })
-      .catch(function (error) {
-       useTablesStore().resetRows();
-        if (error.response && error.response.status === 401) {
-         useNotify().showSnackbar({
-            color: "negative",
-            position: "top",
-            message: "Lütfen Oturum Açın",
-           icon: "mdi-alert-circle",
-          });
-  
-          localStorage.setItem("loginModal", "true");
-          useSettingsStore().loginModal = true;
-        } else if (error.response && error.response.status === 400) {
-         useNotify().showSnackbar({
-            color: "negative",
-            position: "bottom-right",
-            message: `${error.response.statusText}:${error.response.data.title}`,
-           icon: "mdi-alert-circle",
-          });
-        }
-      });
-  };
+        .post(`${controllerName}/Save${name}`, data, {
+            baseURL: mainUrl
+        })
+        .then((response) => {
+            console.log(response);
+            if (response.data.status === 1) {
+                localStorage.setItem('success', 'true');
+                useNotify().showSnackbar({
+                    color: 'positive',
+                    position: 'bottom-right',
+                    message: getLabel('Success', 'Common'),
+                    icon: 'mdi-check-circle',
+                    show: true,
+                    timeout: 5000
+                });
+                console.log('response.data.status');
+                console.log(response.data.status);
+                if (backResponse === 1) {
+                    console.log('get TABLE');
+                    getTable(applicationName, controllerName, name, null, false, [], false, baseURLLink);
+                } else {
+                    return response.data.result;
+                }
+                return true;
+            } else if (response.data.status === 3) {
+                console.log('response.data.status3');
+                localStorage.setItem('success', false);
+                response.data.validationErrorList.forEach(function (a: any) {
+                    useNotify().showSnackbar({
+                        color: 'negative',
+                        position: 'bottom-right',
+                        message: `${a.propertyName} ${a.errorDescription}`,
+                        icon: 'mdi-alert-circle',
+                        show: true,
+                        timeout: 5000
+                    });
+                });
+                return false;
+            } else if (response.data.status === 2) {
+                localStorage.setItem('success', false);
+                useNotify().showSnackbar({
+                    color: 'negative',
+                    position: 'bottom-right',
+                    message: response.data.errorMessage,
+                    icon: 'mdi-alert-circle',
+                    show: true,
+                    timeout: 5000
+                });
+                return false;
+            } else {
+                localStorage.setItem('success', false);
+                useNotify().showSnackbar({
+                    color: 'negative',
+                    position: 'top',
+                    message: response.data.title,
+                    icon: 'mdi-alert-circle',
+                    show: true,
+                    timeout: 5000
+                });
+            }
+        })
+        .catch(function (error) {
+            useTablesStore().resetRows();
+            if (error.response && error.response.status === 401) {
+                useNotify().showSnackbar({
+                    color: 'negative',
+                    position: 'top',
+                    message: 'Lütfen Oturum Açın',
+                    icon: 'mdi-alert-circle',
+                    show: true,
+                    timeout: 5000
+                });
+
+                localStorage.setItem('loginModal', 'true');
+                useSettingsStore().loginModal = true;
+            } else if (error.response && error.response.status === 400) {
+                useNotify().showSnackbar({
+                    color: 'negative',
+                    position: 'bottom-right',
+                    message: `${error.response.statusText}:${error.response.data.title}`,
+                    icon: 'mdi-alert-circle',
+                    show: true,
+                    timeout: 5000
+                });
+            }
+        });
+};
 const deleteRow = function (
     applicationName: string,
     controllerName: string,
     name: string,
     ID: number,
-    title: string = "",
+    title: string = '',
     getTableName: string | null = null,
     askDelete: boolean = true,
     getAfter: boolean = true,
     baseURLLink: boolean = false
-  ): Promise<any> {
+): Promise<any> {
     return new Promise((resolve, reject) => {
-      let mainUrl = "";
-      if (baseURLLink) {
-        mainUrl = "http://" + applicationName;
-      } else {
-        mainUrl = envConfig.basePath(applicationName);
-      }
-  
-    
+        let mainUrl = '';
+        if (baseURLLink) {
+            mainUrl = 'http://' + applicationName;
+        } else {
+            mainUrl = envConfig.basePath(applicationName);
+        }
+
         // direk siler
         api.defaults.headers.common.Authorization = useAuthStore().getToken;
         api.defaults.headers.common.GlobalCompanyID = 'ProtalyaOfisTest';
         api.defaults.headers.common.ApplicationID = envConfig.applicationId || 1;
         return api
-          .post(`${controllerName}/Delete${name}/${ID}`, "", {
-            baseURL: mainUrl,
-          })
-          .then((response) => {
-            if (response.data.result === 3) {
-            } else {
-              if (getTableName !== null) {
-                getTable(
-                  applicationName,
-                  controllerName,
-                  getTableName,
-                  null,
-                  false,
-                  [],
-                  false,
-                  baseURLLink
-                );
-              } else {
-                getTable(
-                  applicationName,
-                  controllerName,
-                  name,
-                  null,
-                  false,
-                  [],
-                  false,
-                  baseURLLink
-                );
-              }
-            }
-            resolve(response);
-          });
-      
+            .post(`${controllerName}/Delete${name}/${ID}`, '', {
+                baseURL: mainUrl
+            })
+            .then((response) => {
+                if (response.data.result === 3) {
+                    response.data.validationErrorList.forEach(function (a: any) {
+                        useNotify().showSnackbar({
+                            color: 'negative',
+                            position: 'bottom-right',
+                            message: `${a.propertyName} ${a.errorDescription}`,
+                            icon: 'mdi-alert-circle',
+                            show: true,
+                            timeout: 5000
+                        });
+                    });
+                    return false;
+                } else {
+                    if (getTableName !== null) {
+                        getTable(applicationName, controllerName, getTableName, null, false, [], false, baseURLLink);
+                    } else {
+                        getTable(applicationName, controllerName, name, null, false, [], false, baseURLLink);
+                    }
+                }
+                resolve(response);
+            });
     });
-  };
+};
 const checkEmptyValue = function (fields: any, status: boolean): boolean {
     if (fields === null && status === true) {
         return true;
@@ -480,12 +509,18 @@ const getTable = function (
                 localStorage.setItem('requestPageName', name);
                 if (response.data.status === 1) {
                     useTablesStore().addRows(JSON.parse(response.data.result));
-
                 }
             })
             .catch(function (error) {
                 useTablesStore().resetRows();
                 if (error.response && error.response.status === 401) {
+                    useNotify().showSnackbar({
+                        color: 'negative',
+                        message: 'Lütfen Oturum Açın',
+                        icon: 'mdi-alert-circle',
+                        show: true,
+                        timeout: 5000
+                    });
                     localStorage.setItem('loginModal', true);
                 }
             });
@@ -514,6 +549,13 @@ const getTable = function (
             .catch(function (error) {
                 useTablesStore().resetRows();
                 if (error.response && error.response.status === 401) {
+                    useNotify().showSnackbar({
+                        color: 'negative',
+                        message: 'Lütfen Oturum Açın',
+                        icon: 'mdi-alert-circle',
+                        show: true,
+                        timeout: 5000
+                    });
                     localStorage.setItem('loginModal', true);
                 }
             });

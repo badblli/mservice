@@ -12,59 +12,47 @@ import BlogCard from "@/components/dashboards/analytical/BlogCard.vue";
 import WeeklyStats from "@/components/dashboards/analytical/WeeklyStats.vue";
 import DailyActivities from "@/components/dashboards/analytical/DailyActivities.vue";
 
-const page = ref({ title: "Analytical" });
-const breadcrumbs = ref([
-  {
-    text: "Dashboard",
-    disabled: false,
-    href: "#",
-  },
-  {
-    text: "Analytical",
-    disabled: true,
-    href: "#",
-  },
-]);
+
 </script>
 
 <template>
-  <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
+  <BaseBreadcrumb />
   <v-row>
     <!---Welcome cards / Earnings / monthlyrevenue-->
     <v-col cols="12" sm="12" lg="6">
       <WelcomeCard />
       <v-row class="mt-4">
         <v-col cols="12" sm="6" lg="6" class="">
-          <TheEarnings/>
+          <TheEarnings />
         </v-col>
         <v-col cols="12" sm="6" lg="6" class="">
-          <MonthlyRevenue/>
+          <MonthlyRevenue />
         </v-col>
       </v-row>
     </v-col>
     <!---Sales overview-->
     <v-col cols="12" sm="12" lg="6">
-      <TheSalesOverview/>
+      <TheSalesOverview />
     </v-col>
-     <!---Total sales-->
+    <!---Total sales-->
     <v-col cols="12" sm="12" lg="4">
-      <TotalSales/>
+      <TotalSales />
     </v-col>
-     <!---Product month table-->
+    <!---Product month table-->
     <v-col cols="12" sm="12" lg="8">
-      <ProductMonthTable/>
+      <ProductMonthTable />
     </v-col>
-     <!---Blog card-->
+    <!---Blog card-->
     <v-col cols="12" sm="12" lg="4">
-      <BlogCard/>
+      <BlogCard />
     </v-col>
     <!---Weekly states-->
     <v-col cols="12" sm="12" lg="4">
-      <WeeklyStats/>
+      <WeeklyStats />
     </v-col>
     <!---Daily Activities-->
     <v-col cols="12" sm="12" lg="4">
-      <DailyActivities/>
+      <DailyActivities />
     </v-col>
   </v-row>
 </template>

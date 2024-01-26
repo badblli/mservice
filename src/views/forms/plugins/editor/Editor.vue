@@ -8,8 +8,8 @@ import UiParentCard from '@/components/shared/UiParentCard.vue';
 import EditorMenubar from '@/components/forms/plugins/editor/EditorMenubar.vue';
 
 const editor = useEditor({
-    extensions: [StarterKit],
-    content: `
+  extensions: [StarterKit],
+  content: `
   <h2>Hi there,</h2>
       <p>
         this is a <em>basic</em> example of <strong>tiptap</strong>. Sure, there
@@ -42,27 +42,27 @@ const editor = useEditor({
 // theme breadcrumb
 const page = ref({ title: 'Editor' });
 const breadcrumbs = ref([
-    {
-        text: 'Dashboard',
-        disabled: false,
-        href: '#'
-    },
-    {
-        text: 'Editor',
-        disabled: true,
-        href: '#'
-    }
+  {
+    text: 'Dashboard',
+    disabled: false,
+    href: '#'
+  },
+  {
+    text: 'Editor',
+    disabled: true,
+    href: '#'
+  }
 ]);
 </script>
 
 <template>
-    <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
-    <UiParentCard title="Editor">
-        <div v-if="editor">
-            <EditorMenubar :editor="editor" />
-        </div>
-        <editor-content :editor="editor" />
-    </UiParentCard>
+  <BaseBreadcrumb />
+  <UiParentCard title="Editor">
+    <div v-if="editor">
+      <EditorMenubar :editor="editor" />
+    </div>
+    <editor-content :editor="editor" />
+  </UiParentCard>
 </template>
 
 <style lang="scss"></style>
