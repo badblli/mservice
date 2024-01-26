@@ -28,7 +28,22 @@ const MainRoutes = {
         {
             name: 'Bank',
             path: '/keydefinitions/bank',
-            component: () => import('@/views/keydefinitions/bank/Bank.vue')
+            component: () => import('@/views/keydefinitions/payment/Bank.vue')
+        },
+        {
+            name: 'BankBinCode',
+            path: '/keydefinitions/bankbincode',
+            component: () => import('@/views/keydefinitions/payment/BankBinCode.vue')
+        },
+        {
+            name: 'CreditCardFamily',
+            path: '/keydefinitions/creditcardfamily',
+            component: () => import('@/views/keydefinitions/payment/CreditCardFamily.vue')
+        },
+        {
+            name: 'VirtualPosType',
+            path: '/keydefinitions/virtualpostype',
+            component: () => import('@/views/keydefinitions/payment/VirtualPosType.vue')
         },
         {
             name: 'Country',
