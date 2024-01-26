@@ -25,29 +25,29 @@ const breadcrumbs = ref([
 ]);
 </script>
 <template>
- <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>       
+    <BaseBreadcrumb />
     <v-row>
         <v-col cols="12" lg="8">
             <!--Banner 1-->
-            <Banner1/>
+            <Banner1 />
             <!--Banner 2-->
-            <Banner2/>
+            <Banner2 />
             <v-row>
                 <!--Banner 3-->
                 <v-col cols="12" sm="6">
-                    <Banner3/>
+                    <Banner3 />
                 </v-col>
                 <!--Banner 4-->
-                 <v-col cols="12" sm="6">
-                     <Banner4/>
+                <v-col cols="12" sm="6">
+                    <Banner4 />
                 </v-col>
             </v-row>
         </v-col>
         <v-col cols="12" lg="4">
             <!--Banner 5-->
-            <Banner5/>
+            <Banner5 />
             <!--Banner 6-->
-            <Banner6/>
+            <Banner6 />
         </v-col>
     </v-row>
 </template>

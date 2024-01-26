@@ -1,63 +1,81 @@
 <template>
     <div>
-        {{ modelValue }}
-        <v-select v-model="modelValue" :items="options" :multiple="multiple"
-            :label="getLabel(props.PropertyName, props.ParentName)" item-value="ID" item-title="Name" return-object
-            single-line></v-select>
+        {{ model }}
+        <v-select v-model="model" :items="options" :multiple="multiple" item-value="ID" item-title="Name"
+            :label="this.label" return-object single-line></v-select>
     </div>
 </template>
   
-<script setup>
-import { ref, onMounted, defineProps, watch } from 'vue';
+<script>
 import { getApi, getLabel } from '@/utils/helpers/globalHelper';
 
-const props = defineProps({
-    modelValue: {
-        type: Object,
-        required: false,
-        default: () => null
+export default {
+    props: {
+        modelValue: {
+            type: Object,
+            required: false,
+            default: () => null
+        },
+        applicationName: {
+            type: String,
+            required: true
+        },
+        controllerName: {
+            type: String,
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        },
+        multiple: {
+            type: Boolean,
+            required: false,
+            default: false
+        },
+        PropertyName: {
+            type: String,
+            required: true
+        },
+        ParentName: {
+            type: String,
+            required: true
+        }
     },
-    applicationName: {
-        type: String,
-        required: true
+    data() {
+        return {
+            model: this.modelValue,
+            options: [],
+            label: getLabel(this.PropertyName, this.ParentName)
+        };
     },
-    controllerName: {
-        type: String,
-        required: true
-    },
-    name: {
-        type: String,
-        required: true
-    },
-    multiple: {
-        type: Boolean,
-        required: false,
-        default: false
-    },
-});
+    methods: {
+        getData() {
+            const params = { ID: 0 };
+            getApi(this.applicationName, this.controllerName, this.name, params)
+                .then(response => {
+                    const data = JSON.parse(response.data.result);
+                    this.options = data.map(item => ({
+                        ID: item.ID,
+                        Name: item.Name
+                    }));
+                });
 
-let options = ref([]);
-let model = ref(props.modelValue);
 
-const getData = () => {
-    const params = {
-        ID: 0,
-    };
-    getApi(props.applicationName, props.controllerName, props.name, params)
-        .then(response => {
-            const data = JSON.parse(response.data.result);
-            options.value = data.map(item => ({
-                ID: item.ID,
-                Name: item.Name
-            }));
-        });
+        },
+    },
+    watch: {
+        model: {
+            handler: function (newVal, oldVal) {
+                this.$emit('model', newVal);
+            },
+            deep: true
+        }
+    },
+
+    mounted() {
+        this.getData();
+    }
+
 };
-
-onMounted(() => {
-    getData()
-});
-
-
-
 </script>
-  
