@@ -41,6 +41,11 @@ const MainRoutes = {
             component: () => import('@/views/dashboards/keydefinations/general/geography/City.vue')
         },
         {
+            name: 'Town',
+            path: '/dashboards/keydefinitions/general/geography/district',
+            component: () => import('@/views/dashboards/keydefinations/general/geography/Town.vue')
+        },
+        {
             name: 'SelectItemCategory',
             path: '/dashboards/settings/selectitemcategory',
             component: () => import('@/views/dashboards/settings/SelectItemCategory.vue')
