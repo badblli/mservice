@@ -1,15 +1,7 @@
 <template>
     <div>
-        <v-select
-            v-model="model"
-            :items="options"
-            :multiple="multiple"
-            item-value="ID"
-            item-title="Name"
-            :label="this.label"
-            return-object
-            single-line
-        ></v-select>
+        <v-select v-model="model" :items="options" :multiple="multiple" item-value="ID" item-title="Name"
+            :label="this.label" return-object single-line></v-select>
     </div>
 </template>
 
@@ -79,11 +71,19 @@ export default {
                 this.$emit('model', newVal);
             },
             deep: true
+        },
+        ID: {
+            handler: function (newVal, oldVal) {
+                this.getData(newVal);
+            },
+            deep: true
         }
     },
 
     mounted() {
+
         this.getData();
+
     }
 };
 </script>
