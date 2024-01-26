@@ -23,13 +23,17 @@ function searchbox() {
 watch(priority, (newPriority) => {
     priority.value = newPriority;
 });
-
-</script> 
+</script>
 
 <template>
     <v-app-bar elevation="0" :priority="priority" height="64" color="background" id="top">
-        <v-btn class="hidden-md-and-down " icon color="primary" variant="text"
-            @click.stop="customizer.SET_MINI_SIDEBAR(!customizer.mini_sidebar)">
+        <v-btn
+            class="hidden-md-and-down"
+            icon
+            color="primary"
+            variant="text"
+            @click.stop="customizer.SET_MINI_SIDEBAR(!customizer.mini_sidebar)"
+        >
             <Menu2Icon size="25" />
         </v-btn>
         <v-btn class="hidden-lg-and-up" icon variant="text" @click.stop="customizer.SET_SIDEBAR_DRAWER" size="small">
@@ -37,10 +41,10 @@ watch(priority, (newPriority) => {
         </v-btn>
 
         <!-- ---------------------------------------------- -->
-        <!-- Search part --> <!-- ---------------------------------------------- -->
+        <!-- Search part -->
+        <!-- ---------------------------------------------- -->
 
         <Searchbar />
-
 
         <!---/Search part -->
 
@@ -58,7 +62,7 @@ watch(priority, (newPriority) => {
         <!-- translate -->
         <!-- ---------------------------------------------- -->
 
-        <LanguageDD />
+        <!-- <LanguageDD /> -->
 
         <!-- ---------------------------------------------- -->
         <!-- THEME CHANGER -->
@@ -72,7 +76,7 @@ watch(priority, (newPriority) => {
         <!-- ---------------------------------------------- -->
         <!-- Notification -->
         <!-- ---------------------------------------------- -->
-        <NotificationDD />
+        <!-- <NotificationDD /> -->
         <!-- ---------------------------------------------- -->
         <!-- User Profile -->
         <!-- ---------------------------------------------- -->

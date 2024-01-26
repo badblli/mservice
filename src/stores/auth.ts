@@ -20,7 +20,7 @@ export const useAuthStore = defineStore({
         controllerName: 'Auth',
         controllerName2: 'Admin',
         applicationName: p.Auth,
-        applicationName2: p.AuthAdmin,
+        applicationName2: p.MService,
         userAvatar: JSON.parse(localStorage.getItem('user'))?.UserProfile?.UserAvatar,
         loading: false
     }),
@@ -63,12 +63,11 @@ export const useAuthStore = defineStore({
         },
         async getTranslationList() {
             let params = {
-                ShortCode: "TR",
-              }
-            const response = await getApi(this.applicationName, "Auth", "GetTranslationList", params, true)
+                ShortCode: 'TR'
+            };
+            const response = await getApi(this.applicationName, 'Auth', 'GetTranslationList', params, true);
 
             if (response && response.data && response.data.status === 1) {
-
                 let data = JSON.parse(response.data.result);
                 useLanguages().setTranslationList(data);
                 useLanguages().addPageLanguage('Login');
@@ -83,7 +82,7 @@ export const useAuthStore = defineStore({
                 ApplicationID: envConfig.applicationId
             };
             const response = await callPostApi(this.applicationName, this.controllerName, this.name, data, [], true);
-this.loading = true;
+            this.loading = true;
             if (response && response.data && response.data.status === 1) {
                 // Handle successful login
                 const user = parse(response.data.result);
