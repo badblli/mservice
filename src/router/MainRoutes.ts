@@ -26,6 +26,11 @@ const MainRoutes = {
             component: () => import('@/views/dashboards/keydefinations/general/Currency.vue')
         },
         {
+            name: 'Bank',
+            path: '/dashboards/keydefinitions/bank',
+            component: () => import('@/views/dashboards/keydefinations/bank/Bank.vue')
+        },
+        {
             name: 'Country',
             path: '/dashboards/keydefinitions/general/geography/country',
             component: () => import('@/views/dashboards/keydefinations/general/geography/Country.vue')
