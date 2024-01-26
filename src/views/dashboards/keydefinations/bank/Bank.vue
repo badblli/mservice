@@ -193,50 +193,68 @@ const addImage = () => {
             <v-card-text>
                 <v-row>
                     <!--<v-col cols="12" sm="6">
-                        <v-datetime-picker label="Select Datetime"
-                                           v-model="datetime">
+        <v-datetime-picker label="Select Datetime"
+                           v-model="datetime">
 
-                        </v-datetime-picker>
-                    </v-col>-->
-                        <v-col cols="12" sm="6">
-                            <v-text-field density="compact"
-                                          v-model="forms.Name"
-                                          label="Name"
-                                          hide-details
-                                          variant="outlined">
-                            </v-text-field>
-                        </v-col>
-                        <v-col cols="12" sm="6">
-                            <v-text-field density="compact"
-                                          v-model="forms.TCMBBankCode"
-                                          label="TCMBBankCode"
-                                          hide-details
-                                          variant="outlined">
-                            </v-text-field>
-                        </v-col>
-                        <!--<v-col cols="12" sm="6">
-            <VirtualPosType :propertyName="'VirtualPosType'"
-                            :parentName="'VirtualPosType'"
-                            :VirtualPosType="virtualPosType"
-                            @change="(e)=>{forms.VirtualPosType = e.ID;}" />
+        </v-datetime-picker>
+    </v-col>-->
+                    <v-col cols="12" sm="6">
+                        <v-text-field density="compact"
+                                      v-model="forms.Name"
+                                      label="Name"
+                                      hide-details
+                                      variant="outlined">
+                        </v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6">
+                        <v-text-field density="compact"
+                                      v-model="forms.TCMBBankCode"
+                                      label="TCMBBankCode"
+                                      hide-details
+                                      variant="outlined">
+                        </v-text-field>
+                    </v-col>
+                    <!--<v-col cols="12" sm="6">
+        <VirtualPosType :propertyName="'VirtualPosType'"
+                     :parentName="'VirtualPosType'"
+                     :VirtualPosType="virtualPosType"
+                     @change="(e)=>{forms.VirtualPosType = e.ID;}" />
 
-        </v-col>-->
-                        <v-col cols="12" sm="6">
-                            <v-text-field density="compact"
-                                          v-model="forms.VirtualPosAddress"
-                                          label="VirtualPosAddress"
-                                          hide-details
-                                          variant="outlined">
-                            </v-text-field>
-                        </v-col>
-                        <v-col cols="12" sm="6">
-                            <v-text-field density="compact"
-                                          v-model="forms.IsDefault"
-                                          label="IsDefault"
-                                          hide-details
-                                          variant="outlined">
-                            </v-text-field>
-                        </v-col>
+    </v-col>-->
+                    <v-col cols="12" sm="6">
+                        <v-text-field density="compact"
+                                      v-model="forms.VirtualPosAddress"
+                                      label="VirtualPosAddress"
+                                      hide-details
+                                      variant="outlined">
+                        </v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6">
+                        <v-text-field density="compact"
+                                      v-model="forms.VirtualPosUser"
+                                      label="VirtualPosUser"
+                                      hide-details
+                                      variant="outlined">
+                        </v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6">
+                        <v-text-field density="compact"
+                                      v-model="forms.VirtualPosPassword"
+                                      label="VirtualPosPassword"
+                                      hide-details
+                                      variant="outlined">
+                        </v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6">
+                        <v-checkbox density="compact"
+                                    v-model="forms.IsDefault"
+                                    label="IsDefault"
+                                    hide-details
+                                    variant="outlined">
+                            >
+
+                        </v-checkbox>
+                    </v-col>
                 </v-row>
             </v-card-text>
             <v-card-actions class="pa-4">
