@@ -28,35 +28,35 @@ const breadcrumbs = ref([
 
 </script>
 <template>
-   <BaseBreadcrumb :title="page.title" :breadcrumbs="breadcrumbs"></BaseBreadcrumb>
-   <v-row>
+    <BaseBreadcrumb />
+    <v-row>
         <v-col cols="12">
             <UiParentCard title="Ordinary Form">
-                 <OrdinaryForm/>
+                <OrdinaryForm />
             </UiParentCard>
             <UiParentCard title="Input Variants" class="mt-6">
-                <InputVarients/>
+                <InputVarients />
             </UiParentCard>
             <UiParentCard title="Default Form" class="mt-6">
-                <DefaultForm/>
+                <DefaultForm />
             </UiParentCard>
             <UiParentCard title="Basic Header Form" class="mt-6">
-                <BasicHeaderForm/>
+                <BasicHeaderForm />
             </UiParentCard>
-             <UiParentCard title="Disabled Form" class="mt-6">
-                <DisabledForm/>
-             </UiParentCard>
+            <UiParentCard title="Disabled Form" class="mt-6">
+                <DisabledForm />
+            </UiParentCard>
         </v-col>
         <!----input with icon----->
         <v-col cols="12" md="6">
-            <UiParentCard title="Form with Left Icon" >
-                <FormLeftIcon/> 
-            </UiParentCard>           
+            <UiParentCard title="Form with Left Icon">
+                <FormLeftIcon />
+            </UiParentCard>
         </v-col>
-         <v-col cols="12" md="6">
-            <UiParentCard title="Form with Right Icon" >
-                <FormRightIcon/> 
-            </UiParentCard>           
+        <v-col cols="12" md="6">
+            <UiParentCard title="Form with Right Icon">
+                <FormRightIcon />
+            </UiParentCard>
         </v-col>
-   </v-row>           
+    </v-row>
 </template>
