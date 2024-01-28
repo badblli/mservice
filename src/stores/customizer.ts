@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import config from '@/config';
-import AuthAdmin from '@/utils/helpers/pathConfig';
+import p from '@/utils/helpers/pathConfig';
 import envConfig from '@/utils/config';
 import { callPostApi, parse } from '@/utils/helpers/globalHelper';
 
@@ -16,8 +16,8 @@ export const useCustomizerStore = defineStore({
         boxed: config.boxed,
         setBorderCard: config.setBorderCard,
         name: 'UpdateDarkMode',
-        controllerName: 'Admin',
-        applicationName: AuthAdmin.AuthAdmin,
+        controllerName: 'AuthAdmin',
+        applicationName: p.MService,
         isDarkMode: config.actTheme === 'DARK_ORANGE_THEME' ? true : false
     }),
 
@@ -47,7 +47,7 @@ export const useCustomizerStore = defineStore({
             const response = await callPostApi(this.applicationName, this.controllerName, this.name, params, [], true);
 
             if (response && response.data && response.data.status === 1) {
-                const theme = parse(response.data.result);
+               this.isDarkMode == true ? config.actTheme = 'DARK_ORANGE_THEME' : config.actTheme = 'LIGHT_ORANGE_THEME';
             }
         },
         SET_CARD_BORDER(payload: any) {

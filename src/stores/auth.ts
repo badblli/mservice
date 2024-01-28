@@ -18,7 +18,7 @@ export const useAuthStore = defineStore({
         name: 'Login',
         name2: 'UpdateUserAvatar',
         controllerName: 'Auth',
-        controllerName2: 'Admin',
+        controllerName2: 'AuthAdmin',
         applicationName: p.Auth,
         applicationName2: p.MService,
         userAvatar: JSON.parse(localStorage.getItem('user'))?.UserProfile?.UserAvatar,
